@@ -28,8 +28,8 @@
     CGFloat screenWidth  = [UIScreen mainScreen].bounds.size.width;
     
     self.title_label.frame = CGRectMake((screenWidth-120)/2, 20, 120, 30);
-    self.left_btn.frame = CGRectMake(10 , 20, 30, 30);
-    self.right_btn.frame = CGRectMake(screenWidth-10-40, 25, 30, 30);
+    self.left_btn.frame = CGRectMake(10 , 30, 50, 30);
+    self.right_btn.frame = CGRectMake(screenWidth-10-40, 20, 50, 30);
     
 }
 
@@ -41,7 +41,7 @@
     if(!_title_label)
     {
         _title_label = [[UILabel alloc] init];
-       // _title_label.backgroundColor = [UIColor orangeColor];
+        // _title_label.backgroundColor = [UIColor orangeColor];
         _title_label.textAlignment =   NSTextAlignmentCenter;
         _title_label.textColor = [UIColor whiteColor];
     }
@@ -53,7 +53,7 @@
     if(!_left_btn)
     {
         _left_btn = [[UIButton alloc] init];
-       // _left_btn.backgroundColor = [UIColor orangeColor];
+        // _left_btn.backgroundColor = [UIColor orangeColor];
         _left_btn.titleLabel.font = [UIFont systemFontOfSize:14];
     }
     return _left_btn;

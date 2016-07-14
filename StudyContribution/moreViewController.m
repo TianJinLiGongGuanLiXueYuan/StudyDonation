@@ -36,9 +36,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-        self.navitionBar.title_label.text = @"基本信息";
+    //设置背景颜色
+    self.view.backgroundColor = [UIColor greenColor];
+    
+    //设置页面标题
+    self.navitionBar.title_label.text = @"基本信息";
+    
+    //设置导航栏左边的按钮
+    [self.navitionBar.left_btn setTitle:@"上一步" forState:UIControlStateNormal];
+    [self.navitionBar.left_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    
+    //设置控件
     [self.view addSubview:self.nextbtn];
     
     [self.view addSubview:self.universityLab];
@@ -50,7 +60,9 @@
     [self.view addSubview:self.cshoolTextF];
     [self.view addSubview:self.classTextF];
     [self.view addSubview:self.stuNumTextF];
-  //  [self.view addSubview:self.gobackbtn];
+    
+    
+    //  [self.view addSubview:self.gobackbtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,17 +73,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   // self.nextbtn.frame = CGRectMake(10, 10, 100, 100);
-   // self.gobackbtn.frame = CGRectMake(150, 10, 100, 100);
+    // self.nextbtn.frame = CGRectMake(10, 10, 100, 100);
+    // self.gobackbtn.frame = CGRectMake(150, 10, 100, 100);
     
 }
 
--(void)leftbtnClick
-{
-    //[super leftbtnClick];
-    [self.navigationController popViewControllerAnimated:YES];
-    NSLog(@"dsafsd");
-}
+
 
 #pragma mark - 界面控件
 
@@ -165,6 +172,8 @@
     return _stuNumTextF;
 }
 
+
+//下一步  按钮
 -(UIButton *)nextbtn
 {
     if(!_nextbtn)
@@ -183,14 +192,25 @@
 
 
 #pragma mark - 单击事件
+
+//下一步 按钮单击事件
 -(void)nextbtnclick
 {
     anymoreViewController *anymoreVC = [[anymoreViewController alloc] init];
-   
+    
     [self.navigationController pushViewController:anymoreVC animated:YES];
 }
 - (void) viewDidDisappear:(BOOL)animated
 {
     self.hidesBottomBarWhenPushed = NO;
+}
+
+
+//导航栏左按钮事件
+-(void)leftbtnClick
+{
+    //[super leftbtnClick];
+    [self.navigationController popViewControllerAnimated:YES];
+    // NSLog(@"dsafsd");
 }
 @end

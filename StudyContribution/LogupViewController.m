@@ -32,10 +32,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //设置背景颜色
+    self.view.backgroundColor = [UIColor greenColor];
     
+    // 设置页面标题
     self.navitionBar.title_label.text = @"绑定手机";
+    
+    
+    //设置页面左边的按钮
     [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.navitionBar.left_btn.frame = CGRectMake(0, 30, 50, 35);
+    [self.navitionBar.left_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    
+    //设置控件
     [self.view addSubview:self.nextbtn];
     
     [self.view addSubview:self.telLab];
@@ -44,8 +54,7 @@
     [self.view addSubview:self.verifyLab];
     [self.view addSubview:self.verifyTexF];
     
-    self.navitionBar.left_btn.titleLabel.text = @"绑定手机";
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,13 +155,20 @@
     
     [self.navigationController pushViewController:moreVC animated:YES];
     
-//    [self presentViewController:moreVC animated:YES completion:^{
-//        
-//        
-//    }];
+    //    [self presentViewController:moreVC animated:YES completion:^{
+    //
+    //
+    //    }];
 }
 - (void) viewDidDisappear:(BOOL)animated
 {
     self.hidesBottomBarWhenPushed = NO;
+}
+
+
+//左按钮单击事件
+-(void)leftbtnClick
+{
+    [self.navigationController popViewControllerAnimated:YES ];
 }
 @end

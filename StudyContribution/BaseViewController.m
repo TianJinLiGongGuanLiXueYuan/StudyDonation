@@ -59,18 +59,18 @@
     if(!_navitionBar)
     {
         _navitionBar = [[CustomnavView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)];
-//        if (!isNeedBack) {
-//            [_navitionBar.left_btn removeFromSuperview];
-//        }
+        //        if (!isNeedBack) {
+        //            [_navitionBar.left_btn removeFromSuperview];
+        //        }
         if (_navitionBar.left_btn) {
             
-            _navitionBar.left_btn.backgroundColor=[UIColor whiteColor];
+            //_navitionBar.left_btn.backgroundColor=[UIColor whiteColor];
             
             [_navitionBar.left_btn addTarget:self action:@selector(leftbtnClick) forControlEvents:UIControlEventTouchUpInside];
         }
         if(_navitionBar.right_btn)
         {
-            _navitionBar.right_btn.backgroundColor=[UIColor whiteColor];
+            // _navitionBar.right_btn.backgroundColor=[UIColor whiteColor];
             [_navitionBar.right_btn addTarget:self action:@selector(rightbtnClick) forControlEvents:UIControlEventTouchUpInside];
         }
         _navitionBar.title_label.text = Title;
@@ -80,7 +80,7 @@
 }
 
 #pragma mark - 响应事件
- 
+
 -(void)leftbtnClick
 {
     

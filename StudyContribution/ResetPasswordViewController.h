@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ResetPasswordViewController : UIViewController
+#import "BaseViewController.h"
+@interface ResetPasswordViewController : BaseViewController
 
 @end

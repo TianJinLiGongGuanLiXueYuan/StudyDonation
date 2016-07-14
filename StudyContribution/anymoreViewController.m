@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "regeisterViewController.h"
 
+
 #define leftMargin 40
 #define upMargin 150
 #define vHight 50
@@ -34,7 +35,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-        self.navitionBar.title_label.text = @"设置密码";
+    
+    //设置背景颜色
+    self.view.backgroundColor = [UIColor greenColor];
+    
+    //设置标题
+    self.navitionBar.title_label.text = @"设置密码";
+    
+    //设置导航栏左按钮
+    [self.navitionBar.left_btn setTitle:@"上一步" forState:UIControlStateNormal];
+    [self.navitionBar.left_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    //设置控件
     [self.view addSubview:self.go_homebtn];
     
     [self.view addSubview:self.setPasswordLab];
@@ -120,14 +132,22 @@
 
 
 #pragma mark - 单击事件
+
 -(void)gohomebtnclick
 {
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     //[self presentViewController:loginVC animated:YES completion:nil];
     [self.navigationController pushViewController:loginVC animated:YES];
 }
+
 - (void) viewDidDisappear:(BOOL)animated
 {
     self.hidesBottomBarWhenPushed = NO;
+}
+
+//左按钮单击事件
+-(void)leftbtnClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

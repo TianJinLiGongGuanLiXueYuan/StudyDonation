@@ -1,0 +1,16 @@
+//
+//  PrefixHeader.pch
+//  StudyContribution
+//
+//  Created by 刘芮东 on 16/7/13.
+//  Copyright © 2016年 刘芮东. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+#import "AppDelegate.h"
+
+#endif

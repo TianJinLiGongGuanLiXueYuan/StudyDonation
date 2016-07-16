@@ -14,6 +14,13 @@
 
 #import "LoginViewController.h"
 
+//引入第三方短信验证文件
+#import <SMS_SDK/SMSSDK.h>
+
+//SMSSDK官网公共key
+#define appkey @"f3fc6baa9ac4"
+#define app_secrect @"7f3dedcb36d92deebcb373af921d635a"
+
 @interface AppDelegate ()
 
 @end
@@ -23,14 +30,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //第三方短信平台添加，我也不知道是啥
+    
+    [SMSSDK registerApp:appkey withSecret:app_secrect];
+    
+    //重新写入口
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     //[self.window makeKeyAndVisible];
-//    regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
-//    CustomNavigationController *nav = [[CustomNavigationController alloc]initWithRootViewController:regeisterVC];
-//    
-//    self.window.rootViewController = nav;
-//    [self.window makeKeyAndVisible];
+    //    regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
+    //    CustomNavigationController *nav = [[CustomNavigationController alloc]initWithRootViewController:regeisterVC];
+    //
+    //    self.window.rootViewController = nav;
+    //    [self.window makeKeyAndVisible];
     
     int i=1;
     
@@ -53,15 +66,15 @@
     UITabBarController *tbc = [[UITabBarController alloc] init];
     
     NSArray *titleArr = @[@"首页",@"详情",@"设置"];
-//    NSArray *imgArr = @[@"home",@"hot",@"consulting"];
+    //    NSArray *imgArr = @[@"home",@"hot",@"consulting"];
     for (int i = 0; i < titleArr.count; i ++) {
         UITabBarItem *item = tbc.tabBar.items[i];
         
         item.title = titleArr[i];
         
-//        UIImage *img = [UIImage imageNamed:imgArr[i]];
-//        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//        
+        //        UIImage *img = [UIImage imageNamed:imgArr[i]];
+        //        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        //
     }
     
     
@@ -79,7 +92,7 @@
         self.window.rootViewController = tbc;
     }
     
- 
+    
     return YES;
 }
 

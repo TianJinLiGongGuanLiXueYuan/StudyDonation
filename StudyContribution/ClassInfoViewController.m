@@ -47,7 +47,7 @@
     
     
 
-    label.lineBreakMode = UILineBreakModeWordWrap;
+    //label.lineBreakMode = UILineBreakModeWordWrap;
     label.numberOfLines = 0;
     
     

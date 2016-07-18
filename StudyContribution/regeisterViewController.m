@@ -10,16 +10,43 @@
 #import "LoginViewController.h"
 #import "CustomNavigationController.h"
 #import "ClassInfoViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
+#define TextWidth 300
+#define TextHeight 200
+#define BtnWidth 200
+#define BtnHeight 50
+#define XMarginText 57
+#define XMarginBtn 107
+#define YMargin 368
 
-@interface regeisterViewController ()
+@interface regeisterViewController ()<CLLocationManagerDelegate>
+
+//计时器
+@property (nonatomic,strong) NSTimer *timer;
 
 @property (nonatomic,strong) UIButton *tolotin;
+
+//详细课程信息按钮
+@property (nonatomic,strong) UIButton *classinfobtn;
+
+//上下课按钮
 @property (nonatomic,strong) UIButton *classinbtn;
 @property (nonatomic,strong) UIButton *classupbtn;
-@property (nonatomic,strong) UILabel *classDetail;
 
-@property (nonatomic,strong) UIButton *classinfobtn;
+//当前状态label
+@property (nonatomic,strong) UILabel *currentstatusLabel;
+
+//消息框
+@property (nonatomic,strong) UIAlertController *alertController;
+@property (nonatomic,strong) UIAlertAction *yesAction;
+@property (nonatomic,strong) UIAlertAction *noAction;
+
+/*
+//定位
+@property (nonatomic,strong) CLLocationManager *locationManager;
+*/
+
 
 @end
 
@@ -28,13 +55,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFunc) userInfo:nil repeats:YES];
+    
     self.title = @"首页";
     self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.view addSubview:self.tolotin];
+    
+    [self.view addSubview:self.classinfobtn];
+    
     [self.view addSubview:self.classinbtn];
     [self.view addSubview:self.classupbtn];
-    [self.view addSubview:self.classDetail];
-    [self.view addSubview:self.classinfobtn];
+    
+    [self.view addSubview:self.currentstatusLabel];
+    
+    /*
+//    初始化定位
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 1000.0f;
+    
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestAlwaysAuthorization];
+     */
+    
+    //根据经纬度创建两个位置对象
+    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
+    //    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:39.9 longitude:116.3];
+    CLLocation *loc2=[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
+    //计算两个位置之间的距离
+    CLLocationDistance distance=[loc1 distanceFromLocation:loc2];
+    NSLog(@"(%@)和(%@)的距离=%fKM",loc1,loc2,distance/1000);
     
 }
 
@@ -49,12 +101,182 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tolotin.frame = CGRectMake(100, 100, 100, 100);
-    self.classinbtn.frame = CGRectMake(self.view.bounds.size.width/2-50, self.view.bounds.size.height/2-160, 100, 100);
-    self.classupbtn.frame = CGRectMake(self.view.bounds.size.width/2-50, self.view.bounds.size.height/2-50, 100, 100);
     
-    self.classinfobtn.frame = CGRectMake(10,70, 100, 40);
+    self.tolotin.frame = CGRectMake(0, 64, 100, 30);
+    
+//    设置课程详细按钮
+    self.classinfobtn.frame = CGRectMake(XMarginBtn, YMargin - 130, BtnWidth, BtnHeight);
+
+//    上下课按钮设置
+    self.classinbtn.frame = CGRectMake(XMarginBtn, YMargin - 60, BtnWidth, BtnHeight);
+    self.classupbtn.frame = CGRectMake(XMarginBtn, YMargin + 10, BtnWidth, BtnHeight);
+    
+    /*
+//    开始定位
+    [self.locationManager startUpdatingLocation];
+     */
+    
 }
+
+/*
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.locationManager stopUpdatingLocation];
+}
+*/
+
+#pragma mark - 上课按钮配置
+
+- (UIButton *)classinbtn{
+    if(!_classinbtn)
+    {
+        _classinbtn = [[UIButton alloc] init];
+        _classinbtn.backgroundColor = [UIColor purpleColor];
+        [_classinbtn setTitle:@"上课" forState:UIControlStateNormal];
+        [_classinbtn addTarget:self action:@selector(classinbtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _classinbtn;
+}
+
+- (void)classinbtnClick{
+    NSDate *date8 = [self getCustomDateWithHour:8 andMinute:45];
+    NSDate *date23 = [self getCustomDateWithHour:18 andMinute:00];
+    
+    NSDate *currentDate = [NSDate date];
+    
+    if([currentDate compare:date8] == NSOrderedDescending && [currentDate compare:date23] == NSOrderedAscending){
+        _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"成功" preferredStyle:UIAlertControllerStyleAlert];
+        
+        _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [_alertController addAction:_yesAction];
+        [_alertController addAction:_noAction];
+        
+        [self presentViewController:_alertController animated:YES completion:nil];
+        
+        NSLog(@"成功");
+    }else{
+        _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"失败" preferredStyle:UIAlertControllerStyleAlert];
+        _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [_alertController addAction:_yesAction];
+        [_alertController addAction:_noAction];
+        
+        [self presentViewController:_alertController animated:YES completion:nil];
+        NSLog(@"失败");
+    }
+}
+
+#pragma mark - 下课按钮配置
+
+- (UIButton *)classupbtn{
+    if(!_classupbtn)
+    {
+        _classupbtn = [[UIButton alloc] init];
+        _classupbtn.backgroundColor = [UIColor orangeColor];
+        [_classupbtn setTitle:@"下课" forState:UIControlStateNormal];
+        [_classupbtn addTarget:self action:@selector(classupbtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _classupbtn;
+}
+
+- (void)classupbtnClick{
+    NSDate *date8 = [self getCustomDateWithHour:8 andMinute:45];
+    NSDate *date23 = [self getCustomDateWithHour:18 andMinute:00];
+    
+    NSDate *currentDate = [NSDate date];
+    
+    if([currentDate compare:date8] == NSOrderedDescending && [currentDate compare:date23] == NSOrderedAscending){
+        _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"成功" preferredStyle:UIAlertControllerStyleAlert];
+        _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [_alertController addAction:_yesAction];
+        [_alertController addAction:_noAction];
+        
+        [self presentViewController:_alertController animated:YES completion:nil];
+        NSLog(@"成功");
+    }else{
+        _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"失败" preferredStyle:UIAlertControllerStyleAlert];
+        _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [_alertController addAction:_yesAction];
+        [_alertController addAction:_noAction];
+        
+        [self presentViewController:_alertController animated:YES completion:nil];
+        NSLog(@"失败");
+    }
+}
+
+#pragma mark - 课程详情
+
+-(UIButton *)classinfobtn
+{
+    if(!_classinfobtn)
+    {
+        _classinfobtn = [[UIButton alloc]init];
+        _classinfobtn.backgroundColor = [UIColor lightGrayColor];
+        [_classinfobtn setTitle:@"课程详情" forState:UIControlStateNormal];
+        [_classinfobtn addTarget:self action:@selector(classinfobtnclick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _classinfobtn;
+}
+
+-(void)classinfobtnclick
+{
+    ClassInfoViewController *classinfoVC = [[ClassInfoViewController alloc]init];
+    [self.navigationController pushViewController:classinfoVC animated:YES];
+    
+}
+
+#pragma mark - 当前状态
+
+-(UILabel *)currentstatusLabel
+{
+    if(!_currentstatusLabel)
+    {
+        _currentstatusLabel = [[UILabel alloc]initWithFrame:CGRectMake(XMarginBtn, YMargin + 70, 200, 50)];
+        _currentstatusLabel.font = [UIFont systemFontOfSize:18];
+        _currentstatusLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _currentstatusLabel;
+}
+
+#pragma mark - 获取时间函数
+
+- (NSDate *)getCustomDateWithHour:(NSInteger )hour andMinute:(NSInteger)minute{
+    NSDate *currentDate = [NSDate date];
+    NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *currentComps = [[NSDateComponents alloc]init];
+    
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    
+    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
+    
+    NSDateComponents *resultComps = [[NSDateComponents alloc]init];
+    [resultComps setYear:[currentComps year]];
+    [resultComps setMonth:[currentComps month]];
+    [resultComps setDay:[currentComps day]];
+    [resultComps setHour:hour];
+    [resultComps setMinute:minute];
+    
+    NSCalendar *resultCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    return [resultCalendar dateFromComponents:resultComps];
+}
+
+- (void)timerFunc{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSString *nowTime = [dateFormatter stringFromDate:[NSDate date]];
+    [_currentstatusLabel setText:nowTime];
+}
+
+#pragma mark - 临时使用
 
 -(UIButton *)tolotin
 {
@@ -80,72 +302,46 @@
     }];
 }
 
+#pragma mark - 我不知道干嘛用的
+
 -(void)leftbtnClick{
     NSLog(@"aa");
 }
 
-#pragma mark - 上下课按钮配置
+#pragma mark - 定位信息
 
-//class info
--(UIButton *)classinfobtn
-{
-    if(!_classinfobtn)
-    {
-        _classinfobtn = [[UIButton alloc]init];
-        _classinfobtn.backgroundColor = [UIColor lightGrayColor];
-        [_classinfobtn setTitle:@"课程详情" forState:UIControlStateNormal];
-        [_classinfobtn addTarget:self action:@selector(classinfobtnclick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _classinfobtn;
-}
-
--(void)classinfobtnclick
-{
-    ClassInfoViewController *classinfoVC = [[ClassInfoViewController alloc]init];
-    [self.navigationController pushViewController:classinfoVC animated:YES];
+/*
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    CLLocation *currLocation = [locations lastObject];
     
+    NSLog(@"定位信息：%3.5f,%3.5f,%3.5f",currLocation.coordinate.latitude,currLocation.coordinate.longitude,currLocation.altitude);
+ 
+    //    纬度Text赋值
+    self.txtLat.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.latitude];
+    //    经度度Text赋值
+    self.txtLng.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.longitude];
+    //    高度Text赋值
+    self.txtAlt.text = [NSString stringWithFormat:@"%3.5f",currLocation.altitude];
+ 
 }
-// 上课按钮
-- (UIButton *)classinbtn{
-    if(!_classinbtn)
-    {
-        _classinbtn = [[UIButton alloc] init];
-        _classinbtn.backgroundColor = [UIColor purpleColor];
-        [_classinbtn setTitle:@"上课" forState:UIControlStateNormal];
-        [_classinbtn addTarget:self action:@selector(classinbtnClick) forControlEvents:UIControlEventTouchUpInside];
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"error:%@",error);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if (status == kCLAuthorizationStatusAuthorizedAlways) {
+        NSLog(@"Authorized");
+    }else if (status == kCLAuthorizationStatusAuthorizedWhenInUse){
+        NSLog(@"AuthorizedWhenInUse");
+    }else if (status == kCLAuthorizationStatusDenied){
+        NSLog(@"Denied");
+    }else if (status == kCLAuthorizationStatusRestricted) {
+        NSLog(@"Restricted");
+    }else if (status == kCLAuthorizationStatusNotDetermined){
+        NSLog(@"NotDetermined");
     }
-    return _classinbtn;
 }
-
-- (void)classinbtnClick{
-    
-}
-
-//下课
-- (UIButton *)classupbtn{
-    if(!_classupbtn)
-    {
-        _classupbtn = [[UIButton alloc] init];
-        _classupbtn.backgroundColor = [UIColor orangeColor];
-        [_classupbtn setTitle:@"下课" forState:UIControlStateNormal];
-        [_classupbtn addTarget:self action:@selector(classupbtnClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _classupbtn;
-}
-
-- (void)classupbtnClick{
-}
-
-#pragma mark - 当前状态
-
--(UILabel *)classDetail
-{
-    if(!_classDetail)
-    {
-        _classDetail = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2, 400, 200, 200)];
-        _classDetail.text = @"XXX";
-    }
-    return _classDetail;
-}
+*/
 
 @end

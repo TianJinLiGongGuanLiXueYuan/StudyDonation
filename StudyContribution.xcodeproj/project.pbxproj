@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CE3EB981D3D91DA00B5B780 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE3EB971D3D91DA00B5B780 /* CoreLocation.framework */; };
 		F53AC87E1D39ACCD00A7E8D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */; };
 		F53AC87F1D39ACCD00A7E8D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */; };
 		F53AC8811D39AD1600A7E8D2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8CE3EB971D3D91DA00B5B780 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -125,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE3EB981D3D91DA00B5B780 /* CoreLocation.framework in Frameworks */,
 				F53AC8951D39AD8100A7E8D2 /* libz.tbd in Frameworks */,
 				F53AC8931D39AD7700A7E8D2 /* libicucore.tbd in Frameworks */,
 				F53AC8911D39AD6900A7E8D2 /* libstdc++.tbd in Frameworks */,
@@ -169,6 +172,7 @@
 		F53AC87A1D39ACAD00A7E8D2 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8CE3EB971D3D91DA00B5B780 /* CoreLocation.framework */,
 				F53AC8941D39AD8100A7E8D2 /* libz.tbd */,
 				F53AC8921D39AD7700A7E8D2 /* libicucore.tbd */,
 				F53AC8901D39AD6900A7E8D2 /* libstdc++.tbd */,

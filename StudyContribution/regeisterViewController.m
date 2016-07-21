@@ -28,11 +28,11 @@
 @property (nonatomic,strong) UIButton *tolotin;
 
 //详细课程信息按钮
-@property (nonatomic,strong) UIButton *classinfobtn;
+@property (nonatomic,strong) UIButton *classInfoBtn;
 
 //上下课按钮
-@property (nonatomic,strong) UIButton *classinbtn;
-@property (nonatomic,strong) UIButton *classupbtn;
+@property (nonatomic,strong) UIButton *classInBtn;
+@property (nonatomic,strong) UIButton *classUpBtn;
 
 //当前状态label
 @property (nonatomic,strong) UILabel *currentstatusLabel;
@@ -43,9 +43,9 @@
 @property (nonatomic,strong) UIAlertAction *noAction;
 
 /*
-//定位
-@property (nonatomic,strong) CLLocationManager *locationManager;
-*/
+ //定位
+ @property (nonatomic,strong) CLLocationManager *locationManager;
+ */
 
 
 @end
@@ -62,31 +62,32 @@
     
     [self.view addSubview:self.tolotin];
     
-    [self.view addSubview:self.classinfobtn];
+    [self.view addSubview:self.classInfoBtn];
     
-    [self.view addSubview:self.classinbtn];
-    [self.view addSubview:self.classupbtn];
+    [self.view addSubview:self.classInBtn];
+    [self.view addSubview:self.classUpBtn];
     
     [self.view addSubview:self.currentstatusLabel];
     
     /*
-//    初始化定位
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 1000.0f;
-    
-    [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager requestAlwaysAuthorization];
+     //    初始化定位
+     self.locationManager = [[CLLocationManager alloc]init];
+     self.locationManager.delegate = self;
+     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+     self.locationManager.distanceFilter = 1000.0f;
+     
+     [self.locationManager requestWhenInUseAuthorization];
+     [self.locationManager requestAlwaysAuthorization];
+     
+     
+     //根据经纬度创建两个位置对象
+     CLLocation *loc1=[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
+     //    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:39.9 longitude:116.3];
+     CLLocation *loc2=[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
+     //计算两个位置之间的距离
+     CLLocationDistance distance=[loc1 distanceFromLocation:loc2];
+     NSLog(@"(%@)和(%@)的距离=%fKM",loc1,loc2,distance/1000);
      */
-    
-    //根据经纬度创建两个位置对象
-    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
-    //    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:39.9 longitude:116.3];
-    CLLocation *loc2=[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
-    //计算两个位置之间的距离
-    CLLocationDistance distance=[loc1 distanceFromLocation:loc2];
-    NSLog(@"(%@)和(%@)的距离=%fKM",loc1,loc2,distance/1000);
     
 }
 
@@ -104,42 +105,45 @@
     
     self.tolotin.frame = CGRectMake(0, 64, 100, 30);
     
-//    设置课程详细按钮
-    self.classinfobtn.frame = CGRectMake(XMarginBtn, YMargin - 130, BtnWidth, BtnHeight);
-
-//    上下课按钮设置
-    self.classinbtn.frame = CGRectMake(XMarginBtn, YMargin - 60, BtnWidth, BtnHeight);
-    self.classupbtn.frame = CGRectMake(XMarginBtn, YMargin + 10, BtnWidth, BtnHeight);
+    //    设置课程详细按钮
+    self.classInfoBtn.frame = CGRectMake(XMarginBtn, YMargin - 130, BtnWidth, BtnHeight);
+    
+    //    上下课按钮设置
+    self.classInBtn.frame = CGRectMake(XMarginBtn, YMargin - 60, BtnWidth, BtnHeight);
+    self.classUpBtn.frame = CGRectMake(XMarginBtn, YMargin + 10, BtnWidth, BtnHeight);
     
     /*
-//    开始定位
-    [self.locationManager startUpdatingLocation];
+     //    开始定位
+     [self.locationManager startUpdatingLocation];
      */
     
 }
 
 /*
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    
-    [self.locationManager stopUpdatingLocation];
-}
-*/
+ -(void)viewWillDisappear:(BOOL)animated{
+ [super viewWillDisappear:animated];
+ 
+ [self.locationManager stopUpdatingLocation];
+ }
+ */
 
 #pragma mark - 上课按钮配置
 
-- (UIButton *)classinbtn{
-    if(!_classinbtn)
+- (UIButton *)classInBtn{
+    if(!_classInBtn)
     {
-        _classinbtn = [[UIButton alloc] init];
-        _classinbtn.backgroundColor = [UIColor purpleColor];
-        [_classinbtn setTitle:@"上课" forState:UIControlStateNormal];
-        [_classinbtn addTarget:self action:@selector(classinbtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _classInBtn = [[UIButton alloc] init];
+        
+        _classInBtn.layer.cornerRadius = 5;
+        
+        _classInBtn.backgroundColor = [UIColor purpleColor];
+        [_classInBtn setTitle:@"上课" forState:UIControlStateNormal];
+        [_classInBtn addTarget:self action:@selector(classInBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _classinbtn;
+    return _classInBtn;
 }
 
-- (void)classinbtnClick{
+- (void)classInBtnClick{
     NSDate *date8 = [self getCustomDateWithHour:8 andMinute:45];
     NSDate *date23 = [self getCustomDateWithHour:18 andMinute:00];
     
@@ -172,18 +176,21 @@
 
 #pragma mark - 下课按钮配置
 
-- (UIButton *)classupbtn{
-    if(!_classupbtn)
+- (UIButton *)classUpBtn{
+    if(!_classUpBtn)
     {
-        _classupbtn = [[UIButton alloc] init];
-        _classupbtn.backgroundColor = [UIColor orangeColor];
-        [_classupbtn setTitle:@"下课" forState:UIControlStateNormal];
-        [_classupbtn addTarget:self action:@selector(classupbtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _classUpBtn = [[UIButton alloc] init];
+        
+        _classUpBtn.layer.cornerRadius = 5;
+        
+        _classUpBtn.backgroundColor = [UIColor orangeColor];
+        [_classUpBtn setTitle:@"下课" forState:UIControlStateNormal];
+        [_classUpBtn addTarget:self action:@selector(classUpBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _classupbtn;
+    return _classUpBtn;
 }
 
-- (void)classupbtnClick{
+- (void)classUpBtnClick{
     NSDate *date8 = [self getCustomDateWithHour:8 andMinute:45];
     NSDate *date23 = [self getCustomDateWithHour:18 andMinute:00];
     
@@ -214,19 +221,22 @@
 
 #pragma mark - 课程详情
 
--(UIButton *)classinfobtn
+-(UIButton *)classInfoBtn
 {
-    if(!_classinfobtn)
+    if(!_classInfoBtn)
     {
-        _classinfobtn = [[UIButton alloc]init];
-        _classinfobtn.backgroundColor = [UIColor lightGrayColor];
-        [_classinfobtn setTitle:@"课程详情" forState:UIControlStateNormal];
-        [_classinfobtn addTarget:self action:@selector(classinfobtnclick) forControlEvents:UIControlEventTouchUpInside];
+        _classInfoBtn = [[UIButton alloc]init];
+        
+        _classInfoBtn.layer.cornerRadius = 5;
+        
+        _classInfoBtn.backgroundColor = [UIColor lightGrayColor];
+        [_classInfoBtn setTitle:@"课程详情" forState:UIControlStateNormal];
+        [_classInfoBtn addTarget:self action:@selector(classInfoBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _classinfobtn;
+    return _classInfoBtn;
 }
 
--(void)classinfobtnclick
+-(void)classInfoBtnClick
 {
     ClassInfoViewController *classinfoVC = [[ClassInfoViewController alloc]init];
     [self.navigationController pushViewController:classinfoVC animated:YES];
@@ -239,7 +249,7 @@
 {
     if(!_currentstatusLabel)
     {
-        _currentstatusLabel = [[UILabel alloc]initWithFrame:CGRectMake(XMarginBtn, YMargin + 70, 200, 50)];
+        _currentstatusLabel = [[UILabel alloc]initWithFrame:CGRectMake(XMarginBtn, YMargin + 120, 200, 50)];
         _currentstatusLabel.font = [UIFont systemFontOfSize:18];
         _currentstatusLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -311,37 +321,37 @@
 #pragma mark - 定位信息
 
 /*
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-    CLLocation *currLocation = [locations lastObject];
-    
-    NSLog(@"定位信息：%3.5f,%3.5f,%3.5f",currLocation.coordinate.latitude,currLocation.coordinate.longitude,currLocation.altitude);
+ - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+ CLLocation *currLocation = [locations lastObject];
  
-    //    纬度Text赋值
-    self.txtLat.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.latitude];
-    //    经度度Text赋值
-    self.txtLng.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.longitude];
-    //    高度Text赋值
-    self.txtAlt.text = [NSString stringWithFormat:@"%3.5f",currLocation.altitude];
+ NSLog(@"定位信息：%3.5f,%3.5f,%3.5f",currLocation.coordinate.latitude,currLocation.coordinate.longitude,currLocation.altitude);
  
-}
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"error:%@",error);
-}
-
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    if (status == kCLAuthorizationStatusAuthorizedAlways) {
-        NSLog(@"Authorized");
-    }else if (status == kCLAuthorizationStatusAuthorizedWhenInUse){
-        NSLog(@"AuthorizedWhenInUse");
-    }else if (status == kCLAuthorizationStatusDenied){
-        NSLog(@"Denied");
-    }else if (status == kCLAuthorizationStatusRestricted) {
-        NSLog(@"Restricted");
-    }else if (status == kCLAuthorizationStatusNotDetermined){
-        NSLog(@"NotDetermined");
-    }
-}
-*/
+ //    纬度Text赋值
+ self.txtLat.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.latitude];
+ //    经度度Text赋值
+ self.txtLng.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.longitude];
+ //    高度Text赋值
+ self.txtAlt.text = [NSString stringWithFormat:@"%3.5f",currLocation.altitude];
+ 
+ }
+ 
+ -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+ NSLog(@"error:%@",error);
+ }
+ 
+ - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+ if (status == kCLAuthorizationStatusAuthorizedAlways) {
+ NSLog(@"Authorized");
+ }else if (status == kCLAuthorizationStatusAuthorizedWhenInUse){
+ NSLog(@"AuthorizedWhenInUse");
+ }else if (status == kCLAuthorizationStatusDenied){
+ NSLog(@"Denied");
+ }else if (status == kCLAuthorizationStatusRestricted) {
+ NSLog(@"Restricted");
+ }else if (status == kCLAuthorizationStatusNotDetermined){
+ NSLog(@"NotDetermined");
+ }
+ }
+ */
 
 @end

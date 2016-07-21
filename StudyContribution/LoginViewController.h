@@ -10,4 +10,7 @@
 #import "BaseViewController.h"
 @interface LoginViewController : UIViewController
 
+@property (nonatomic,strong) NSMutableDictionary *mutableDic;
+
+
 @end

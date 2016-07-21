@@ -1,13 +1,14 @@
 //
-//  SettingViewController.h
+//  MoreDetailViewController.h
 //  StudyContribution
 //
-//  Created by 刘芮东 on 16/7/13.
+//  Created by Dark on 16/7/18.
 //  Copyright © 2016年 刘芮东. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-@interface SettingViewController :BaseViewController
+
+@interface MoreDetailViewController : BaseViewController
 
 @end

@@ -59,7 +59,7 @@
     
     SettingViewController *vc3 = [[SettingViewController alloc] init];
     vc3.title = @"vc3";
-    vc3.view.backgroundColor = [UIColor purpleColor];
+//    vc3.view.backgroundColor = [UIColor purpleColor];
     CustomNavigationController *nc3 = [[CustomNavigationController alloc] initWithRootViewController:vc3];
     
     

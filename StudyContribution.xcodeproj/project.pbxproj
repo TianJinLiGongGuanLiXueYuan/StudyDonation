@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8CE3EB981D3D91DA00B5B780 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE3EB971D3D91DA00B5B780 /* CoreLocation.framework */; };
+		18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0D71D407B9700CA20DF /* MoreDetailViewController.m */; };
+		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
+		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
+		8C59072E1D40E4A4003FD355 /* CutomerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C59072D1D40E4A4003FD355 /* CutomerInfoViewController.m */; };
+		8C5907311D40E513003FD355 /* SchoolInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5907301D40E513003FD355 /* SchoolInfoViewController.m */; };
 		F53AC87E1D39ACCD00A7E8D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */; };
 		F53AC87F1D39ACCD00A7E8D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */; };
 		F53AC8811D39AD1600A7E8D2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */; };
@@ -23,6 +27,10 @@
 		F53AC8951D39AD8100A7E8D2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8941D39AD8100A7E8D2 /* libz.tbd */; };
 		F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */; };
 		F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */; };
+		F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = F598E75C1D3A74FB0081A4B2 /* LoginView.m */; };
+		F598E75F1D3A99280081A4B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F598E75E1D3A99280081A4B2 /* QuartzCore.framework */; };
+		F5AB95411D3CF0E8006D87F4 /* logup.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB95401D3CF0E8006D87F4 /* logup.m */; };
+		F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB95431D3CF379006D87F4 /* BaseInfoSave.m */; };
 		F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D0397B1D36CF9600476D65 /* ForgetPasswordViewController.m */; };
 		FE7AD2601D352EAF00AE368C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD25F1D352EAF00AE368C /* main.m */; };
 		FE7AD2631D352EAF00AE368C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2621D352EAF00AE368C /* AppDelegate.m */; };
@@ -62,7 +70,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8CE3EB971D3D91DA00B5B780 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		18E5D0D61D407B9700CA20DF /* MoreDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreDetailViewController.h; sourceTree = "<group>"; };
+		18E5D0D71D407B9700CA20DF /* MoreDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreDetailViewController.m; sourceTree = "<group>"; };
+		18E5D0D91D407BAF00CA20DF /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
+		18E5D0DA1D407BAF00CA20DF /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
+		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8C59072C1D40E4A4003FD355 /* CutomerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutomerInfoViewController.h; sourceTree = "<group>"; };
+		8C59072D1D40E4A4003FD355 /* CutomerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutomerInfoViewController.m; sourceTree = "<group>"; };
+		8C59072F1D40E513003FD355 /* SchoolInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolInfoViewController.h; sourceTree = "<group>"; };
+		8C5907301D40E513003FD355 /* SchoolInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolInfoViewController.m; sourceTree = "<group>"; };
 		F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -80,6 +96,13 @@
 		F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewController.m; sourceTree = "<group>"; };
 		F5553BEF1D3798D500E38EA3 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
 		F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		F598E75B1D3A74FB0081A4B2 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		F598E75C1D3A74FB0081A4B2 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		F598E75E1D3A99280081A4B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F5AB953F1D3CF0E8006D87F4 /* logup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logup.h; sourceTree = "<group>"; };
+		F5AB95401D3CF0E8006D87F4 /* logup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = logup.m; sourceTree = "<group>"; };
+		F5AB95421D3CF379006D87F4 /* BaseInfoSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInfoSave.h; sourceTree = "<group>"; };
+		F5AB95431D3CF379006D87F4 /* BaseInfoSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInfoSave.m; sourceTree = "<group>"; };
 		F5D0397A1D36CF9600476D65 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		F5D0397B1D36CF9600476D65 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		FE7AD25B1D352EAF00AE368C /* StudyContribution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyContribution.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +150,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CE3EB981D3D91DA00B5B780 /* CoreLocation.framework in Frameworks */,
+				8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */,
+				F598E75F1D3A99280081A4B2 /* QuartzCore.framework in Frameworks */,
 				F53AC8951D39AD8100A7E8D2 /* libz.tbd in Frameworks */,
 				F53AC8931D39AD7700A7E8D2 /* libicucore.tbd in Frameworks */,
 				F53AC8911D39AD6900A7E8D2 /* libstdc++.tbd in Frameworks */,
@@ -172,7 +196,8 @@
 		F53AC87A1D39ACAD00A7E8D2 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8CE3EB971D3D91DA00B5B780 /* CoreLocation.framework */,
+				8C59072A1D40E32D003FD355 /* CoreLocation.framework */,
+				F598E75E1D3A99280081A4B2 /* QuartzCore.framework */,
 				F53AC8941D39AD8100A7E8D2 /* libz.tbd */,
 				F53AC8921D39AD7700A7E8D2 /* libicucore.tbd */,
 				F53AC8901D39AD6900A7E8D2 /* libstdc++.tbd */,
@@ -329,6 +354,7 @@
 				FE7AD2AA1D354E2F00AE368C /* LoginViewController.m */,
 				FE7AD2AB1D354E2F00AE368C /* LogupViewController.h */,
 				FE7AD2AC1D354E2F00AE368C /* LogupViewController.m */,
+				F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */,
 				FE7AD2AD1D354E2F00AE368C /* moreViewController.h */,
 				FE7AD2AE1D354E2F00AE368C /* moreViewController.m */,
 				FE7AD2AF1D354E2F00AE368C /* anymoreViewController.h */,
@@ -336,7 +362,6 @@
 				F5D0397A1D36CF9600476D65 /* ForgetPasswordViewController.h */,
 				F5D0397B1D36CF9600476D65 /* ForgetPasswordViewController.m */,
 				F5553BEC1D3796D500E38EA3 /* ResetPasswordViewController.h */,
-				F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -348,6 +373,10 @@
 				FE7AD2CC1D35D25D00AE368C /* detailUIView.m */,
 				FE7AD2CE1D35D27900AE368C /* passWordView.h */,
 				FE7AD2CF1D35D27900AE368C /* passWordView.m */,
+				F598E75B1D3A74FB0081A4B2 /* LoginView.h */,
+				F598E75C1D3A74FB0081A4B2 /* LoginView.m */,
+				F5AB953F1D3CF0E8006D87F4 /* logup.h */,
+				F5AB95401D3CF0E8006D87F4 /* logup.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -355,6 +384,8 @@
 		FE7AD2B81D354E4600AE368C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F5AB95421D3CF379006D87F4 /* BaseInfoSave.h */,
+				F5AB95431D3CF379006D87F4 /* BaseInfoSave.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -374,6 +405,10 @@
 			children = (
 				FE7AD2C11D35550C00AE368C /* ContributionDetailViewController.h */,
 				FE7AD2C21D35550C00AE368C /* ContributionDetailViewController.m */,
+				18E5D0D61D407B9700CA20DF /* MoreDetailViewController.h */,
+				18E5D0D71D407B9700CA20DF /* MoreDetailViewController.m */,
+				18E5D0D91D407BAF00CA20DF /* Info.h */,
+				18E5D0DA1D407BAF00CA20DF /* Info.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -407,6 +442,10 @@
 			children = (
 				FE7AD2C81D35557100AE368C /* SettingViewController.h */,
 				FE7AD2C91D35557100AE368C /* SettingViewController.m */,
+				8C59072C1D40E4A4003FD355 /* CutomerInfoViewController.h */,
+				8C59072D1D40E4A4003FD355 /* CutomerInfoViewController.m */,
+				8C59072F1D40E513003FD355 /* SchoolInfoViewController.h */,
+				8C5907301D40E513003FD355 /* SchoolInfoViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -492,6 +531,7 @@
 				TargetAttributes = {
 					FE7AD25A1D352EAF00AE368C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DFLQ5P5F44;
 					};
 					FE7AD2731D352EAF00AE368C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -558,19 +598,26 @@
 				FE7AD2B31D354E2F00AE368C /* moreViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
 				FE7AD2B41D354E2F00AE368C /* anymoreViewController.m in Sources */,
+				18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */,
+				18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */,
+				8C5907311D40E513003FD355 /* SchoolInfoViewController.m in Sources */,
 				FE7AD2631D352EAF00AE368C /* AppDelegate.m in Sources */,
 				FE7AD2601D352EAF00AE368C /* main.m in Sources */,
 				FE7AD2B11D354E2F00AE368C /* LoginViewController.m in Sources */,
 				FE7AD2A31D3544F200AE368C /* CustomNavigationController.m in Sources */,
+				F5AB95411D3CF0E8006D87F4 /* logup.m in Sources */,
 				FE7AD2D81D36017B00AE368C /* CustomnavView.m in Sources */,
 				FE7AD29D1D35431A00AE368C /* regeisterViewController.m in Sources */,
 				FE7AD2CD1D35D25D00AE368C /* detailUIView.m in Sources */,
 				FE7AD2D71D36017B00AE368C /* BaseViewController.m in Sources */,
+				F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */,
 				FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */,
 				F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */,
 				F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
 				FE7AD2D01D35D27900AE368C /* passWordView.m in Sources */,
+				8C59072E1D40E4A4003FD355 /* CutomerInfoViewController.m in Sources */,
+				F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +741,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StudyContribution/SMS_SDK",
@@ -704,6 +753,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dongdong.StudyContribution;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -711,6 +761,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StudyContribution/SMS_SDK",
@@ -721,6 +773,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dongdong.StudyContribution;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

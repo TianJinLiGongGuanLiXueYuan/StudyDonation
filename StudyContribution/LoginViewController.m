@@ -37,6 +37,8 @@
 @property(nonatomic,strong)UIButton *resisterBtn;
 @property(nonatomic,strong)UIButton *forgetBtn;
 
+@property(nonatomic,strong)UIImage *usernameimage;
+@property(nonatomic,strong)UIImage *passwordimage;
 
 @end
 
@@ -47,13 +49,10 @@
     self.view.backgroundColor = [UIColor greenColor];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    
-    
-    
     [self.view addSubview:self.userNameLab];
     [self.view addSubview:self.passwordLab];
     
-    [self.view addSubview:self.userNameTextF];
+    [self.view addSubview:self.userNameTextF ];
     [self.view addSubview:self.passwordTextF];
     
     [self.view addSubview:self.forgetBtn];
@@ -61,7 +60,8 @@
     [self.view addSubview:self.loginupbtn];
     [self.view addSubview:self.gobackbtn];
     
-    
+    //用户密码字典
+    _mutableDic=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"123",@"123",@"002",@"002",@"003",@"003",nil];
     
 }
 - (void) viewDidDisappear:(BOOL)animated
@@ -76,23 +76,101 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.loginupbtn.frame = CGRectMake(10, 10, 100, 100);
-//    self.gobackbtn.frame = CGRectMake(150, 500, 100, 100);
+    //    self.loginupbtn.frame = CGRectMake(10, 10, 100, 100);
+    //    self.gobackbtn.frame = CGRectMake(150, 500, 100, 100);
+}
+
+
+
+
+- (void) login {
+    
+    //1.得到用户名和密码
+    NSString *name = self.userNameTextF.text;
+    NSString *pass = self.passwordTextF.text;
+    //2.判断用户名和密码是否正确
+//    if ([name isEqual:@"123"] && [pass isEqual:[_mutableDic objectForKey:@"123"]]) {
+    
+        regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
+        regeisterVC.title = @"首页";
+        CustomNavigationController *nc1 = [[CustomNavigationController alloc] initWithRootViewController:regeisterVC];
+        
+        ContributionDetailViewController *vc2 = [[ContributionDetailViewController alloc] init];
+        vc2.title = @"我的学霸捐";
+        //        vc2.view.backgroundColor = [UIColor redColor];
+        CustomNavigationController *nc2 = [[CustomNavigationController alloc] initWithRootViewController:vc2];
+        
+        
+        SettingViewController *vc3 = [[SettingViewController alloc] init];
+        vc3.title = @"设置";
+//        vc3.view.backgroundColor = [UIColor purpleColor];
+        CustomNavigationController *nc3 = [[CustomNavigationController alloc] initWithRootViewController:vc3];
+        
+        
+        UITabBarController *tbc = [[UITabBarController alloc] init];
+        tbc.viewControllers = [NSArray arrayWithObjects:nc1, nc2, nc3, nil];
+        //UITabBarController *tbc = [[UITabBarController alloc] init];
+        
+        NSArray *titleArr = @[@"首页",@"详情",@"设置"];
+        //    NSArray *imgArr = @[@"home",@"hot",@"consulting"];
+        for (int i = 0; i < titleArr.count; i ++) {
+            UITabBarItem *item = tbc.tabBar.items[i];
+            
+            item.title = titleArr[i];
+            
+            //        UIImage *img = [UIImage imageNamed:imgArr[i]];
+            //        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            //
+//        }
+        
+        
+        
+        //    regeisterViewController *homeVC=[[regeisterViewController alloc]init];
+        ApplicationDelegate.window.rootViewController=tbc;
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+//    else{
+    
+        //错误提示框
+        NSString *message  = @"用户名或密码错误，请重新输入";
+        //a.对话框主体
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle: @"错误" message:message preferredStyle:UIAlertControllerStyleAlert];
+        //b.对话框下边确定按钮 参数1 按钮标题 参数2 按钮样式
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        //c.把按钮添加到弹出框中
+        [alert addAction:sureAction];
+        //d.弹出对话框
+        [self presentViewController:alert animated:YES completion:nil];
+        
+//    }
+    
 }
 
 #pragma mark - 登陆界面控件 getter  方法
 
 //手机号label
+-(UIImage *)usernameimage
+{
+    if(!_userNameLab)
+    {
+        _usernameimage = [[UIImage alloc]init];
+        
+    }
+    return _usernameimage;
+    
+}
+
 -(UILabel *)userNameLab
 {
-        if(!_userNameLab)
-        {
-            _userNameLab = [[UILabel alloc]initWithFrame:CGRectMake(leftMargin, upMargin, labelWidth,vHight)];
-          //  _userNameLab.lineBreakMode = UILineBreakModeWordWrap;
-            _userNameLab.numberOfLines = 0;
-            _userNameLab.text = @"手机号";
-        }
-        return _userNameLab;
+    if(!_userNameLab)
+    {
+        _userNameLab = [[UILabel alloc]initWithFrame:CGRectMake(leftMargin, upMargin, labelWidth,vHight)];
+        //  _userNameLab.lineBreakMode = UILineBreakModeWordWrap;
+        _userNameLab.numberOfLines = 0;
+        _userNameLab.text = @"手机号";
+    }
+    return _userNameLab;
 }
 
 //密码label
@@ -113,6 +191,7 @@
         _userNameTextF = [[UITextField alloc]initWithFrame:CGRectMake(leftMargin+labelWidth, upMargin, textFiledWidth, vHight)];
         _userNameTextF.backgroundColor = [UIColor lightGrayColor];
         _userNameTextF.borderStyle = UITextBorderStyleLine;
+        _userNameTextF.clearButtonMode = UITextFieldViewModeWhileEditing;
     }
     return _userNameTextF;
 }
@@ -125,6 +204,7 @@
         _passwordTextF = [[UITextField alloc]initWithFrame:CGRectMake(leftMargin+labelWidth, upMargin+vHight+20, textFiledWidth, vHight)];
         _passwordTextF.backgroundColor = [UIColor lightGrayColor];
         _passwordTextF.borderStyle = UITextBorderStyleLine;
+        _passwordTextF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTextF.secureTextEntry=YES;
     }
     return _passwordTextF;
@@ -138,10 +218,10 @@
     {
         _gobackbtn = [[UIButton alloc] init];
         _gobackbtn.frame = CGRectMake(0.1*[UIScreen mainScreen].bounds.size.width, ([UIScreen mainScreen].bounds.size.height)/2,0.8*[UIScreen mainScreen].bounds.size.width, vHight);
-        [_gobackbtn addTarget:self action:@selector(gobackbtnclick) forControlEvents:UIControlEventTouchUpInside];
+        [_gobackbtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
         [_gobackbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _gobackbtn.backgroundColor = [UIColor purpleColor];
-        [_gobackbtn setTitle:@"登陆" forState:UIControlStateNormal];
+        [_gobackbtn setTitle:@"登录" forState:UIControlStateNormal];
     }
     return _gobackbtn;
 }
@@ -162,7 +242,7 @@
 }
 
 
-//忘记密码  按钮
+//忘记密码按钮
 -(UIButton *)forgetBtn
 {
     if (!_forgetBtn)
@@ -176,12 +256,12 @@
 }
 
 
-#pragma mark - 单机事件
+#pragma mark - 单击事件
 //加载tabbar
--(void)gobackbtnclick
+-(void)loginbtnClick
 {
-//    ApplicationDelegate.window;
-//    ((AppDelegate *)[UIApplication sharedApplication].delegate)
+    //    ApplicationDelegate.window;
+    //    ((AppDelegate *)[UIApplication sharedApplication].delegate)
     //    ApplicationDelegate.window.root
     
     
@@ -198,7 +278,7 @@
     
     SettingViewController *vc3 = [[SettingViewController alloc] init];
     vc3.title = @"vc3";
-    vc3.view.backgroundColor = [UIColor purpleColor];
+//    vc3.view.backgroundColor = [UIColor purpleColor];
     CustomNavigationController *nc3 = [[CustomNavigationController alloc] initWithRootViewController:vc3];
     
     
@@ -217,15 +297,15 @@
         //        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         //
     }
-
     
     
-//    regeisterViewController *homeVC=[[regeisterViewController alloc]init];
+    
+    //    regeisterViewController *homeVC=[[regeisterViewController alloc]init];
     ApplicationDelegate.window.rootViewController=tbc;
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
-
 
 
 -(void)tologupbtnclick
@@ -240,8 +320,6 @@
     ForgetPasswordViewController *forgetVC =[[ForgetPasswordViewController alloc] init];
     [self.navigationController pushViewController:forgetVC animated:YES];
 }
-
-
 
 
 

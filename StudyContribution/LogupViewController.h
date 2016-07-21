@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "regeisterViewController.h"
 #import "BaseViewController.h"
+#import "BaseInfoSave.h"
 @interface LogupViewController : BaseViewController
-
+@property(nonatomic,strong)BaseInfoSave *bInfoSave;
 @end

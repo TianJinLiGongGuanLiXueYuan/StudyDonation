@@ -10,8 +10,8 @@
 		18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0D71D407B9700CA20DF /* MoreDetailViewController.m */; };
 		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
-		8C59072E1D40E4A4003FD355 /* CutomerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C59072D1D40E4A4003FD355 /* CutomerInfoViewController.m */; };
-		8C5907311D40E513003FD355 /* SchoolInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5907301D40E513003FD355 /* SchoolInfoViewController.m */; };
+		F426F58D1D409FF500EFAE4E /* CustomerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F426F58C1D409FF500EFAE4E /* CustomerInfoViewController.m */; };
+		F426F5931D40A14C00EFAE4E /* SchoolInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F426F5921D40A14C00EFAE4E /* SchoolInfoViewController.m */; };
 		F53AC87E1D39ACCD00A7E8D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */; };
 		F53AC87F1D39ACCD00A7E8D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */; };
 		F53AC8811D39AD1600A7E8D2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */; };
@@ -75,10 +75,10 @@
 		18E5D0D91D407BAF00CA20DF /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		18E5D0DA1D407BAF00CA20DF /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		8C59072C1D40E4A4003FD355 /* CutomerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutomerInfoViewController.h; sourceTree = "<group>"; };
-		8C59072D1D40E4A4003FD355 /* CutomerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutomerInfoViewController.m; sourceTree = "<group>"; };
-		8C59072F1D40E513003FD355 /* SchoolInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolInfoViewController.h; sourceTree = "<group>"; };
-		8C5907301D40E513003FD355 /* SchoolInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolInfoViewController.m; sourceTree = "<group>"; };
+		F426F58B1D409FF500EFAE4E /* CustomerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerInfoViewController.h; sourceTree = "<group>"; };
+		F426F58C1D409FF500EFAE4E /* CustomerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerInfoViewController.m; sourceTree = "<group>"; };
+		F426F5911D40A14C00EFAE4E /* SchoolInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolInfoViewController.h; sourceTree = "<group>"; };
+		F426F5921D40A14C00EFAE4E /* SchoolInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolInfoViewController.m; sourceTree = "<group>"; };
 		F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -354,6 +354,7 @@
 				FE7AD2AA1D354E2F00AE368C /* LoginViewController.m */,
 				FE7AD2AB1D354E2F00AE368C /* LogupViewController.h */,
 				FE7AD2AC1D354E2F00AE368C /* LogupViewController.m */,
+				F5553BEC1D3796D500E38EA3 /* ResetPasswordViewController.h */,
 				F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */,
 				FE7AD2AD1D354E2F00AE368C /* moreViewController.h */,
 				FE7AD2AE1D354E2F00AE368C /* moreViewController.m */,
@@ -361,7 +362,6 @@
 				FE7AD2B01D354E2F00AE368C /* anymoreViewController.m */,
 				F5D0397A1D36CF9600476D65 /* ForgetPasswordViewController.h */,
 				F5D0397B1D36CF9600476D65 /* ForgetPasswordViewController.m */,
-				F5553BEC1D3796D500E38EA3 /* ResetPasswordViewController.h */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -442,10 +442,10 @@
 			children = (
 				FE7AD2C81D35557100AE368C /* SettingViewController.h */,
 				FE7AD2C91D35557100AE368C /* SettingViewController.m */,
-				8C59072C1D40E4A4003FD355 /* CutomerInfoViewController.h */,
-				8C59072D1D40E4A4003FD355 /* CutomerInfoViewController.m */,
-				8C59072F1D40E513003FD355 /* SchoolInfoViewController.h */,
-				8C5907301D40E513003FD355 /* SchoolInfoViewController.m */,
+				F426F58B1D409FF500EFAE4E /* CustomerInfoViewController.h */,
+				F426F58C1D409FF500EFAE4E /* CustomerInfoViewController.m */,
+				F426F5911D40A14C00EFAE4E /* SchoolInfoViewController.h */,
+				F426F5921D40A14C00EFAE4E /* SchoolInfoViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -598,10 +598,11 @@
 				FE7AD2B31D354E2F00AE368C /* moreViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
 				FE7AD2B41D354E2F00AE368C /* anymoreViewController.m in Sources */,
+				F426F58D1D409FF500EFAE4E /* CustomerInfoViewController.m in Sources */,
 				18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */,
 				18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */,
-				8C5907311D40E513003FD355 /* SchoolInfoViewController.m in Sources */,
 				FE7AD2631D352EAF00AE368C /* AppDelegate.m in Sources */,
+				F426F5931D40A14C00EFAE4E /* SchoolInfoViewController.m in Sources */,
 				FE7AD2601D352EAF00AE368C /* main.m in Sources */,
 				FE7AD2B11D354E2F00AE368C /* LoginViewController.m in Sources */,
 				FE7AD2A31D3544F200AE368C /* CustomNavigationController.m in Sources */,
@@ -616,7 +617,6 @@
 				F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
 				FE7AD2D01D35D27900AE368C /* passWordView.m in Sources */,
-				8C59072E1D40E4A4003FD355 /* CutomerInfoViewController.m in Sources */,
 				F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

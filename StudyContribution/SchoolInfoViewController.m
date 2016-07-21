@@ -7,6 +7,9 @@
 //
 
 #import "SchoolInfoViewController.h"
+#import "CustomNavigationController.h"
+#import "CustomerInfoViewController.h"
+
 
 #define TextWidth 300
 #define TextHeight 200
@@ -35,6 +38,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
+    [self.navitionBar.left_btn addTarget:self action:@selector(left_btnclick) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.schoolUpdateBtn];
     [self.view addSubview:self.departmentsUpdateBtn];
@@ -174,6 +180,12 @@
     
 }
 
+#pragma mark - 返回按钮
+
+-(void)left_btnclick
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 /*
  #pragma mark - Navigation

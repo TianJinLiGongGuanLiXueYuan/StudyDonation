@@ -2,7 +2,7 @@
 //  CustomerInfoViewController.m
 //  StudyContribution
 //
-//  Created by 陈艺辉 on 16/7/19.
+//  Created by Student01 on 16/7/21.
 //  Copyright © 2016年 刘芮东. All rights reserved.
 //
 
@@ -22,10 +22,6 @@
 
 @property (nonatomic,strong) UIButton *updatebtn;
 
-//临时使用
-@property (nonatomic,strong) UIButton *btn1;
-
-
 @end
 
 @implementation CustomerInfoViewController
@@ -34,14 +30,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
+    [self.navitionBar.left_btn addTarget:self action:@selector(left_btnclick) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.nickname];
     [self.view addSubview:self.schoolInfo];
     [self.view addSubview:self.personalSignature];
     
     [self.view addSubview:self.updatebtn];
     
-    [self.view addSubview:self.btn1];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,42 +99,24 @@
 
 - (void)updatebtnClick{
     SchoolInfoViewController *schoolInfoVC = [[SchoolInfoViewController alloc]init];
-    CustomNavigationController *nav = [[CustomNavigationController alloc]initWithRootViewController:schoolInfoVC];
-    ApplicationDelegate.window.rootViewController = nav;
-    [self presentViewController:nav animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:schoolInfoVC animated:YES];
 }
 
-#pragma mark - 临时使用
 
-- (UIButton *)btn1{
-    if (!_btn1) {
-        _btn1 = [[UIButton alloc]initWithFrame:CGRectMake(107, 590, 200, 100)];
-        _btn1.backgroundColor = [UIColor grayColor];
-        [_btn1 setTitle:@"临时使用" forState:UIControlStateNormal];
-        [_btn1 addTarget:self action:@selector(btn1Click) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _btn1;
+#pragma mark - 返回按钮
+
+-(void)left_btnclick
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-- (void)btn1Click{
-    SettingViewController *setVC = [[SettingViewController alloc]init];
-    CustomNavigationController *nav = [[CustomNavigationController alloc]initWithRootViewController:setVC];
-    ApplicationDelegate.window.rootViewController = nav;
-    [self presentViewController:nav animated:YES completion:^{
-        
-    }];
-}
-
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

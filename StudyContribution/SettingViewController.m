@@ -168,11 +168,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         CustomerInfoViewController *customerInfo = [[CustomerInfoViewController alloc]init];
-        CustomNavigationController *nav = [[CustomNavigationController alloc]initWithRootViewController:customerInfo];
-        ApplicationDelegate.window.rootViewController = nav;
-        [self presentViewController:nav animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:customerInfo animated:YES];
     }else if(indexPath.section == 1){
         switch (indexPath.row) {
             case 0:

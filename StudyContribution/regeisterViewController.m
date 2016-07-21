@@ -12,20 +12,19 @@
 #import "ClassInfoViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
-#define TextWidth 300
-#define TextHeight 200
-#define BtnWidth 200
-#define BtnHeight 50
+#define BtnWidth 120
 #define XMarginText 57
-#define XMarginBtn 107
+#define XMargin 247
 #define YMargin 368
 
 @interface regeisterViewController ()<CLLocationManagerDelegate>
 
-//计时器
-@property (nonatomic,strong) NSTimer *timer;
-
 @property (nonatomic,strong) UIButton *tolotin;
+
+//当前状态label
+@property (nonatomic,strong) UILabel *weekdayLabel;
+@property (nonatomic,strong) UILabel *monthLabel;
+@property (nonatomic,strong) UILabel *currentstatusLabel;
 
 //详细课程信息按钮
 @property (nonatomic,strong) UIButton *classInfoBtn;
@@ -34,8 +33,14 @@
 @property (nonatomic,strong) UIButton *classInBtn;
 @property (nonatomic,strong) UIButton *classUpBtn;
 
-//当前状态label
-@property (nonatomic,strong) UILabel *currentstatusLabel;
+//软件信息label
+@property (nonatomic,strong) UILabel *swInfoLabel;
+
+//设置按钮
+@property (nonatomic,strong) UIButton *settingBtn;
+
+//打钩图片
+@property (nonatomic,strong) UIImageView *tickImage;
 
 //消息框
 @property (nonatomic,strong) UIAlertController *alertController;
@@ -55,20 +60,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFunc) userInfo:nil repeats:YES];
-    
+//    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFunc) userInfo:nil repeats:YES];
+
     self.title = @"首页";
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+    background.image = [UIImage imageNamed:@"学霸捐-首页"];
+    [self.view addSubview:background];
+    
+    [self.view addSubview:self.tickImage];
     
     [self.view addSubview:self.tolotin];
+    
+    [self.view addSubview:self.weekdayLabel];
+    [self.view addSubview:self.monthLabel];
+    [self.view addSubview:self.currentstatusLabel];
+    [self getTimer];
     
     [self.view addSubview:self.classInfoBtn];
     
     [self.view addSubview:self.classInBtn];
     [self.view addSubview:self.classUpBtn];
     
-    [self.view addSubview:self.currentstatusLabel];
+    [self.view addSubview:self.swInfoLabel];
     
+    [self.view addSubview:self.settingBtn];
+
     /*
      //    初始化定位
      self.locationManager = [[CLLocationManager alloc]init];
@@ -95,10 +112,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (void) viewDidDisappear:(BOOL)animated
 {
     self.hidesBottomBarWhenPushed = NO;
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -106,11 +125,14 @@
     self.tolotin.frame = CGRectMake(0, 64, 100, 30);
     
     //    设置课程详细按钮
-    self.classInfoBtn.frame = CGRectMake(XMarginBtn, YMargin - 130, BtnWidth, BtnHeight);
+    self.classInfoBtn.frame = CGRectMake(46, YMargin - 109, 100, 230);
     
     //    上下课按钮设置
-    self.classInBtn.frame = CGRectMake(XMarginBtn, YMargin - 60, BtnWidth, BtnHeight);
-    self.classUpBtn.frame = CGRectMake(XMarginBtn, YMargin + 10, BtnWidth, BtnHeight);
+    self.classInBtn.frame = CGRectMake(XMargin + 1, YMargin - 115, BtnWidth, 130);
+    self.classUpBtn.frame = CGRectMake(XMargin + 3.5, YMargin + 55.5, BtnWidth, 130);
+    
+//    设置按钮
+    self.settingBtn.frame = CGRectMake(XMargin + 14.5, 613, 100, 50);
     
     /*
      //    开始定位
@@ -127,6 +149,87 @@
  }
  */
 
+#pragma mark - 当前状态
+
+- (UILabel *)weekdayLabel
+{
+    if(!_weekdayLabel)
+    {
+        _weekdayLabel = [[UILabel alloc]initWithFrame:CGRectMake(14, 127, 170, 60)];
+//        _weekdayLabel.backgroundColor = [UIColor grayColor];
+        
+//        _weekdayLabel.layer.borderWidth = 1;
+//        _weekdayLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
+        
+        _weekdayLabel.numberOfLines = 0;
+        _weekdayLabel.textColor = [UIColor blackColor];
+        _weekdayLabel.font = [UIFont fontWithName:@"AmericanTypewriter" size:52];
+        _weekdayLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _weekdayLabel;
+}
+
+- (UILabel *)monthLabel
+{
+    if(!_monthLabel)
+    {
+        _monthLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 192, 150, 30)];
+//        _monthLabel.backgroundColor = [UIColor purpleColor];
+        
+//        _monthLabel.layer.borderWidth = 1;
+//        _monthLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
+        
+        _monthLabel.numberOfLines = 0;
+        _monthLabel.textColor = [UIColor blackColor];
+        _monthLabel.font = [UIFont systemFontOfSize:22];
+        _monthLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _monthLabel;
+}
+
+- (UILabel *)currentstatusLabel
+{
+    if(!_currentstatusLabel)
+    {
+        _currentstatusLabel = [[UILabel alloc]initWithFrame:CGRectMake(224.5, 132, 155, 92.26)];
+//        _currentstatusLabel.backgroundColor = [UIColor purpleColor];
+        
+        _currentstatusLabel.layer.cornerRadius = 5.0f;
+        _currentstatusLabel.layer.borderWidth = 1.0f;
+        _currentstatusLabel.layer.borderColor = [[UIColor blackColor]CGColor];
+        
+        _currentstatusLabel.numberOfLines = 0;
+        _currentstatusLabel.textColor = [UIColor blackColor];
+        _currentstatusLabel.font = [UIFont systemFontOfSize:25];
+        _currentstatusLabel.textAlignment = NSTextAlignmentCenter;
+        _currentstatusLabel.text = @"在上课";
+    }
+    return _currentstatusLabel;
+}
+
+#pragma mark - 课程详情
+
+- (UIButton *)classInfoBtn
+{
+    if(!_classInfoBtn)
+    {
+        _classInfoBtn = [[UIButton alloc]init];
+        
+//        _classInfoBtn.layer.borderWidth = 1.0f;
+//        _classInfoBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        
+        [_classInfoBtn addTarget:self action:@selector(classInfoBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _classInfoBtn;
+}
+
+- (void)classInfoBtnClick
+{
+    ClassInfoViewController *classinfoVC = [[ClassInfoViewController alloc]init];
+    [self.navigationController pushViewController:classinfoVC animated:YES];
+    
+}
+
 #pragma mark - 上课按钮配置
 
 - (UIButton *)classInBtn{
@@ -134,10 +237,9 @@
     {
         _classInBtn = [[UIButton alloc] init];
         
-        _classInBtn.layer.cornerRadius = 5;
+//        _classInBtn.layer.borderWidth = 1.0f;
+//        _classInBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         
-        _classInBtn.backgroundColor = [UIColor purpleColor];
-        [_classInBtn setTitle:@"上课" forState:UIControlStateNormal];
         [_classInBtn addTarget:self action:@selector(classInBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _classInBtn;
@@ -161,6 +263,8 @@
         [self presentViewController:_alertController animated:YES completion:nil];
         
         NSLog(@"成功");
+        
+        _tickImage.image = [UIImage imageNamed:@"tick"];;
     }else{
         _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"失败" preferredStyle:UIAlertControllerStyleAlert];
         _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
@@ -171,6 +275,8 @@
         
         [self presentViewController:_alertController animated:YES completion:nil];
         NSLog(@"失败");
+        
+        _tickImage.image = [UIImage imageNamed:@"tick"];;
     }
 }
 
@@ -181,10 +287,9 @@
     {
         _classUpBtn = [[UIButton alloc] init];
         
-        _classUpBtn.layer.cornerRadius = 5;
+//        _classUpBtn.layer.borderWidth = 1.0f;
+//        _classUpBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         
-        _classUpBtn.backgroundColor = [UIColor orangeColor];
-        [_classUpBtn setTitle:@"下课" forState:UIControlStateNormal];
         [_classUpBtn addTarget:self action:@selector(classUpBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _classUpBtn;
@@ -206,6 +311,8 @@
         
         [self presentViewController:_alertController animated:YES completion:nil];
         NSLog(@"成功");
+        
+        _tickImage.image = [UIImage imageNamed:@""];;
     }else{
         _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"失败" preferredStyle:UIAlertControllerStyleAlert];
         _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
@@ -216,44 +323,53 @@
         
         [self presentViewController:_alertController animated:YES completion:nil];
         NSLog(@"失败");
-    }
-}
-
-#pragma mark - 课程详情
-
--(UIButton *)classInfoBtn
-{
-    if(!_classInfoBtn)
-    {
-        _classInfoBtn = [[UIButton alloc]init];
         
-        _classInfoBtn.layer.cornerRadius = 5;
-        
-        _classInfoBtn.backgroundColor = [UIColor lightGrayColor];
-        [_classInfoBtn setTitle:@"课程详情" forState:UIControlStateNormal];
-        [_classInfoBtn addTarget:self action:@selector(classInfoBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _tickImage.image = [UIImage imageNamed:@""];;
     }
-    return _classInfoBtn;
 }
 
--(void)classInfoBtnClick
-{
-    ClassInfoViewController *classinfoVC = [[ClassInfoViewController alloc]init];
-    [self.navigationController pushViewController:classinfoVC animated:YES];
-    
-}
+#pragma mark - 软件信息label
 
-#pragma mark - 当前状态
-
--(UILabel *)currentstatusLabel
+- (UILabel *)swInfoLabel
 {
-    if(!_currentstatusLabel)
+    if(!_swInfoLabel)
     {
-        _currentstatusLabel = [[UILabel alloc]initWithFrame:CGRectMake(XMarginBtn, YMargin + 120, 200, 50)];
-        _currentstatusLabel.font = [UIFont systemFontOfSize:18];
-        _currentstatusLabel.textAlignment = NSTextAlignmentCenter;
+        _swInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 584, 180, 50)];
+        
+//        _swInfoLabel.layer.borderWidth = 1.0f;
+//        _swInfoLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
     }
-    return _currentstatusLabel;
+    return _swInfoLabel;
+}
+
+#pragma mark - 设置按钮
+
+- (UIButton *)settingBtn{
+    if (!_settingBtn) {
+        _settingBtn = [[UIButton alloc]init];
+        
+//        _settingBtn.layer.borderWidth = 1.0f;
+//        _settingBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        
+        [_settingBtn addTarget:self action:@selector(settingBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _settingBtn;
+}
+
+- (void)settingBtnClick{
+    NSLog(@"设置按钮点击事件");
+}
+
+#pragma mark - 打钩图片
+
+- (UIImageView *)tickImage{
+    if (!_tickImage) {
+        _tickImage = [[UIImageView alloc]initWithFrame:CGRectMake(350, 344, 40, 40)];
+        
+//        _tickImage.layer.borderWidth = 1;
+//        _tickImage.layer.borderColor = [[UIColor whiteColor]CGColor];
+    }
+    return _tickImage;
 }
 
 #pragma mark - 获取时间函数
@@ -273,22 +389,34 @@
     [resultComps setDay:[currentComps day]];
     [resultComps setHour:hour];
     [resultComps setMinute:minute];
-    
     NSCalendar *resultCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     return [resultCalendar dateFromComponents:resultComps];
 }
 
-- (void)timerFunc{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+- (void)getTimer{
+    NSArray * arrWeek=[NSArray arrayWithObjects:@"",@"星期日",@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六", nil];
+    NSDate *currentDate = [NSDate date];
+    NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *currentComps = [[NSDateComponents alloc]init];
     
-    NSString *nowTime = [dateFormatter stringFromDate:[NSDate date]];
-    [_currentstatusLabel setText:nowTime];
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    
+    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
+    
+//    NSDateComponents *resultComps = [[NSDateComponents alloc]init];
+//    [resultComps setYear:[currentComps year]];
+//    [resultComps setMonth:[currentComps month]];
+//    [resultComps setDay:[currentComps day]];
+    long month = [currentComps month];
+    long day = [currentComps day];
+    long week = [currentComps weekday];
+    _weekdayLabel.text = [NSString stringWithFormat:@"%@", [arrWeek objectAtIndex:week]];
+    _monthLabel.text = [NSString stringWithFormat:@"%ld 月 %ld 号", month, day];
 }
 
 #pragma mark - 临时使用
 
--(UIButton *)tolotin
+- (UIButton *)tolotin
 {
     if(!_tolotin)
     {
@@ -300,7 +428,7 @@
     return _tolotin;
 }
 
--(void)tolotinbtnclick
+- (void)tolotinbtnclick
 {
     LoginViewController *logIn=[[LoginViewController alloc]init];
     
@@ -314,7 +442,7 @@
 
 #pragma mark - 我不知道干嘛用的
 
--(void)leftbtnClick{
+- (void)leftbtnClick{
     NSLog(@"aa");
 }
 
@@ -353,5 +481,4 @@
  }
  }
  */
-
 @end

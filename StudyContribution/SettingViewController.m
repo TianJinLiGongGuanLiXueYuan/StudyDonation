@@ -10,7 +10,8 @@
 #import "CustomNavigationController.h"
 #import "CustomnavView.h"
 #import "CustomerInfoViewController.h"
-
+#import "regeisterViewController.h"
+#import "ClassInfoViewController.h"
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSArray *settingArr;
@@ -18,6 +19,9 @@
 @property (nonatomic,strong) UITableView *mainTable;
 
 @property (nonatomic,strong) UIImageView *background;
+
+@property (nonatomic,strong) UIButton *returnBtn;
+
 @end
 
 @implementation SettingViewController
@@ -25,10 +29,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+//    初始化数组
     _settingArr = @[@"修改个人信息",@"清除缓存",@"关于学霸捐"];
     
+//    添加背景图
     [self.view addSubview:self.background];
     
+//    初始化TableView
     _mainTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
     _mainTable.backgroundColor = [UIColor clearColor];
 //    设置cell无下划线
@@ -38,7 +46,9 @@
     _mainTable.dataSource = self;
     _mainTable.delegate = self;
     _mainTable.showsVerticalScrollIndicator = NO;
-
+    
+//    添加返回按钮
+    [self.view addSubview:self.returnBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +61,7 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
-#pragma mark - 初始化
+#pragma mark - 背景颜色
 
 - (UIImageView *)background{
     if (!_background) {
@@ -60,6 +70,27 @@
         _background.image = [UIImage imageNamed:@"学霸捐-设置"];
     }
     return _background;
+}
+
+#pragma mark - 返回点击事件
+
+- (UIButton *)returnBtn{
+    if (!_returnBtn) {
+        _returnBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 45, 45)];
+        
+//        _returnBtn.layer.borderWidth = 1.0f;
+//        _returnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        
+        _returnBtn.backgroundColor = [UIColor clearColor];
+        
+        [_returnBtn addTarget:self action:@selector(returnBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _returnBtn;
+}
+
+- (void)returnBtnClick{
+    regeisterViewController *regesiterVC = [[regeisterViewController alloc]init];
+    [self.navigationController pushViewController:regesiterVC animated:YES];
 }
 
 #pragma mark - 表视图协议
@@ -138,39 +169,68 @@
         
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(48, -6.4, 102.8, 145)];
-        imageView.layer.borderWidth = 1;
-        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
-//        imageView.image = [UIImage imageNamed:@"i"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+//        头像picture
+         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(48, -6.4, 102.8, 145)];
+//        imageView.layer.borderWidth = 1.0f;
+//        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
+        imageView.image = [UIImage imageNamed:@"学霸捐-头像"];
         [cell.contentView addSubview:imageView];
+        
+//        name横线picture
+        UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(180, 133, 212, 5.1)];
+//        imageView1.layer.borderWidth = 1.0f;
+//        imageView1.layer.borderColor = [[UIColor blackColor]CGColor];
+        imageView1.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+        [cell.contentView addSubview:imageView1];
 
-        UILabel *nicknameLabel = [[UILabel alloc]initWithFrame:CGRectMake(168, 90, 100, 40)];
-        nicknameLabel.font = [UIFont systemFontOfSize:24.5];
-        nicknameLabel.textAlignment = NSTextAlignmentCenter;
-//        nicknameLabel.layer.borderWidth = 1;
-//        nicknameLabel.layer.borderColor = [[UIColor blackColor]CGColor];
-        nicknameLabel.text = @"周颖英";
-        [cell.contentView addSubview:nicknameLabel];
+//        名字label
+        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(168, 90, 100, 40)];
+        nameLabel.font = [UIFont systemFontOfSize:24.5];
+        nameLabel.textColor = [UIColor whiteColor];
+        nameLabel.textAlignment = NSTextAlignmentCenter;
+//        nameLabel.layer.borderWidth = 1.0f;
+//        nameLabel.layer.borderColor = [[UIColor blackColor]CGColor];
+        nameLabel.text = @"周颖英";
+        [cell.contentView addSubview:nameLabel];
     }else if(indexPath.section == 1){
+//        添加右边小箭头
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
+//        各行文本框
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(28, 20, cell.bounds.size.width, 40)];
 //        label.layer.borderWidth = 1.0f;
 //        label.layer.borderColor = [[UIColor whiteColor]CGColor];
         label.font = [UIFont systemFontOfSize:24.8];
         label.text = _settingArr[indexPath.row];
+        label.textColor = [UIColor whiteColor];
         [cell.contentView addSubview:label];
         
+//        横线picture
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, 58, 372, 4.4)];
+//        imageView.layer.borderWidth = 1.0f;
+//        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
+        imageView.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+        [cell.contentView addSubview:imageView];
     }else{
+//        退出按钮
         UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(97, 8, 213, 45)];
 //        exitBtn.layer.borderWidth = 1.0f;
 //        exitBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         exitBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [exitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         exitBtn.titleLabel.font = [UIFont systemFontOfSize:24.8];
         [exitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
         [exitBtn addTarget:self action:@selector(exitBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:exitBtn];
+        
+//        横线picture
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(100, 50.5, 210, 4.4)];
+//        imageView.layer.borderWidth = 1.0f;
+//        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
+        imageView.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+        [cell.contentView addSubview:imageView];
     }
     return cell;
 }
@@ -192,6 +252,7 @@
                 NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
                 NSString *path=[[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
                 NSFileManager *fileManager=[NSFileManager defaultManager];
+                
                 if ([fileManager fileExistsAtPath:path]) {
                     NSArray *childerFiles=[fileManager subpathsAtPath:path];
                     for (NSString *fileName in childerFiles) {
@@ -216,6 +277,7 @@
     }else{
     }
 }
+
 
 #pragma mark - 退出点击事件
 

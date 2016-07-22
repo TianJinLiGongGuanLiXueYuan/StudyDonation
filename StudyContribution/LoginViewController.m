@@ -92,44 +92,15 @@
 //    if ([name isEqual:@"123"] && [pass isEqual:[_mutableDic objectForKey:@"123"]]) {
     
         regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
-        regeisterVC.title = @"首页";
-        CustomNavigationController *nc1 = [[CustomNavigationController alloc] initWithRootViewController:regeisterVC];
+   
         
-        ContributionDetailViewController *vc2 = [[ContributionDetailViewController alloc] init];
-        vc2.title = @"我的学霸捐";
-        //        vc2.view.backgroundColor = [UIColor redColor];
-        CustomNavigationController *nc2 = [[CustomNavigationController alloc] initWithRootViewController:vc2];
-        
-        
-        SettingViewController *vc3 = [[SettingViewController alloc] init];
-        vc3.title = @"设置";
-//        vc3.view.backgroundColor = [UIColor purpleColor];
-        CustomNavigationController *nc3 = [[CustomNavigationController alloc] initWithRootViewController:vc3];
-        
-        
-        UITabBarController *tbc = [[UITabBarController alloc] init];
-        tbc.viewControllers = [NSArray arrayWithObjects:nc1, nc2, nc3, nil];
-        //UITabBarController *tbc = [[UITabBarController alloc] init];
-        
-        NSArray *titleArr = @[@"首页",@"详情",@"设置"];
-        //    NSArray *imgArr = @[@"home",@"hot",@"consulting"];
-        for (int i = 0; i < titleArr.count; i ++) {
-            UITabBarItem *item = tbc.tabBar.items[i];
+    
+        CustomNavigationController *nav2=[[CustomNavigationController alloc]initWithRootViewController:regeisterVC];
             
-            item.title = titleArr[i];
-            
-            //        UIImage *img = [UIImage imageNamed:imgArr[i]];
-            //        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            //
-//        }
-        
-        
-        
-        //    regeisterViewController *homeVC=[[regeisterViewController alloc]init];
-        ApplicationDelegate.window.rootViewController=tbc;
+        ApplicationDelegate.window.rootViewController=nav2;
         
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    
 //    else{
     
         //错误提示框
@@ -267,41 +238,11 @@
     
     
     regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
-    regeisterVC.title = @"vc1";
-    CustomNavigationController *nc1 = [[CustomNavigationController alloc] initWithRootViewController:regeisterVC];
-    
-    ContributionDetailViewController *vc2 = [[ContributionDetailViewController alloc] init];
-    vc2.title = @"vc2";
-    vc2.view.backgroundColor = [UIColor redColor];
-    CustomNavigationController *nc2 = [[CustomNavigationController alloc] initWithRootViewController:vc2];
     
     
-    SettingViewController *vc3 = [[SettingViewController alloc] init];
-    vc3.title = @"vc3";
-//    vc3.view.backgroundColor = [UIColor purpleColor];
-    CustomNavigationController *nc3 = [[CustomNavigationController alloc] initWithRootViewController:vc3];
-    
-    
-    UITabBarController *tbc = [[UITabBarController alloc] init];
-    tbc.viewControllers = [NSArray arrayWithObjects:nc1, nc2, nc3, nil];
-    //UITabBarController *tbc = [[UITabBarController alloc] init];
-    
-    NSArray *titleArr = @[@"首页",@"详情",@"设置"];
-    //    NSArray *imgArr = @[@"home",@"hot",@"consulting"];
-    for (int i = 0; i < titleArr.count; i ++) {
-        UITabBarItem *item = tbc.tabBar.items[i];
-        
-        item.title = titleArr[i];
-        
-        //        UIImage *img = [UIImage imageNamed:imgArr[i]];
-        //        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        //
-    }
-    
-    
-    
-    //    regeisterViewController *homeVC=[[regeisterViewController alloc]init];
-    ApplicationDelegate.window.rootViewController=tbc;
+
+    CustomNavigationController *nav2=[[CustomNavigationController alloc]initWithRootViewController:regeisterVC];
+    ApplicationDelegate.window.rootViewController=nav2;
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

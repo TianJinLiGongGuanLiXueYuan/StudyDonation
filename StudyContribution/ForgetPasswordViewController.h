@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface ForgetPasswordViewController : BaseViewController
+@interface ForgetPasswordViewController : UIViewController
 
 @end

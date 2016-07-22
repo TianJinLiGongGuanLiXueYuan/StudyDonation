@@ -22,30 +22,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     _lvc = [[LogupViewController alloc]init];
     
     //设置背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     
     //设置页面标题
-    self.navitionBar.title_label.text = @"基本信息";
-    
-    //设置导航栏左边的按钮
-    [self.navitionBar.left_btn setTitle:@"上一步" forState:UIControlStateNormal];
-    [self.navitionBar.left_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
+//    self.navitionBar.title_label.text = @"基本信息";
+//    
+//    //设置导航栏左边的按钮
+//    [self.navitionBar.left_btn setTitle:@"上一步" forState:UIControlStateNormal];
+//    [self.navitionBar.left_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    
     //加载view
-    _moreV = [[logup alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    _moreV.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    _moreV = [[logup alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     //设置按钮的事件
     [_moreV.nextbtn addTarget:self action:@selector(nextbtnclick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_moreV];
     
     
-    _nextbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64, 100, 100)];
+    _nextbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 100, 50, 30)];
     _nextbtn.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_nextbtn];
     [_nextbtn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    [_moreV.leftBtn addTarget:self action:@selector(leftbtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)click

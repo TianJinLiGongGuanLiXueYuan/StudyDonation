@@ -30,30 +30,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // 设置页面标题
-    self.navitionBar.title_label.text = @"绑定手机";
-    
-    //设置页面左边的按钮
-    [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
-    self.navitionBar.left_btn.frame = CGRectMake(0, 30, 50, 35);
-    [self.navitionBar.left_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
+//    self.navitionBar.title_label.text = @"绑定手机";
+//    
+//    //设置页面左边的按钮
+//    [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
+//    self.navitionBar.left_btn.frame = CGRectMake(0, 30, 50, 35);
+//    [self.navitionBar.left_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    
     //设置控件
-    _loginV = [[LoginView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    _loginV = [[LoginView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     [self.view addSubview:_loginV];
     self.view.backgroundColor = [UIColor whiteColor];
     [_loginV.nextbtn addTarget:self action:@selector(nextBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    _nextbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64, 100, 100)];
+    _nextbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 100, 50, 30)];
     _nextbtn.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_nextbtn];
     [_nextbtn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
-
+    [_loginV.leftBtn addTarget:self action:@selector(leftbtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)click
 {
-   // [BaseInfoSave sharedInstance];
+    // [BaseInfoSave sharedInstance];
     [[BaseInfoSave sharedInstance] saveTel:_loginV.telTextF.text];
     moreViewController *moreVC = [[moreViewController alloc] init];
     [self.navigationController pushViewController:moreVC animated:YES];
@@ -83,6 +83,7 @@
 }
 
 //左按钮单击事件
+
 -(void)leftbtnClick
 {
     [self.navigationController popViewControllerAnimated:YES ];

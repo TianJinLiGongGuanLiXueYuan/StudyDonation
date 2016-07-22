@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface regeisterViewController : BaseViewController
+@interface regeisterViewController : UIViewController
 
 @end

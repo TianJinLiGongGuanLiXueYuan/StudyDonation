@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface CustomerInfoViewController : BaseViewController
+@interface CustomerInfoViewController : UIViewController
 
 @end

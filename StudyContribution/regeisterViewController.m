@@ -11,6 +11,7 @@
 #import "CustomNavigationController.h"
 #import "ClassInfoViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "SettingViewController.h"
 
 #define BtnWidth 120
 #define XMarginText 57
@@ -20,6 +21,8 @@
 @interface regeisterViewController ()<CLLocationManagerDelegate>
 
 @property (nonatomic,strong) UIButton *tolotin;
+
+@property (nonatomic,strong) UIImageView *background;
 
 //当前状态label
 @property (nonatomic,strong) UILabel *weekdayLabel;
@@ -40,7 +43,8 @@
 @property (nonatomic,strong) UIButton *settingBtn;
 
 //打钩图片
-@property (nonatomic,strong) UIImageView *tickImage;
+@property (nonatomic,strong) UIImageView *tickImage1;
+@property (nonatomic,strong) UIImageView *tickImage2;
 
 //消息框
 @property (nonatomic,strong) UIAlertController *alertController;
@@ -61,33 +65,40 @@
     [super viewDidLoad];
     
 //    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFunc) userInfo:nil repeats:YES];
-
-    self.title = @"首页";
     
-    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
-    background.image = [UIImage imageNamed:@"学霸捐-首页"];
-    [self.view addSubview:background];
+//    隐藏导航栏
+    [self.navigationController  setNavigationBarHidden:YES];
     
-    [self.view addSubview:self.tickImage];
+//    添加背景图
+    [self.view addSubview:self.background];
+    
+//    添加打钩图片
+    [self.view addSubview:self.tickImage1];
+    [self.view addSubview:self.tickImage2];
     
     [self.view addSubview:self.tolotin];
     
+//    添加日期label
     [self.view addSubview:self.weekdayLabel];
     [self.view addSubview:self.monthLabel];
     [self.view addSubview:self.currentstatusLabel];
     [self getTimer];
     
+//    添加课程信息按钮
     [self.view addSubview:self.classInfoBtn];
     
+//    添加上下课按钮
     [self.view addSubview:self.classInBtn];
     [self.view addSubview:self.classUpBtn];
     
+//    添加软件信息label
     [self.view addSubview:self.swInfoLabel];
     
+//    添加设置按钮
     [self.view addSubview:self.settingBtn];
 
     /*
-     //    初始化定位
+//    初始化定位
      self.locationManager = [[CLLocationManager alloc]init];
      self.locationManager.delegate = self;
      self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -97,11 +108,11 @@
      [self.locationManager requestAlwaysAuthorization];
      
      
-     //根据经纬度创建两个位置对象
+//根据经纬度创建两个位置对象
      CLLocation *loc1=[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
-     //    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:39.9 longitude:116.3];
+//    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:39.9 longitude:116.3];
      CLLocation *loc2=[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
-     //计算两个位置之间的距离
+//计算两个位置之间的距离
      CLLocationDistance distance=[loc1 distanceFromLocation:loc2];
      NSLog(@"(%@)和(%@)的距离=%fKM",loc1,loc2,distance/1000);
      */
@@ -122,20 +133,20 @@
 {
     [super viewWillAppear:animated];
     
-    self.tolotin.frame = CGRectMake(0, 64, 100, 30);
+    self.tolotin.frame = CGRectMake(0, 0, 100, 30);
     
-    //    设置课程详细按钮
-    self.classInfoBtn.frame = CGRectMake(46, YMargin - 109, 100, 230);
+//    设置课程详细按钮
+    self.classInfoBtn.frame = CGRectMake(46, YMargin - 143, 100, 230);
     
-    //    上下课按钮设置
-    self.classInBtn.frame = CGRectMake(XMargin + 1, YMargin - 115, BtnWidth, 130);
-    self.classUpBtn.frame = CGRectMake(XMargin + 3.5, YMargin + 55.5, BtnWidth, 130);
+//    上下课按钮设置
+    self.classInBtn.frame = CGRectMake(XMargin + 1, YMargin - 154, BtnWidth, 130);
+    self.classUpBtn.frame = CGRectMake(XMargin + 3.5, YMargin + 32, BtnWidth, 130);
     
 //    设置按钮
-    self.settingBtn.frame = CGRectMake(XMargin + 14.5, 613, 100, 50);
+    self.settingBtn.frame = CGRectMake(XMargin + 14.5, 602.5, 100, 50);
     
     /*
-     //    开始定位
+//    开始定位
      [self.locationManager startUpdatingLocation];
      */
     
@@ -149,20 +160,31 @@
  }
  */
 
+#pragma mark - 背景颜色
+
+- (UIImageView *)background{
+    if (!_background) {
+        _background = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+//        _background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+        _background.image = [UIImage imageNamed:@"学霸捐-首页"];
+    }
+    return _background;
+}
+
 #pragma mark - 当前状态
 
 - (UILabel *)weekdayLabel
 {
     if(!_weekdayLabel)
     {
-        _weekdayLabel = [[UILabel alloc]initWithFrame:CGRectMake(14, 127, 170, 60)];
+        _weekdayLabel = [[UILabel alloc]initWithFrame:CGRectMake(14, 70, 170, 60)];
 //        _weekdayLabel.backgroundColor = [UIColor grayColor];
         
 //        _weekdayLabel.layer.borderWidth = 1;
 //        _weekdayLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
         
         _weekdayLabel.numberOfLines = 0;
-        _weekdayLabel.textColor = [UIColor blackColor];
+        _weekdayLabel.textColor = [UIColor whiteColor];
         _weekdayLabel.font = [UIFont fontWithName:@"AmericanTypewriter" size:52];
         _weekdayLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -173,15 +195,15 @@
 {
     if(!_monthLabel)
     {
-        _monthLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 192, 150, 30)];
+        _monthLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 140, 150, 30)];
 //        _monthLabel.backgroundColor = [UIColor purpleColor];
         
 //        _monthLabel.layer.borderWidth = 1;
 //        _monthLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
         
         _monthLabel.numberOfLines = 0;
-        _monthLabel.textColor = [UIColor blackColor];
-        _monthLabel.font = [UIFont systemFontOfSize:22];
+        _monthLabel.textColor = [UIColor whiteColor];
+        _monthLabel.font = [UIFont systemFontOfSize:23.5];
         _monthLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _monthLabel;
@@ -191,15 +213,15 @@
 {
     if(!_currentstatusLabel)
     {
-        _currentstatusLabel = [[UILabel alloc]initWithFrame:CGRectMake(224.5, 132, 155, 92.26)];
+        _currentstatusLabel = [[UILabel alloc]initWithFrame:CGRectMake(224, 74.5, 155, 100)];
 //        _currentstatusLabel.backgroundColor = [UIColor purpleColor];
         
         _currentstatusLabel.layer.cornerRadius = 5.0f;
         _currentstatusLabel.layer.borderWidth = 1.0f;
-        _currentstatusLabel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _currentstatusLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
         
         _currentstatusLabel.numberOfLines = 0;
-        _currentstatusLabel.textColor = [UIColor blackColor];
+        _currentstatusLabel.textColor = [UIColor whiteColor];
         _currentstatusLabel.font = [UIFont systemFontOfSize:25];
         _currentstatusLabel.textAlignment = NSTextAlignmentCenter;
         _currentstatusLabel.text = @"在上课";
@@ -256,7 +278,7 @@
         
         _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
         _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        
+    
         [_alertController addAction:_yesAction];
         [_alertController addAction:_noAction];
         
@@ -264,9 +286,11 @@
         
         NSLog(@"成功");
         
-        _tickImage.image = [UIImage imageNamed:@"tick"];;
+        _tickImage1.image = [UIImage imageNamed:@"tick"];;
+        _tickImage2.image = [UIImage imageNamed:@""];;
     }else{
         _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"失败" preferredStyle:UIAlertControllerStyleAlert];
+        
         _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
         _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
@@ -276,7 +300,8 @@
         [self presentViewController:_alertController animated:YES completion:nil];
         NSLog(@"失败");
         
-        _tickImage.image = [UIImage imageNamed:@"tick"];;
+        _tickImage1.image = [UIImage imageNamed:@"tick"];;
+        _tickImage2.image = [UIImage imageNamed:@""];;
     }
 }
 
@@ -303,6 +328,7 @@
     
     if([currentDate compare:date8] == NSOrderedDescending && [currentDate compare:date23] == NSOrderedAscending){
         _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"成功" preferredStyle:UIAlertControllerStyleAlert];
+        
         _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
         _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
@@ -312,9 +338,11 @@
         [self presentViewController:_alertController animated:YES completion:nil];
         NSLog(@"成功");
         
-        _tickImage.image = [UIImage imageNamed:@""];;
+        _tickImage1.image = [UIImage imageNamed:@""];;
+        _tickImage2.image = [UIImage imageNamed:@"tick"];;
     }else{
         _alertController = [UIAlertController alertControllerWithTitle:@"签到" message:@"失败" preferredStyle:UIAlertControllerStyleAlert];
+        
         _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
         _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
@@ -324,7 +352,8 @@
         [self presentViewController:_alertController animated:YES completion:nil];
         NSLog(@"失败");
         
-        _tickImage.image = [UIImage imageNamed:@""];;
+        _tickImage1.image = [UIImage imageNamed:@""];;
+        _tickImage2.image = [UIImage imageNamed:@"tick"];;
     }
 }
 
@@ -334,7 +363,7 @@
 {
     if(!_swInfoLabel)
     {
-        _swInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 584, 180, 50)];
+        _swInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 571, 180, 50)];
         
 //        _swInfoLabel.layer.borderWidth = 1.0f;
 //        _swInfoLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
@@ -357,19 +386,30 @@
 }
 
 - (void)settingBtnClick{
-    NSLog(@"设置按钮点击事件");
+    SettingViewController *setVC = [[SettingViewController alloc]init];
+    [self.navigationController pushViewController:setVC animated:YES];
 }
 
 #pragma mark - 打钩图片
 
-- (UIImageView *)tickImage{
-    if (!_tickImage) {
-        _tickImage = [[UIImageView alloc]initWithFrame:CGRectMake(350, 344, 40, 40)];
+- (UIImageView *)tickImage1{
+    if (!_tickImage1) {
+        _tickImage1 = [[UIImageView alloc]initWithFrame:CGRectMake(355, 304, 40, 40)];
         
-//        _tickImage.layer.borderWidth = 1;
-//        _tickImage.layer.borderColor = [[UIColor whiteColor]CGColor];
+//        _tickImage1.layer.borderWidth = 1.0f;
+//        _tickImage1.layer.borderColor = [[UIColor whiteColor]CGColor];
     }
-    return _tickImage;
+    return _tickImage1;
+}
+
+- (UIImageView *)tickImage2{
+    if (!_tickImage2) {
+        _tickImage2 = [[UIImageView alloc]initWithFrame:CGRectMake(355, 490, 40, 40)];
+        
+//        _tickImage2.layer.borderWidth = 1.0f;
+//        _tickImage2.layer.borderColor = [[UIColor whiteColor]CGColor];
+    }
+    return _tickImage2;
 }
 
 #pragma mark - 获取时间函数
@@ -378,7 +418,6 @@
     NSDate *currentDate = [NSDate date];
     NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *currentComps = [[NSDateComponents alloc]init];
-    
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
     currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
@@ -389,6 +428,7 @@
     [resultComps setDay:[currentComps day]];
     [resultComps setHour:hour];
     [resultComps setMinute:minute];
+    
     NSCalendar *resultCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     return [resultCalendar dateFromComponents:resultComps];
 }
@@ -398,18 +438,14 @@
     NSDate *currentDate = [NSDate date];
     NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *currentComps = [[NSDateComponents alloc]init];
-    
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
     currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
     
-//    NSDateComponents *resultComps = [[NSDateComponents alloc]init];
-//    [resultComps setYear:[currentComps year]];
-//    [resultComps setMonth:[currentComps month]];
-//    [resultComps setDay:[currentComps day]];
     long month = [currentComps month];
     long day = [currentComps day];
     long week = [currentComps weekday];
+    
     _weekdayLabel.text = [NSString stringWithFormat:@"%@", [arrWeek objectAtIndex:week]];
     _monthLabel.text = [NSString stringWithFormat:@"%ld 月 %ld 号", month, day];
 }

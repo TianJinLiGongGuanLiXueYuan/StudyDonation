@@ -10,8 +10,8 @@
 		18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0D71D407B9700CA20DF /* MoreDetailViewController.m */; };
 		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
-		F426F58D1D409FF500EFAE4E /* CustomerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F426F58C1D409FF500EFAE4E /* CustomerInfoViewController.m */; };
-		F426F5931D40A14C00EFAE4E /* SchoolInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F426F5921D40A14C00EFAE4E /* SchoolInfoViewController.m */; };
+		F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */; };
+		F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */; };
 		F53AC87E1D39ACCD00A7E8D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */; };
 		F53AC87F1D39ACCD00A7E8D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */; };
 		F53AC8811D39AD1600A7E8D2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */; };
@@ -75,10 +75,10 @@
 		18E5D0D91D407BAF00CA20DF /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		18E5D0DA1D407BAF00CA20DF /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		F426F58B1D409FF500EFAE4E /* CustomerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerInfoViewController.h; sourceTree = "<group>"; };
-		F426F58C1D409FF500EFAE4E /* CustomerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerInfoViewController.m; sourceTree = "<group>"; };
-		F426F5911D40A14C00EFAE4E /* SchoolInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolInfoViewController.h; sourceTree = "<group>"; };
-		F426F5921D40A14C00EFAE4E /* SchoolInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolInfoViewController.m; sourceTree = "<group>"; };
+		F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
+		F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
+		F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePersonalInfoViewController.h; sourceTree = "<group>"; };
+		F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePersonalInfoViewController.m; sourceTree = "<group>"; };
 		F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -442,10 +442,10 @@
 			children = (
 				FE7AD2C81D35557100AE368C /* SettingViewController.h */,
 				FE7AD2C91D35557100AE368C /* SettingViewController.m */,
-				F426F58B1D409FF500EFAE4E /* CustomerInfoViewController.h */,
-				F426F58C1D409FF500EFAE4E /* CustomerInfoViewController.m */,
-				F426F5911D40A14C00EFAE4E /* SchoolInfoViewController.h */,
-				F426F5921D40A14C00EFAE4E /* SchoolInfoViewController.m */,
+				F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */,
+				F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */,
+				F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */,
+				F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -597,12 +597,11 @@
 				FE7AD2B21D354E2F00AE368C /* LogupViewController.m in Sources */,
 				FE7AD2B31D354E2F00AE368C /* moreViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
+				F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */,
 				FE7AD2B41D354E2F00AE368C /* anymoreViewController.m in Sources */,
-				F426F58D1D409FF500EFAE4E /* CustomerInfoViewController.m in Sources */,
 				18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */,
 				18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */,
 				FE7AD2631D352EAF00AE368C /* AppDelegate.m in Sources */,
-				F426F5931D40A14C00EFAE4E /* SchoolInfoViewController.m in Sources */,
 				FE7AD2601D352EAF00AE368C /* main.m in Sources */,
 				FE7AD2B11D354E2F00AE368C /* LoginViewController.m in Sources */,
 				FE7AD2A31D3544F200AE368C /* CustomNavigationController.m in Sources */,
@@ -616,6 +615,7 @@
 				F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */,
 				F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
+				F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */,
 				FE7AD2D01D35D27900AE368C /* passWordView.m in Sources */,
 				F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */,
 			);

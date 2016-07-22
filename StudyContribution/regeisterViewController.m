@@ -160,7 +160,7 @@
  }
  */
 
-#pragma mark - 背景颜色
+#pragma mark - 背景图
 
 - (UIImageView *)background{
     if (!_background) {

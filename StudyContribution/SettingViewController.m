@@ -9,9 +9,10 @@
 #import "SettingViewController.h"
 #import "CustomNavigationController.h"
 #import "CustomnavView.h"
-#import "CustomerInfoViewController.h"
 #import "regeisterViewController.h"
 #import "ClassInfoViewController.h"
+#import "PersonalInfoViewController.h"
+
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSArray *settingArr;
@@ -61,7 +62,7 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
-#pragma mark - 背景颜色
+#pragma mark - 背景图
 
 - (UIImageView *)background{
     if (!_background) {
@@ -243,8 +244,8 @@
         switch (indexPath.row) {
             case 0:
             {
-                CustomerInfoViewController *customerInfo = [[CustomerInfoViewController alloc]init];
-                [self.navigationController pushViewController:customerInfo animated:YES];
+                PersonalInfoViewController *personalInfo = [[PersonalInfoViewController alloc]init];
+                [self.navigationController pushViewController:personalInfo animated:YES];
             }
                 break;
             case 1:

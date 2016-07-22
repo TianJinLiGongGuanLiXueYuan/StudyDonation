@@ -21,29 +21,57 @@
 @synthesize verifyTexF;
 @synthesize inputBtn;
 @synthesize loginV;
+@synthesize lineOne;
+@synthesize lineTwo;
+@synthesize borderOne;
+@synthesize boederTwo;
+@synthesize leftBtn;
+@synthesize titleLab;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.1];
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]];
         [self addSubview:self.telTextF];
+        [self addSubview:self.borderOne];
         [self addSubview:self.inputBtn];
+        [self addSubview:self.boederTwo];
         [self addSubview:self.nextbtn];
         [self addSubview:self.verifyTexF];
+        [self addSubview:self.lineOne];
+        [self addSubview:self.lineTwo];
+        [self addSubview:self.leftBtn];
+        [self addSubview:self.titleLab];
         
         //手势，收起键盘
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
         tap.cancelsTouchesInView = NO;
         [self addGestureRecognizer:tap];
-        
-        //判断按钮是否可以使用
     }
     return self;
 }
 
 #pragma mark - view上控件getters
-
+-(UIButton *)leftBtn
+{
+    if (!leftBtn) {
+        leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 25, 70, 30)];
+        leftBtn.backgroundColor = [UIColor clearColor];
+        [leftBtn setTitle:@"返回" forState:UIControlStateNormal];
+    }
+    return leftBtn;
+}
+-(UILabel *)titleLab
+{
+    if (!titleLab) {
+        titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0.3*width, 25, 0.4*width, 30)];
+        [titleLab setText:@"验证手机"];
+        [titleLab setTextAlignment:NSTextAlignmentCenter];
+        [titleLab setTextColor:[UIColor whiteColor]];
+    }
+    return titleLab;
+}
 //手机号textfiled
 -(UITextField *)telTextF
 {
@@ -51,11 +79,15 @@
     {
         telTextF = [[UITextField alloc]init];
         telTextF.frame = CGRectMake(0.1*width, 0.12*hight, 0.8*width, 0.05*hight);
-        telTextF.backgroundColor = [UIColor whiteColor];
+        telTextF.backgroundColor = [UIColor clearColor];
         telTextF.placeholder = @"填写手机号";
         telTextF.clearButtonMode = UITextFieldViewModeWhileEditing;
         telTextF.keyboardType = UIKeyboardTypeNumberPad;
         telTextF.textAlignment = NSTextAlignmentCenter;
+        [telTextF setValue:[UIColor colorWithWhite:0.8 alpha:0.5] forKeyPath:@"_placeholderLabel.textColor"];
+        [telTextF setValue:[UIFont boldSystemFontOfSize:25] forKeyPath:@"_placeholderLabel.font"];
+        [telTextF setTextColor:[UIColor whiteColor]];
+        telTextF.font = [UIFont systemFontOfSize:25];
         telTextF.tag = 1;
         telTextF.layer.cornerRadius = 5;
         [telTextF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -63,6 +95,16 @@
     return telTextF;
 }
 
+//横线1
+-(UIImageView *)lineOne
+{
+    if(!lineOne)
+    {
+        lineOne = [[UIImageView alloc]initWithFrame:CGRectMake(0.1*width, 0.18*hight, 0.8*width, 0.004*hight)];
+        lineOne.image = [UIImage imageNamed:@"学霸捐－短横线"];
+    }
+    return lineOne;
+}
 //验证码verifyTextF
 -(UITextField *)verifyTexF
 {
@@ -70,11 +112,15 @@
     {
         verifyTexF = [[UITextField alloc]init];
         verifyTexF.frame = CGRectMake(0.1*width, 0.33*hight, 0.8*width, 0.05*hight);
-        verifyTexF.backgroundColor = [UIColor whiteColor];
+        verifyTexF.backgroundColor = [UIColor clearColor];
         verifyTexF.placeholder = @"填写验证码";
         verifyTexF.clearButtonMode = UITextFieldViewModeWhileEditing;
         verifyTexF.keyboardType = UIKeyboardTypeNumberPad;
-        verifyTexF.textAlignment = NSTextAlignmentCenter;
+        [verifyTexF setTextAlignment:NSTextAlignmentCenter];
+        [verifyTexF setValue:[UIColor colorWithWhite:0.8 alpha:0.5] forKeyPath:@"_placeholderLabel.textColor"];
+        [verifyTexF setValue:[UIFont boldSystemFontOfSize:25] forKeyPath:@"_placeholderLabel.font"];
+        [verifyTexF setTextColor:[UIColor whiteColor]];
+        verifyTexF.font = [UIFont systemFontOfSize:25];
         verifyTexF.tag = 2;
         verifyTexF.layer.cornerRadius = 5;
         [verifyTexF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -82,15 +128,28 @@
     }
     return verifyTexF;
 }
+
+//横线2
+-(UIImageView *)lineTwo
+{
+    if(!lineTwo)
+    {
+        lineTwo = [[UIImageView alloc]initWithFrame:CGRectMake(0.1*width, 0.38*hight, 0.8*width, 0.004*hight)];
+        lineTwo.image = [UIImage imageNamed:@"学霸捐－短横线"];
+    }
+    return lineTwo;
+}
+
 //发送验证码
 -(UIButton *)inputBtn
 {
     if(!inputBtn)
     {
-        inputBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.1*width, 0.2*hight, 0.8*width, 0.05*hight)];
+        inputBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.1*width, 0.23*hight, 0.8*width, 0.07*hight)];
         [inputBtn setTitle:@"发送" forState:UIControlStateNormal];
         inputBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//文字居中显示
-        [inputBtn setBackgroundColor:[UIColor cyanColor]];
+        [inputBtn setBackgroundColor:[UIColor clearColor]];
+        inputBtn.titleLabel.font = [UIFont systemFontOfSize:25];
         inputBtn.enabled = NO;
         inputBtn.alpha = 0.4;
         inputBtn.layer.cornerRadius = 5;
@@ -98,20 +157,43 @@
     }
     return inputBtn;
 }
+
+//边框1
+-(UIImageView *)borderOne
+{
+    if (!borderOne)
+    {
+        borderOne = [[UIImageView alloc]initWithFrame: CGRectMake(0.2*width, 0.23*hight, 0.6*width, 0.07*hight)];
+        borderOne.image = [UIImage imageNamed:@"学霸捐－登陆框"];
+    }
+    return borderOne;
+}
 //下一步按钮
 -(UIButton *)nextbtn
 {
     if (!nextbtn) {
         nextbtn = [[UIButton alloc]init];
-        nextbtn.frame = CGRectMake(0.1*width, 0.41*hight, 0.8*width, 0.05*hight);
+        nextbtn.frame = CGRectMake(0.2*width, 0.41*hight, 0.6*width, 0.07*hight);
         [nextbtn setTitle:@"下一步" forState:UIControlStateNormal];
         nextbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//文字居中显示
-        [nextbtn setBackgroundColor:[UIColor cyanColor]];
+        [nextbtn setBackgroundColor:[UIColor clearColor]];
+        nextbtn.titleLabel.font = [UIFont systemFontOfSize:25];
         nextbtn.enabled = NO;
         nextbtn.alpha = 0.4;
         nextbtn.layer.cornerRadius = 5;
     }
     return nextbtn;
+}
+
+//边框2
+-(UIImageView *)boederTwo
+{
+    if (!boederTwo)
+    {
+        boederTwo = [[UIImageView alloc]initWithFrame: CGRectMake(0.2*width, 0.41*hight, 0.6*width, 0.07*hight)];
+        boederTwo.image = [UIImage imageNamed:@"学霸捐－登陆框"];
+    }
+    return boederTwo;
 }
 
 #pragma mark - 单机事件

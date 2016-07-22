@@ -19,4 +19,11 @@
 @property (nonatomic,strong)UITextField*classTextF;
 @property (nonatomic,strong)UITextField *stuNumTextF;
 @property(nonatomic,strong)UIButton *b;
+@property(nonatomic,strong)UIImageView *lineOne;
+@property(nonatomic,strong)UIImageView *lineTwo;
+@property(nonatomic,strong)UIImageView *lineThree;
+@property(nonatomic,strong)UIImageView *lineFour;
+@property(nonatomic,strong)UIImageView *borderIV;
+@property(nonatomic,strong)UIButton *leftBtn;
+@property(nonatomic,strong)UILabel* titleLab;
 @end

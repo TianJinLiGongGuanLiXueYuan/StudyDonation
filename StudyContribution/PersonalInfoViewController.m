@@ -140,8 +140,7 @@
 }
 
 - (void)returnBtnClick{
-    SettingViewController *settingVC = [[SettingViewController alloc]init];
-    [self.navigationController pushViewController:settingVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 头像图片

@@ -90,8 +90,7 @@
 }
 
 - (void)returnBtnClick{
-    regeisterViewController *regesiterVC = [[regeisterViewController alloc]init];
-    [self.navigationController pushViewController:regesiterVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 表视图协议
@@ -244,8 +243,8 @@
         switch (indexPath.row) {
             case 0:
             {
-                PersonalInfoViewController *personalInfo = [[PersonalInfoViewController alloc]init];
-                [self.navigationController pushViewController:personalInfo animated:YES];
+                PersonalInfoViewController *personalInfoVC = [[PersonalInfoViewController alloc]init];
+                [self.navigationController pushViewController:personalInfoVC animated:YES];
             }
                 break;
             case 1:

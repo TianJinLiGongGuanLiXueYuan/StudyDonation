@@ -239,7 +239,7 @@
         
 //        _classInfoBtn.layer.borderWidth = 1.0f;
 //        _classInfoBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
-        
+           
         [_classInfoBtn addTarget:self action:@selector(classInfoBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _classInfoBtn;

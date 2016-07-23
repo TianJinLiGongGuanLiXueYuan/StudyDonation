@@ -10,6 +10,7 @@
 		18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0D71D407B9700CA20DF /* MoreDetailViewController.m */; };
 		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
+		8C6604DC1D43815400C46C91 /* setCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604DB1D43815400C46C91 /* setCell.m */; };
 		F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */; };
 		F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */; };
 		F53AC87E1D39ACCD00A7E8D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */; };
@@ -75,6 +76,8 @@
 		18E5D0D91D407BAF00CA20DF /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		18E5D0DA1D407BAF00CA20DF /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8C6604DA1D43815400C46C91 /* setCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setCell.h; sourceTree = "<group>"; };
+		8C6604DB1D43815400C46C91 /* setCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setCell.m; sourceTree = "<group>"; };
 		F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
 		F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePersonalInfoViewController.h; sourceTree = "<group>"; };
@@ -453,6 +456,8 @@
 		FE7AD2C61D35555400AE368C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				8C6604DA1D43815400C46C91 /* setCell.h */,
+				8C6604DB1D43815400C46C91 /* setCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				FE7AD29D1D35431A00AE368C /* regeisterViewController.m in Sources */,
 				FE7AD2CD1D35D25D00AE368C /* detailUIView.m in Sources */,
 				FE7AD2D71D36017B00AE368C /* BaseViewController.m in Sources */,
+				8C6604DC1D43815400C46C91 /* setCell.m in Sources */,
 				F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */,
 				FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */,
 				F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */,

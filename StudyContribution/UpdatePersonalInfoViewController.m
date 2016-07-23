@@ -9,7 +9,7 @@
 #import "UpdatePersonalInfoViewController.h"
 #import "CustomNavigationController.h"
 #import "PersonalInfoViewController.h"
-
+#import "setCell.h"
 @interface UpdatePersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 //背景图
@@ -26,16 +26,19 @@
 //姓名
 @property (nonatomic,strong) UILabel *nameLabel;
 @property (nonatomic,strong) UITextField *nameValueText;
+@property (nonatomic,strong) UIImageView *nameImage;
 
 //年级
 @property (nonatomic,strong) UILabel *gradeLabel;
 @property (nonatomic,strong) UITextField *gradeValueText;
+@property (nonatomic,strong) UIImageView *gradeImage;
 
 //学生信息
 @property (nonatomic,strong) UITableView *studentInfoTabel;
 
 //编辑按钮
 @property (nonatomic,strong) UIButton *completeBtn;
+@property (nonatomic,strong) UIImageView *completeImage;
 
 @end
 
@@ -60,17 +63,19 @@
 //    添加姓名
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.nameValueText];
+    [self.view addSubview:self.nameImage];
     
 //    添加年级
     [self.view addSubview:self.gradeLabel];
     [self.view addSubview:self.gradeValueText];
+    [self.view addSubview:self.gradeImage];
     
 //    初始化TableView
-    _studentInfoTabel = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 187, self.view.center.y - 140, 374, 390) style:UITableViewStylePlain];
+    _studentInfoTabel = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 186.5, self.view.center.y - 140, 390, 390) style:UITableViewStylePlain];
     _studentInfoTabel.scrollEnabled = NO;
     _studentInfoTabel.backgroundColor = [UIColor clearColor];
-    _studentInfoTabel.layer.borderWidth = 1.0f;
-    _studentInfoTabel.layer.borderColor = [[UIColor whiteColor]CGColor];
+//    _studentInfoTabel.layer.borderWidth = 1.0f;
+//    _studentInfoTabel.layer.borderColor = [[UIColor whiteColor]CGColor];
 //    设置cell无下划线
     _studentInfoTabel.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_studentInfoTabel];
@@ -80,6 +85,7 @@
     
 //    添加编辑按钮
     [self.view addSubview:self.completeBtn];
+    [self.view addSubview:self.completeImage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,8 +125,7 @@
 }
 
 - (void)returnBtnClick{
-    PersonalInfoViewController *personalVC = [[PersonalInfoViewController alloc]init];
-    [self.navigationController pushViewController:personalVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 头像图片
@@ -161,6 +166,17 @@
     return _nameValueText;
 }
 
+//横线picture
+- (UIImageView *)nameImage{
+    if (!_nameImage) {
+        _nameImage = [[UIImageView alloc]initWithFrame:CGRectMake(183, 110, 213, 4.4)];
+//        _nameImage.layer.borderWidth = 1.0f;
+//        _nameImage.layer.borderColor = [[UIColor blackColor]CGColor];
+//        _nameImage.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return _nameImage;
+}
+
 #pragma mark - 年级
 
 - (UILabel *)gradeLabel{
@@ -187,6 +203,16 @@
     return _gradeValueText;
 }
 
+//横线picture
+- (UIImageView *)gradeImage{
+    if (!_gradeImage) {
+        _gradeImage = [[UIImageView alloc]initWithFrame:CGRectMake(183, 188, 213, 4.4)];
+//        _gradeImage.layer.borderWidth = 1.0f;
+//        _gradeImage.layer.borderColor = [[UIColor blackColor]CGColor];
+//        _nameImage.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return _gradeImage;
+}
 
 #pragma mark - 表视图协议
 
@@ -206,10 +232,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifer = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
+    setCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
+        cell = [[setCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
         
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
@@ -220,32 +246,21 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 15, 131, 40)];
-//        label.layer.borderWidth = 1.0f;
-//        label.layer.borderColor = [[UIColor whiteColor]CGColor];
-        label.font = [UIFont systemFontOfSize:26];
-        label.text = _schoolInfo[indexPath.row];
-        [cell.contentView addSubview:label];
-        
-//        横线picture
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(2, 52, 370, 4.4)];
-//        imageView.layer.borderWidth = 1.0f;
-//        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
-        imageView.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
-        [cell.contentView addSubview:imageView];
+        cell.schoolLabel.text = _schoolInfo[indexPath.row];
+        cell.upschoolLabel.text = @"信息科学与技术系";
     }
     
     
     return cell;
 }
 
-//点击每一行时如何响应
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        
-    }else if(indexPath.section == 1){
-    }
-}
+////点击每一行时如何响应
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section == 0) {
+//        
+//    }else if(indexPath.section == 1){
+//    }
+//}
 
 #pragma mark - 编辑按钮
 
@@ -265,8 +280,18 @@
 }
 
 - (void)completeBtnClick{
-    PersonalInfoViewController *updatePersonInfoVC = [[PersonalInfoViewController alloc]init];
-    [self.navigationController pushViewController:updatePersonInfoVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//横线picture
+- (UIImageView *)completeImage{
+    if (!_completeImage) {
+        _completeImage = [[UIImageView alloc]initWithFrame:CGRectMake(150, 680, 100, 4.4)];
+        _completeImage.layer.borderWidth = 1.0f;
+        _completeImage.layer.borderColor = [[UIColor blackColor]CGColor];
+        //        _nameImage.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return _completeImage;
 }
 
 /*

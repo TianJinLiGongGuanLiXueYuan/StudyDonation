@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-@interface ContributionDetailViewController : BaseViewController
+@interface ContributionDetailViewController : UIViewController
 
 @end

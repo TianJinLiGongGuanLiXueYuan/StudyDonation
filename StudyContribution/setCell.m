@@ -14,9 +14,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self.contentView addSubview:self.schoolLabel];
-        [self.contentView addSubview:self.upschoolLabel];
-        [self.contentView addSubview:self.setImage];
+        [self.contentView addSubview:self.setInfo];
+        [self.contentView addSubview:self.setInfoLevel];
     }
     return self;
 }
@@ -24,41 +23,30 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _schoolLabel.frame = CGRectMake(5, 13, 133, 40);
-    _upschoolLabel.frame = CGRectMake(142, 13, 220, 40);
-    _setImage.frame = CGRectMake(2, 52, 380, 4.4);
+    _setInfo.frame = CGRectMake(28, 13, 400, 40);
+    _setInfoLevel.frame = CGRectMake(20, 58, 372, 4.4);
 }
 
-- (UILabel *)schoolLabel{
-    if (!_schoolLabel) {
-        _schoolLabel = [[UILabel alloc]init];
-//        _schoolLabel.layer.borderWidth = 1.0f;
-//        _schoolLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
-        _schoolLabel.textColor = [UIColor whiteColor];
-        _schoolLabel.font = [UIFont systemFontOfSize:26.5];
+//设置信息getter（）
+- (UILabel *)setInfo{
+    if (!_setInfo) {
+        _setInfo = [[UILabel alloc]init];
+//        _setInfo.layer.borderWidth = 1.0f;
+//        _setInfo.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _setInfo.textColor = [UIColor whiteColor];
+        _setInfo.font = [UIFont systemFontOfSize:26.5];
     }
-    return _schoolLabel;
+    return _setInfo;
 }
 
-- (UILabel *)upschoolLabel{
-    if (!_upschoolLabel) {
-        _upschoolLabel = [[UILabel alloc]init];
-//        _upschoolLabel.layer.borderWidth = 1.0f;
-//        _upschoolLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
-        _upschoolLabel.textAlignment = NSTextAlignmentRight;
-        _upschoolLabel.textColor = [UIColor whiteColor];
-        _upschoolLabel.font = [UIFont systemFontOfSize:26.5];
+//底边横线
+- (UIImageView *)setInfoLevel{
+    if (!_setInfoLevel) {
+        _setInfoLevel = [[UIImageView alloc]init];
+//        _setInfoLevel.layer.borderWidth = 1.0f;
+//        _setInfoLevel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _setInfoLevel.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
     }
-    return _upschoolLabel;
-}
-
-- (UIImageView *)setImage{
-    if (!_setImage) {
-        _setImage = [[UIImageView alloc]init];
-//        _setImage.layer.borderWidth = 1.0f;
-//        _setImage.layer.borderColor = [[UIColor blackColor]CGColor];
-        _setImage.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
-    }
-    return _setImage;
+    return _setInfoLevel;
 }
 @end

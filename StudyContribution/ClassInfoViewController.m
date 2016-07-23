@@ -52,7 +52,7 @@
       */
  - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
  {
-         NSLog(@"numberOfRowsInSection %d", section);
+         NSLog(@"numberOfRowsInSection %ld", section);
          if (0 == section) {
                  // 第0组有多少行
                  return 4;
@@ -67,7 +67,7 @@
       */
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
  {
-     NSLog(@"cellForRowAtIndexPath %d %d", indexPath.section, indexPath.row);
+     NSLog(@"cellForRowAtIndexPath %ld %ld", (long)indexPath.section, indexPath.row);
     
      //    indexPath.section; // 第几组
      //    indexPath.row; // 第几行

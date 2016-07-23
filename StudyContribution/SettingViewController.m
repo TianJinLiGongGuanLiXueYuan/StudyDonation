@@ -9,17 +9,21 @@
 #import "SettingViewController.h"
 #import "CustomNavigationController.h"
 #import "CustomnavView.h"
+#import "setPhotoCell.h"
+#import "setCell.h"
+#import "setExitBtnCell.h"
 #import "regeisterViewController.h"
 #import "ClassInfoViewController.h"
 #import "PersonalInfoViewController.h"
+#import "AboutUsView.h"
 
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSArray *settingArr;
 
-@property (nonatomic,strong) UITableView *mainTable;
+@property (nonatomic,strong) UIImageView *setBackground;
 
-@property (nonatomic,strong) UIImageView *background;
+@property (nonatomic,strong) UITableView *setTableView;
 
 @property (nonatomic,strong) UIButton *returnBtn;
 
@@ -31,22 +35,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+//    隐藏导航栏
+    [self.navigationController  setNavigationBarHidden:YES];
+    
 //    初始化数组
     _settingArr = @[@"修改个人信息",@"清除缓存",@"关于学霸捐"];
     
 //    添加背景图
-    [self.view addSubview:self.background];
+    [self.view addSubview:self.setBackground];
     
 //    初始化TableView
-    _mainTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
-    _mainTable.backgroundColor = [UIColor clearColor];
+    _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
+    _setTableView.backgroundColor = [UIColor clearColor];
 //    设置cell无下划线
-    _mainTable.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:_mainTable];
-//    self.mainTable.backgroundColor = [UIColor purpleColor];
-    _mainTable.dataSource = self;
-    _mainTable.delegate = self;
-    _mainTable.showsVerticalScrollIndicator = NO;
+    _setTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:_setTableView];
+    _setTableView.dataSource = self;
+    _setTableView.delegate = self;
+    _setTableView.showsVerticalScrollIndicator = NO;
     
 //    添加返回按钮
     [self.view addSubview:self.returnBtn];
@@ -62,18 +68,18 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
-#pragma mark - 背景图
+#pragma mark - 背景图getter（）
 
-- (UIImageView *)background{
-    if (!_background) {
-        _background = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//        _background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
-        _background.image = [UIImage imageNamed:@"学霸捐-设置"];
+- (UIImageView *)setBackground{
+    if (!_setBackground) {
+        _setBackground = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+//        _setBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+        _setBackground.image = [UIImage imageNamed:@"学霸捐-设置"];
     }
-    return _background;
+    return _setBackground;
 }
 
-#pragma mark - 返回点击事件
+#pragma mark - 返回按钮getter（）
 
 - (UIButton *)returnBtn{
     if (!_returnBtn) {
@@ -150,89 +156,35 @@
 //控制每一行用何种样式cell显示
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifer = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
-        
-        cell.backgroundColor = [UIColor clearColor];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    
+//    static NSString *identifer = @"cell";
     if (indexPath.section == 0) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userinfo"];
+        setPhotoCell *photocell = [[setPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userinfo"];
         
-        cell.backgroundColor = [UIColor clearColor];
+        photocell.backgroundColor = [UIColor clearColor];
         
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        photocell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-//        头像picture
-         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(48, -6.4, 102.8, 145)];
-//        imageView.layer.borderWidth = 1.0f;
-//        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
-        imageView.image = [UIImage imageNamed:@"学霸捐-头像"];
-        [cell.contentView addSubview:imageView];
-        
-//        name横线picture
-        UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(180, 133, 212, 5.1)];
-//        imageView1.layer.borderWidth = 1.0f;
-//        imageView1.layer.borderColor = [[UIColor blackColor]CGColor];
-        imageView1.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
-        [cell.contentView addSubview:imageView1];
-
-//        名字label
-        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(168, 90, 100, 40)];
-        nameLabel.font = [UIFont systemFontOfSize:24.5];
-        nameLabel.textColor = [UIColor whiteColor];
-        nameLabel.textAlignment = NSTextAlignmentCenter;
-//        nameLabel.layer.borderWidth = 1.0f;
-//        nameLabel.layer.borderColor = [[UIColor blackColor]CGColor];
-        nameLabel.text = @"周颖英";
-        [cell.contentView addSubview:nameLabel];
+        return photocell;
     }else if(indexPath.section == 1){
+        setCell *setInfocell = [[setCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"setInfo"];
 //        添加右边小箭头
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-
-//        各行文本框
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(28, 20, cell.bounds.size.width, 40)];
-//        label.layer.borderWidth = 1.0f;
-//        label.layer.borderColor = [[UIColor whiteColor]CGColor];
-        label.font = [UIFont systemFontOfSize:24.8];
-        label.text = _settingArr[indexPath.row];
-        label.textColor = [UIColor whiteColor];
-        [cell.contentView addSubview:label];
+        [setInfocell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
-//        横线picture
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, 58, 372, 4.4)];
-//        imageView.layer.borderWidth = 1.0f;
-//        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
-        imageView.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
-        [cell.contentView addSubview:imageView];
+        setInfocell.backgroundColor = [UIColor clearColor];
+        
+        setInfocell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        setInfocell.setInfo.text = _settingArr[indexPath.row];
+        
+        return setInfocell;
     }else{
-//        退出按钮
-        UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(97, 8, 213, 45)];
-//        exitBtn.layer.borderWidth = 1.0f;
-//        exitBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
-        exitBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [exitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        exitBtn.titleLabel.font = [UIFont systemFontOfSize:24.8];
-        [exitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
-        [exitBtn addTarget:self action:@selector(exitBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:exitBtn];
+        setExitBtnCell *exitBtncell = [[setExitBtnCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"exitInfo"];
         
-//        横线picture
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(100, 50.5, 210, 4.4)];
-//        imageView.layer.borderWidth = 1.0f;
-//        imageView.layer.borderColor = [[UIColor blackColor]CGColor];
-        imageView.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
-        [cell.contentView addSubview:imageView];
+        exitBtncell.backgroundColor = [UIColor clearColor];
+        
+        exitBtncell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return exitBtncell;
     }
-    return cell;
 }
 
 //点击每一行时如何响应
@@ -268,7 +220,22 @@
                 break;
             case 2:
             {
-                NSLog(@"关于我们cell事件");
+                BOOL useCustomView = NO;
+                
+                AboutUsView *aboutUsVC;
+                if (useCustomView) {
+                    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+                    view.backgroundColor = [UIColor redColor];
+                    view.layer.cornerRadius = 5.f;
+                    view.layer.borderColor = [UIColor blackColor].CGColor;
+                    view.layer.borderWidth = 5.f;
+                    
+                    aboutUsVC = [[AboutUsView alloc] initWithViewController:self view:view];
+                }
+                else {
+                    aboutUsVC = [[AboutUsView alloc] initWithViewController:self title:@"学霸捐" message:@"学霸捐信息······！"];
+                }
+                [aboutUsVC show];
             }
                 break;
             default:
@@ -276,13 +243,6 @@
         }
     }else{
     }
-}
-
-
-#pragma mark - 退出点击事件
-
-- (void)exitBtnClick{
-    NSLog(@"退出事件");
 }
 
 /*

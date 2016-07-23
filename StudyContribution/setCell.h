@@ -10,10 +10,8 @@
 
 @interface setCell : UITableViewCell
 
-@property (nonatomic,strong) UILabel *schoolLabel;
-@property (nonatomic,strong) UILabel *upschoolLabel;
+@property (nonatomic,strong) UILabel *setInfo;
 
-
-@property (nonatomic,strong) UIImageView *setImage;
+@property (nonatomic,strong) UIImageView *setInfoLevel;
 
 @end

@@ -91,7 +91,7 @@
 //点击每一行时如何响应
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    NSLog(@"点击了%@行,(long)indexPath.row");
+    NSLog(@"点击了%ld行",(long)indexPath.row);
 }
 
 /*

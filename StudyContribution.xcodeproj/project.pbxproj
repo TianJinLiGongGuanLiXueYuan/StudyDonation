@@ -13,6 +13,11 @@
 		8C6604DC1D43815400C46C91 /* setCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604DB1D43815400C46C91 /* setCell.m */; };
 		F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */; };
 		F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */; };
+		F4A7688D1D43483000B3DF3D /* personalInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A7688C1D43483000B3DF3D /* personalInfoCell.m */; };
+		F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A768921D4357D600B3DF3D /* setPhotoCell.m */; };
+		F4A768991D4365D200B3DF3D /* setExitBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A768981D4365D200B3DF3D /* setExitBtnCell.m */; };
+		F4A7689C1D4399C200B3DF3D /* AboutUsView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A7689B1D4399C200B3DF3D /* AboutUsView.m */; };
+		F4A7689E1D439A2900B3DF3D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A7689D1D439A2900B3DF3D /* Accelerate.framework */; };
 		F53AC87E1D39ACCD00A7E8D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */; };
 		F53AC87F1D39ACCD00A7E8D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */; };
 		F53AC8811D39AD1600A7E8D2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */; };
@@ -82,6 +87,15 @@
 		F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePersonalInfoViewController.h; sourceTree = "<group>"; };
 		F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePersonalInfoViewController.m; sourceTree = "<group>"; };
+		F4A7688B1D43483000B3DF3D /* personalInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personalInfoCell.h; sourceTree = "<group>"; };
+		F4A7688C1D43483000B3DF3D /* personalInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personalInfoCell.m; sourceTree = "<group>"; };
+		F4A768911D4357D600B3DF3D /* setPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setPhotoCell.h; sourceTree = "<group>"; };
+		F4A768921D4357D600B3DF3D /* setPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setPhotoCell.m; sourceTree = "<group>"; };
+		F4A768971D4365D200B3DF3D /* setExitBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setExitBtnCell.h; sourceTree = "<group>"; };
+		F4A768981D4365D200B3DF3D /* setExitBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setExitBtnCell.m; sourceTree = "<group>"; };
+		F4A7689A1D4399C200B3DF3D /* AboutUsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsView.h; sourceTree = "<group>"; };
+		F4A7689B1D4399C200B3DF3D /* AboutUsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsView.m; sourceTree = "<group>"; };
+		F4A7689D1D439A2900B3DF3D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		F53AC87C1D39ACCD00A7E8D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		F53AC87D1D39ACCD00A7E8D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		F53AC8801D39AD1600A7E8D2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -153,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A7689E1D439A2900B3DF3D /* Accelerate.framework in Frameworks */,
 				8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */,
 				F598E75F1D3A99280081A4B2 /* QuartzCore.framework in Frameworks */,
 				F53AC8951D39AD8100A7E8D2 /* libz.tbd in Frameworks */,
@@ -199,6 +214,7 @@
 		F53AC87A1D39ACAD00A7E8D2 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4A7689D1D439A2900B3DF3D /* Accelerate.framework */,
 				8C59072A1D40E32D003FD355 /* CoreLocation.framework */,
 				F598E75E1D3A99280081A4B2 /* QuartzCore.framework */,
 				F53AC8941D39AD8100A7E8D2 /* libz.tbd */,
@@ -456,8 +472,16 @@
 		FE7AD2C61D35555400AE368C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F4A768911D4357D600B3DF3D /* setPhotoCell.h */,
+				F4A768921D4357D600B3DF3D /* setPhotoCell.m */,
 				8C6604DA1D43815400C46C91 /* setCell.h */,
 				8C6604DB1D43815400C46C91 /* setCell.m */,
+				F4A768971D4365D200B3DF3D /* setExitBtnCell.h */,
+				F4A768981D4365D200B3DF3D /* setExitBtnCell.m */,
+				F4A7688B1D43483000B3DF3D /* personalInfoCell.h */,
+				F4A7688C1D43483000B3DF3D /* personalInfoCell.m */,
+				F4A7689A1D4399C200B3DF3D /* AboutUsView.h */,
+				F4A7689B1D4399C200B3DF3D /* AboutUsView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -604,8 +628,11 @@
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
 				F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */,
 				FE7AD2B41D354E2F00AE368C /* anymoreViewController.m in Sources */,
+				F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */,
 				18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */,
+				F4A7688D1D43483000B3DF3D /* personalInfoCell.m in Sources */,
 				18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */,
+				F4A768991D4365D200B3DF3D /* setExitBtnCell.m in Sources */,
 				FE7AD2631D352EAF00AE368C /* AppDelegate.m in Sources */,
 				FE7AD2601D352EAF00AE368C /* main.m in Sources */,
 				FE7AD2B11D354E2F00AE368C /* LoginViewController.m in Sources */,
@@ -621,6 +648,7 @@
 				F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */,
 				F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
+				F4A7689C1D4399C200B3DF3D /* AboutUsView.m in Sources */,
 				F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */,
 				FE7AD2D01D35D27900AE368C /* passWordView.m in Sources */,
 				F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */,

@@ -8,37 +8,39 @@
 
 #import "UpdatePersonalInfoViewController.h"
 #import "CustomNavigationController.h"
+#import "personalInfoCell.h"
 #import "PersonalInfoViewController.h"
-#import "setCell.h"
+
 @interface UpdatePersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 //背景图
-@property (nonatomic,strong) UIImageView *background;
+@property (nonatomic,strong) UIImageView *updatePersonalBackground;
 
-@property (nonatomic,strong) NSArray *schoolInfo;
+@property (nonatomic,strong) NSArray *updatePersonalInfoInfo;
+@property (nonatomic,strong) NSArray *updateTemporaryArr;
 
 //返回按钮
-@property (nonatomic,strong) UIButton *returnBtn;
+@property (nonatomic,strong) UIButton *updatePersonReturnBtn;
 
 //头像图片
-@property (nonatomic,strong) UIImageView *picture;
+@property (nonatomic,strong) UIImageView *updatePersonalPicture;
 
 //姓名
-@property (nonatomic,strong) UILabel *nameLabel;
-@property (nonatomic,strong) UITextField *nameValueText;
-@property (nonatomic,strong) UIImageView *nameImage;
+@property (nonatomic,strong) UILabel *updatePersonalNameLabel;
+@property (nonatomic,strong) UITextField *updatePersonalNameValueText;
+@property (nonatomic,strong) UIImageView *updatePersonInfoNameLevel;
 
 //年级
-@property (nonatomic,strong) UILabel *gradeLabel;
-@property (nonatomic,strong) UITextField *gradeValueText;
-@property (nonatomic,strong) UIImageView *gradeImage;
+@property (nonatomic,strong) UILabel *updatePersonalGradeLabel;
+@property (nonatomic,strong) UITextField *updatePersonalGradeValueText;
+@property (nonatomic,strong) UIImageView *updatePersonInfoGradeLevel;
 
 //学生信息
-@property (nonatomic,strong) UITableView *studentInfoTabel;
+@property (nonatomic,strong) UITableView *updatePersonInfoTableView;
 
 //编辑按钮
 @property (nonatomic,strong) UIButton *completeBtn;
-@property (nonatomic,strong) UIImageView *completeImage;
+@property (nonatomic,strong) UIImageView *completeLevel;
 
 @end
 
@@ -49,43 +51,44 @@
     // Do any additional setup after loading the view.
 
 //    添加背景图
-    [self.view addSubview:self.background];
+    [self.view addSubview:self.updatePersonalBackground];
     
 //    数组初始化
-    _schoolInfo = @[@"学校：",@"所在学院：",@"所在系：",@"专业名称：",@"班级：",@"学号："];
+    _updatePersonalInfoInfo = @[@"学校：",@"所在学院：",@"所在系：",@"专业名称：",@"班级：",@"学号："];
+    _updateTemporaryArr = @[@"天津财经大学",@"理工学院",@"信息科学与技术系",@"计科",@"计科1301",@"201311146"];
     
 //    添加返回按钮
-    [self.view addSubview:self.returnBtn];
+    [self.view addSubview:self.updatePersonReturnBtn];
     
 //    添加头像picture
-    [self.view addSubview:self.picture];
+    [self.view addSubview:self.updatePersonalPicture];
     
 //    添加姓名
-    [self.view addSubview:self.nameLabel];
-    [self.view addSubview:self.nameValueText];
-    [self.view addSubview:self.nameImage];
+    [self.view addSubview:self.updatePersonalNameLabel];
+    [self.view addSubview:self.updatePersonalNameValueText];
+    [self.view addSubview:self.updatePersonInfoNameLevel];
     
 //    添加年级
-    [self.view addSubview:self.gradeLabel];
-    [self.view addSubview:self.gradeValueText];
-    [self.view addSubview:self.gradeImage];
+    [self.view addSubview:self.updatePersonalGradeLabel];
+    [self.view addSubview:self.updatePersonalGradeValueText];
+    [self.view addSubview:self.updatePersonInfoGradeLevel];
     
 //    初始化TableView
-    _studentInfoTabel = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 186.5, self.view.center.y - 140, 390, 390) style:UITableViewStylePlain];
-    _studentInfoTabel.scrollEnabled = NO;
-    _studentInfoTabel.backgroundColor = [UIColor clearColor];
-//    _studentInfoTabel.layer.borderWidth = 1.0f;
-//    _studentInfoTabel.layer.borderColor = [[UIColor whiteColor]CGColor];
+    _updatePersonInfoTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 186.5, self.view.center.y - 140, 390, 390) style:UITableViewStylePlain];
+    _updatePersonInfoTableView.scrollEnabled = NO;
+    _updatePersonInfoTableView.backgroundColor = [UIColor clearColor];
+//    _updatePersonInfoTableView.layer.borderWidth = 1.0f;
+//    _updatePersonInfoTableView.layer.borderColor = [[UIColor whiteColor]CGColor];
 //    设置cell无下划线
-    _studentInfoTabel.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:_studentInfoTabel];
-    _studentInfoTabel.dataSource = self;
-    _studentInfoTabel.delegate = self;
-    _studentInfoTabel.showsVerticalScrollIndicator = NO;
+    _updatePersonInfoTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:_updatePersonInfoTableView];
+    _updatePersonInfoTableView.dataSource = self;
+    _updatePersonInfoTableView.delegate = self;
+    _updatePersonInfoTableView.showsVerticalScrollIndicator = NO;
     
 //    添加编辑按钮
     [self.view addSubview:self.completeBtn];
-    [self.view addSubview:self.completeImage];
+    [self.view addSubview:self.completeLevel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,125 +96,163 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+//    设置背景图位置
+    self.updatePersonalBackground.frame = [UIScreen mainScreen].bounds;
+    
+//    设置返回按钮位置
+    self.updatePersonReturnBtn.frame = CGRectMake(5, 10, 40, 45);
+    
+//    设置头像位置
+    self.updatePersonalPicture.frame = CGRectMake(50, 46.5, 102.4, 145);
+    
+//    设置名字了label位置
+    self.updatePersonInfoNameLevel.frame = CGRectMake(185, 62, 100, 50);
+    
+//    设置名字text位置
+    self.updatePersonalNameValueText.frame = CGRectMake(300, 62, 100, 50);
+    
+//    设置名字了label下横线位置
+    self.updatePersonInfoNameLevel.frame = CGRectMake(183, 110, 213, 4.4);
+    
+//    设置年级label位置
+    self.updatePersonalGradeLabel.frame = CGRectMake(185, 142, 80, 50);
+    
+//    设置年级text位置
+    self.updatePersonalGradeValueText.frame =CGRectMake(300, 142, 100, 50);
+    
+//    设置年级label下横线位置
+    self.updatePersonInfoGradeLevel.frame = CGRectMake(183, 188, 213, 4.4);
+    
+//    设置编辑按钮位置
+    self.completeBtn.frame = CGRectMake(312, 648, 80, 40);
+    
+//    设置编辑按钮下横线位置
+    self.completeLevel.frame = CGRectMake(314, 685, 78, 4.4);
+    
+}
+
 #pragma mark - 隐藏小键盘 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [_nameValueText resignFirstResponder];
-    [_gradeValueText resignFirstResponder];
+    [_updatePersonalNameValueText resignFirstResponder];
+    [_updatePersonalGradeValueText resignFirstResponder];
 }
 
-#pragma mark - 背景图
+#pragma mark - 背景图getter（）
 
-- (UIImageView *)background{
-    if (!_background) {
-        _background = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        //        _background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
-        _background.image = [UIImage imageNamed:@"学霸捐-编辑信息-3"];
+- (UIImageView *)updatePersonalBackground{
+    if (!_updatePersonalBackground) {
+        _updatePersonalBackground = [[UIImageView alloc]init];
+//        _updatePersonalBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+        _updatePersonalBackground.image = [UIImage imageNamed:@"setEdit"];
     }
-    return _background;
+    return _updatePersonalBackground;
 }
 
-#pragma mark - 返回按钮
+#pragma mark - 返回按钮getter（）
 
-- (UIButton *)returnBtn{
-    if (!_returnBtn) {
-        _returnBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 10, 40, 45)];
-        //        _returnBtn.layer.borderWidth = 1;
-        //        _returnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
-        _returnBtn.backgroundColor = [UIColor clearColor];
-        [_returnBtn addTarget:self action:@selector(returnBtnClick) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)updatePersonReturnBtn{
+    if (!_updatePersonReturnBtn) {
+        _updatePersonReturnBtn = [[UIButton alloc]init];
+//        _updatePersonReturnBtn.layer.borderWidth = 1;
+//        _updatePersonReturnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _updatePersonReturnBtn.backgroundColor = [UIColor clearColor];
+        [_updatePersonReturnBtn addTarget:self action:@selector(updatePersonReturnBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _returnBtn;
+    return _updatePersonReturnBtn;
 }
 
-- (void)returnBtnClick{
+- (void)updatePersonReturnBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 头像图片
+#pragma mark - 头像图片getter（）
 
-- (UIImageView *)picture{
-    if (!_picture) {
-        _picture = [[UIImageView alloc]initWithFrame:CGRectMake(50, 46.5, 102.4, 145)];
-//        _picture.layer.borderWidth = 1.0f;
-//        _picture.layer.borderColor = [[UIColor blackColor]CGColor];
-        _picture.image = [UIImage imageNamed:@"学霸捐-头像"];
+- (UIImageView *)updatePersonalPicture{
+    if (!_updatePersonalPicture) {
+        _updatePersonalPicture = [[UIImageView alloc]init];
+//        _updatePersonalPicture.layer.borderWidth = 1.0f;
+//        _updatePersonalPicture.layer.borderColor = [[UIColor blackColor]CGColor];
+        _updatePersonalPicture.image = [UIImage imageNamed:@"学霸捐-头像"];
     }
-    return _picture;
+    return _updatePersonalPicture;
 }
 
-#pragma mark - 名字
+#pragma mark - 名字getter（）
 
-- (UILabel *)nameLabel{
-    if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(185, 62, 100, 50)];
-//        _nameLabel.layer.borderWidth = 1.0f;
-//        _nameLabel.layer.borderColor = [[UIColor blackColor]CGColor];
-        _nameLabel.font = [UIFont systemFontOfSize:26.5];
-        _nameLabel.textColor = [UIColor whiteColor];
-        _nameLabel.text = @"姓名：";
+- (UILabel *)updatePersonalNameLabel{
+    if (!_updatePersonalNameLabel) {
+        _updatePersonalNameLabel = [[UILabel alloc]init];
+//        _updatePersonalNameLabel.layer.borderWidth = 1.0f;
+//        _updatePersonalNameLabel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _updatePersonalNameLabel.font = [UIFont systemFontOfSize:26.5];
+        _updatePersonalNameLabel.textColor = [UIColor whiteColor];
+        _updatePersonalNameLabel.text = @"姓名：";
     }
-    return _nameLabel;
+    return _updatePersonalNameLabel;
 }
 
-- (UITextField *)nameValueText{
-    if (!_nameValueText) {
-        _nameValueText = [[UITextField alloc]initWithFrame:CGRectMake(300, 62, 100, 50)];
-//        _nameValueText.layer.borderWidth = 1.0f;
-//        _nameValueText.layer.borderColor = [[UIColor blackColor]CGColor];
-        _nameValueText.font = [UIFont systemFontOfSize:26.5];
-        _nameValueText.textColor = [UIColor whiteColor];
-        _nameValueText.text = @"周颖英";
+- (UITextField *)updatePersonalNameValueText{
+    if (!_updatePersonalNameValueText) {
+        _updatePersonalNameValueText = [[UITextField alloc]init];
+//        _updatePersonalNameValueText.layer.borderWidth = 1.0f;
+//        _updatePersonalNameValueText.layer.borderColor = [[UIColor blackColor]CGColor];
+        _updatePersonalNameValueText.font = [UIFont systemFontOfSize:26.5];
+        _updatePersonalNameValueText.textColor = [UIColor whiteColor];
+        _updatePersonalNameValueText.text = @"周颖英";
     }
-    return _nameValueText;
-}
-
-//横线picture
-- (UIImageView *)nameImage{
-    if (!_nameImage) {
-        _nameImage = [[UIImageView alloc]initWithFrame:CGRectMake(183, 110, 213, 4.4)];
-//        _nameImage.layer.borderWidth = 1.0f;
-//        _nameImage.layer.borderColor = [[UIColor blackColor]CGColor];
-//        _nameImage.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
-    }
-    return _nameImage;
-}
-
-#pragma mark - 年级
-
-- (UILabel *)gradeLabel{
-    if (!_gradeLabel) {
-        _gradeLabel = [[UILabel alloc]initWithFrame:CGRectMake(185, 142, 80, 50)];
-//        _gradeLabel.layer.borderWidth = 1.0f;
-//        _gradeLabel.layer.borderColor = [[UIColor blackColor]CGColor];
-        _gradeLabel.font = [UIFont systemFontOfSize:26.5];
-        _gradeLabel.textColor = [UIColor whiteColor];
-        _gradeLabel.text = @"年级：";
-    }
-    return _gradeLabel;
-}
-
-- (UITextField *)gradeValueText{
-    if (!_gradeValueText) {
-        _gradeValueText = [[UITextField alloc]initWithFrame:CGRectMake(300, 142, 100, 50)];
-//        _gradeValueText.layer.borderWidth = 1.0f;
-//        _gradeValueText.layer.borderColor = [[UIColor blackColor]CGColor];
-        _gradeValueText.font = [UIFont systemFontOfSize:26.5];
-        _gradeValueText.textColor = [UIColor whiteColor];
-        _gradeValueText.text = @" 大二";
-    }
-    return _gradeValueText;
+    return _updatePersonalNameValueText;
 }
 
 //横线picture
-- (UIImageView *)gradeImage{
-    if (!_gradeImage) {
-        _gradeImage = [[UIImageView alloc]initWithFrame:CGRectMake(183, 188, 213, 4.4)];
-//        _gradeImage.layer.borderWidth = 1.0f;
-//        _gradeImage.layer.borderColor = [[UIColor blackColor]CGColor];
-//        _nameImage.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+- (UIImageView *)updatePersonInfoNameLevel{
+    if (!_updatePersonInfoNameLevel) {
+        _updatePersonInfoNameLevel = [[UIImageView alloc]init];
+//        _updatePersonInfoNameLevel.layer.borderWidth = 1.0f;
+//        _updatePersonInfoNameLevel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _updatePersonInfoNameLevel.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
     }
-    return _gradeImage;
+    return _updatePersonInfoNameLevel;
+}
+
+#pragma mark - 年级getter（）
+
+- (UILabel *)updatePersonalGradeLabel{
+    if (!_updatePersonalGradeLabel) {
+        _updatePersonalGradeLabel = [[UILabel alloc]init];
+//        _updatePersonalGradeLabel.layer.borderWidth = 1.0f;
+//        _updatePersonalGradeLabel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _updatePersonalGradeLabel.font = [UIFont systemFontOfSize:26.5];
+        _updatePersonalGradeLabel.textColor = [UIColor whiteColor];
+        _updatePersonalGradeLabel.text = @"年级：";
+    }
+    return _updatePersonalGradeLabel;
+}
+
+- (UITextField *)updatePersonalGradeValueText{
+    if (!_updatePersonalGradeValueText) {
+        _updatePersonalGradeValueText = [[UITextField alloc]init];
+//        _updatePersonalGradeValueText.layer.borderWidth = 1.0f;
+//        _updatePersonalGradeValueText.layer.borderColor = [[UIColor blackColor]CGColor];
+        _updatePersonalGradeValueText.font = [UIFont systemFontOfSize:26.5];
+        _updatePersonalGradeValueText.textColor = [UIColor whiteColor];
+        _updatePersonalGradeValueText.text = @" 大二";
+    }
+    return _updatePersonalGradeValueText;
+}
+
+//横线picture
+- (UIImageView *)updatePersonInfoGradeLevel{
+    if (!_updatePersonInfoGradeLevel) {
+        _updatePersonInfoGradeLevel = [[UIImageView alloc]init];
+//        _updatePersonInfoGradeLevel.layer.borderWidth = 1.0f;
+//        _updatePersonInfoGradeLevel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _updatePersonInfoGradeLevel.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return _updatePersonInfoGradeLevel;
 }
 
 #pragma mark - 表视图协议
@@ -232,10 +273,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifer = @"cell";
-    setCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
+    personalInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
     
     if (cell == nil) {
-        cell = [[setCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
+        cell = [[personalInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
         
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
@@ -246,8 +287,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.schoolLabel.text = _schoolInfo[indexPath.row];
-        cell.upschoolLabel.text = @"信息科学与技术系";
+        cell.schoolLabel.text = _updatePersonalInfoInfo[indexPath.row];
+        cell.upschoolLabel.text = _updateTemporaryArr[indexPath.row];
     }
     
     
@@ -262,11 +303,11 @@
 //    }
 //}
 
-#pragma mark - 编辑按钮
+#pragma mark - 编辑按钮getter（）
 
 - (UIButton *)completeBtn{
     if (!_completeBtn) {
-        _completeBtn = [[UIButton alloc]initWithFrame:CGRectMake(312, 648, 80, 40)];
+        _completeBtn = [[UIButton alloc]init];
         
 //        _completeBtn.layer.borderWidth = 1.0f;
 //        _completeBtn.layer.borderColor = [[UIColor blackColor]CGColor];
@@ -284,14 +325,14 @@
 }
 
 //横线picture
-- (UIImageView *)completeImage{
-    if (!_completeImage) {
-        _completeImage = [[UIImageView alloc]initWithFrame:CGRectMake(150, 680, 100, 4.4)];
-        _completeImage.layer.borderWidth = 1.0f;
-        _completeImage.layer.borderColor = [[UIColor blackColor]CGColor];
-        //        _nameImage.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+- (UIImageView *)completeLevel{
+    if (!_completeLevel) {
+        _completeLevel = [[UIImageView alloc]init];
+//        _completeLevel.layer.borderWidth = 1.0f;
+//        _completeLevel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _completeLevel.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
     }
-    return _completeImage;
+    return _completeLevel;
 }
 
 /*

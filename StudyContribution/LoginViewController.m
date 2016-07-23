@@ -18,7 +18,7 @@
 
 #define leftMargin 40
 #define upMargin 180
-#define vHight 50
+#define vHight 30
 #define labelWidth 70
 #define textFiledWidth 250
 
@@ -40,13 +40,18 @@
 @property(nonatomic,strong)UIImage *usernameimage;
 @property(nonatomic,strong)UIImage *passwordimage;
 
+@property(nonatomic,weak)UIImageView *usernameIcon;
+
+
 @end
 
 @implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor greenColor];
+    UIImageView *background = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    background.image = [UIImage imageNamed:@"index"];
+    [self.view addSubview:background];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [self.view addSubview:self.userNameLab];
@@ -90,18 +95,51 @@
     NSString *pass = self.passwordTextF.text;
     //2.判断用户名和密码是否正确
 //    if ([name isEqual:@"123"] && [pass isEqual:[_mutableDic objectForKey:@"123"]]) {
+
     
-        regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
-   
-        
+//        regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
+//        regeisterVC.title = @"首页";
+//        CustomNavigationController *nc1 = [[CustomNavigationController alloc] initWithRootViewController:regeisterVC];
+//        
+//        ContributionDetailViewController *vc2 = [[ContributionDetailViewController alloc] init];
+//        vc2.title = @"我的学霸捐";
+//        //        vc2.view.backgroundColor = [UIColor redColor];
+//        CustomNavigationController *nc2 = [[CustomNavigationController alloc] initWithRootViewController:vc2];
+//        
+//        
+//        SettingViewController *vc3 = [[SettingViewController alloc] init];
+//        vc3.title = @"设置";
+////        vc3.view.backgroundColor = [UIColor purpleColor];
+//        CustomNavigationController *nc3 = [[CustomNavigationController alloc] initWithRootViewController:vc3];
+//    
+//        
+//        UITabBarController *tbc = [[UITabBarController alloc] init];
+//        tbc.viewControllers = [NSArray arrayWithObjects:nc1, nc2, nc3, nil];
+//        UITabBarController *tbc = [[UITabBarController alloc] init];
+//        
+//        NSArray *titleArr = @[@"首页",@"详情",@"设置"];
+//        //    NSArray *imgArr = @[@"home",@"hot",@"consulting"];
+//        for (int i = 0; i < titleArr.count; i ++) {
+//            UITabBarItem *item = tbc.tabBar.items[i];
+//            
+//            item.title = titleArr[i];
+//            
+//            //        UIImage *img = [UIImage imageNamed:imgArr[i]];
+//            //        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//            //
+////        }
+//
+//        
+//        
+            regeisterViewController *homeVC=[[regeisterViewController alloc]init];
+    [self.navigationController pushViewController:homeVC animated:YES];
+//        ApplicationDelegate.window.rootViewController=tbc;
+//    
+//        [self dismissViewControllerAnimated:YES completion:nil];
     
-        CustomNavigationController *nav2=[[CustomNavigationController alloc]initWithRootViewController:regeisterVC];
-            
-        ApplicationDelegate.window.rootViewController=nav2;
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    
-//    else{
+//    }
+    /*
+    else{
     
         //错误提示框
         NSString *message  = @"用户名或密码错误，请重新输入";
@@ -113,56 +151,25 @@
         [alert addAction:sureAction];
         //d.弹出对话框
         [self presentViewController:alert animated:YES completion:nil];
-        
-//    }
+
+    }
+     */
     
 }
 
 #pragma mark - 登陆界面控件 getter  方法
 
-//手机号label
--(UIImage *)usernameimage
-{
-    if(!_userNameLab)
-    {
-        _usernameimage = [[UIImage alloc]init];
-        
-    }
-    return _usernameimage;
-    
-}
-
--(UILabel *)userNameLab
-{
-    if(!_userNameLab)
-    {
-        _userNameLab = [[UILabel alloc]initWithFrame:CGRectMake(leftMargin, upMargin, labelWidth,vHight)];
-        //  _userNameLab.lineBreakMode = UILineBreakModeWordWrap;
-        _userNameLab.numberOfLines = 0;
-        _userNameLab.text = @"手机号";
-    }
-    return _userNameLab;
-}
-
-//密码label
--(UILabel *)passwordLab
-{
-    if (!_passwordLab)
-    {
-        _passwordLab = [[UILabel alloc]initWithFrame:CGRectMake(leftMargin, upMargin+vHight+20, labelWidth, vHight)];
-        _passwordLab.text = @"密    码";
-    }
-    return _passwordLab;
-}
-
 //手机号textfiled
 -(UITextField *)userNameTextF
 {
     if (!_userNameTextF) {
-        _userNameTextF = [[UITextField alloc]initWithFrame:CGRectMake(leftMargin+labelWidth, upMargin, textFiledWidth, vHight)];
-        _userNameTextF.backgroundColor = [UIColor lightGrayColor];
+        _userNameTextF = [[UITextField alloc]initWithFrame:CGRectMake(leftMargin+labelWidth, upMargin+95, textFiledWidth, vHight)];
+        _userNameTextF.backgroundColor = [UIColor clearColor];
         _userNameTextF.borderStyle = UITextBorderStyleLine;
         _userNameTextF.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _userNameTextF.placeholder = @"请输入帐号";
+        _userNameTextF.textColor = [UIColor whiteColor];
+        _userNameTextF.borderStyle=UITextBorderStyleNone;
     }
     return _userNameTextF;
 }
@@ -172,11 +179,14 @@
 {
     if(!_passwordTextF)
     {
-        _passwordTextF = [[UITextField alloc]initWithFrame:CGRectMake(leftMargin+labelWidth, upMargin+vHight+20, textFiledWidth, vHight)];
-        _passwordTextF.backgroundColor = [UIColor lightGrayColor];
+        _passwordTextF = [[UITextField alloc]initWithFrame:CGRectMake(leftMargin+labelWidth, upMargin+vHight+135, textFiledWidth, vHight)];
+        _passwordTextF.backgroundColor = [UIColor clearColor];
         _passwordTextF.borderStyle = UITextBorderStyleLine;
         _passwordTextF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTextF.secureTextEntry=YES;
+        _passwordTextF.placeholder = @"请输入密码";
+        _passwordTextF.textColor = [UIColor whiteColor];
+        _passwordTextF.borderStyle=UITextBorderStyleNone;
     }
     return _passwordTextF;
 }
@@ -188,11 +198,12 @@
     if(!_gobackbtn)
     {
         _gobackbtn = [[UIButton alloc] init];
-        _gobackbtn.frame = CGRectMake(0.1*[UIScreen mainScreen].bounds.size.width, ([UIScreen mainScreen].bounds.size.height)/2,0.8*[UIScreen mainScreen].bounds.size.width, vHight);
+        _gobackbtn.frame = CGRectMake(0.1*[UIScreen mainScreen].bounds.size.width-5, ([UIScreen mainScreen].bounds.size.height)/2+142,0.8*[UIScreen mainScreen].bounds.size.width, vHight);
         [_gobackbtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
         [_gobackbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _gobackbtn.backgroundColor = [UIColor purpleColor];
+        [_gobackbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_gobackbtn setTitle:@"登录" forState:UIControlStateNormal];
+        _gobackbtn.highlighted = YES;
     }
     return _gobackbtn;
 }
@@ -204,10 +215,12 @@
     if(!_loginupbtn)
     {
         _loginupbtn = [[UIButton alloc] init];
-        _loginupbtn.frame = CGRectMake(leftMargin, 0.6*[UIScreen mainScreen].bounds.size.height,0.3*[UIScreen mainScreen].bounds.size.height, vHight);
+        _loginupbtn.frame = CGRectMake(leftMargin-30, 0.6*[UIScreen mainScreen].bounds.size.height-30,0.3*[UIScreen mainScreen].bounds.size.height, vHight);
         [_loginupbtn setTitle:@"注册账号" forState:UIControlStateNormal];
         [_loginupbtn  setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_loginupbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginupbtn addTarget:self action:@selector(tologupbtnclick) forControlEvents:UIControlEventTouchUpInside];
+        _loginupbtn.highlighted = YES;
     }
     return _loginupbtn;
 }
@@ -218,9 +231,10 @@
 {
     if (!_forgetBtn)
     {
-        _forgetBtn = [[UIButton alloc]initWithFrame:CGRectMake(leftMargin + 0.4*[UIScreen mainScreen].bounds.size.width, 0.6*[UIScreen mainScreen].bounds.size.height,  0.3*[UIScreen mainScreen].bounds.size.height, vHight)];
+        _forgetBtn = [[UIButton alloc]initWithFrame:CGRectMake(leftMargin + 0.4*[UIScreen mainScreen].bounds.size.width-20, 0.6*[UIScreen mainScreen].bounds.size.height-30,0.3*[UIScreen mainScreen].bounds.size.height, vHight)];
+        [_forgetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
-        [_forgetBtn  setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_forgetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_forgetBtn addTarget:self action:@selector(forgetbtnclick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _forgetBtn;
@@ -238,13 +252,43 @@
     
     
     regeisterViewController *regeisterVC=[[regeisterViewController alloc]init];
+//    regeisterVC.title = @"vc1";
+//    CustomNavigationController *nc1 = [[CustomNavigationController alloc] initWithRootViewController:regeisterVC];
+//    
+//    ContributionDetailViewController *vc2 = [[ContributionDetailViewController alloc] init];
+//    vc2.title = @"vc2";
+//    vc2.view.backgroundColor = [UIColor redColor];
+//    CustomNavigationController *nc2 = [[CustomNavigationController alloc] initWithRootViewController:vc2];
+//    
+//    
+//    SettingViewController *vc3 = [[SettingViewController alloc] init];
+//    vc3.title = @"vc3";
+////    vc3.view.backgroundColor = [UIColor purpleColor];
+//    CustomNavigationController *nc3 = [[CustomNavigationController alloc] initWithRootViewController:vc3];
     
     
-
-    CustomNavigationController *nav2=[[CustomNavigationController alloc]initWithRootViewController:regeisterVC];
-    ApplicationDelegate.window.rootViewController=nav2;
+//    UITabBarController *tbc = [[UITabBarController alloc] init];
+//    tbc.viewControllers = [NSArray arrayWithObjects:nc1, nc2, nc3, nil];
+    //UITabBarController *tbc = [[UITabBarController alloc] init];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    NSArray *titleArr = @[@"首页",@"详情",@"设置"];
+//    //    NSArray *imgArr = @[@"home",@"hot",@"consulting"];
+//    for (int i = 0; i < titleArr.count; i ++) {
+//        UITabBarItem *item = tbc.tabBar.items[i];
+//        
+//        item.title = titleArr[i];
+//        
+//        //        UIImage *img = [UIImage imageNamed:imgArr[i]];
+//        //        item.image = [[img compressImageToSize:CGSizeMake(20, 20)]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//        //
+//    }
+    
+    
+    
+    //    regeisterViewController *homeVC=[[regeisterViewController alloc]init];
+//    ApplicationDelegate.window.rootViewController=tbc;
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -261,7 +305,6 @@
     ForgetPasswordViewController *forgetVC =[[ForgetPasswordViewController alloc] init];
     [self.navigationController pushViewController:forgetVC animated:YES];
 }
-
 
 
 @end

@@ -11,6 +11,12 @@
 		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
 		8C6604DC1D43815400C46C91 /* setCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604DB1D43815400C46C91 /* setCell.m */; };
+		8C88C2401D4576040050A173 /* SchoolNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */; };
+		8C88C2431D4576490050A173 /* CollegeNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2421D4576490050A173 /* CollegeNameTextViewController.m */; };
+		8C88C2461D45767E0050A173 /* DepartmentNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2451D45767E0050A173 /* DepartmentNameTextViewController.m */; };
+		8C88C2491D4576B80050A173 /* SpecialtyNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2481D4576B80050A173 /* SpecialtyNameTextViewController.m */; };
+		8C88C24C1D4576D00050A173 /* ClassNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C24B1D4576D00050A173 /* ClassNameTextViewController.m */; };
+		8C88C24F1D4576E30050A173 /* StudentIdTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C24E1D4576E30050A173 /* StudentIdTextViewController.m */; };
 		F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */; };
 		F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */; };
 		F4A7688D1D43483000B3DF3D /* personalInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A7688C1D43483000B3DF3D /* personalInfoCell.m */; };
@@ -83,6 +89,18 @@
 		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8C6604DA1D43815400C46C91 /* setCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setCell.h; sourceTree = "<group>"; };
 		8C6604DB1D43815400C46C91 /* setCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setCell.m; sourceTree = "<group>"; };
+		8C88C23E1D4576040050A173 /* SchoolNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolNameTextViewController.h; sourceTree = "<group>"; };
+		8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolNameTextViewController.m; sourceTree = "<group>"; };
+		8C88C2411D4576490050A173 /* CollegeNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeNameTextViewController.h; sourceTree = "<group>"; };
+		8C88C2421D4576490050A173 /* CollegeNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeNameTextViewController.m; sourceTree = "<group>"; };
+		8C88C2441D45767E0050A173 /* DepartmentNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentNameTextViewController.h; sourceTree = "<group>"; };
+		8C88C2451D45767E0050A173 /* DepartmentNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentNameTextViewController.m; sourceTree = "<group>"; };
+		8C88C2471D4576B80050A173 /* SpecialtyNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialtyNameTextViewController.h; sourceTree = "<group>"; };
+		8C88C2481D4576B80050A173 /* SpecialtyNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialtyNameTextViewController.m; sourceTree = "<group>"; };
+		8C88C24A1D4576D00050A173 /* ClassNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassNameTextViewController.h; sourceTree = "<group>"; };
+		8C88C24B1D4576D00050A173 /* ClassNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassNameTextViewController.m; sourceTree = "<group>"; };
+		8C88C24D1D4576E30050A173 /* StudentIdTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentIdTextViewController.h; sourceTree = "<group>"; };
+		8C88C24E1D4576E30050A173 /* StudentIdTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentIdTextViewController.m; sourceTree = "<group>"; };
 		F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
 		F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePersonalInfoViewController.h; sourceTree = "<group>"; };
@@ -465,6 +483,18 @@
 				F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */,
 				F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */,
 				F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */,
+				8C88C23E1D4576040050A173 /* SchoolNameTextViewController.h */,
+				8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */,
+				8C88C2411D4576490050A173 /* CollegeNameTextViewController.h */,
+				8C88C2421D4576490050A173 /* CollegeNameTextViewController.m */,
+				8C88C2441D45767E0050A173 /* DepartmentNameTextViewController.h */,
+				8C88C2451D45767E0050A173 /* DepartmentNameTextViewController.m */,
+				8C88C2471D4576B80050A173 /* SpecialtyNameTextViewController.h */,
+				8C88C2481D4576B80050A173 /* SpecialtyNameTextViewController.m */,
+				8C88C24A1D4576D00050A173 /* ClassNameTextViewController.h */,
+				8C88C24B1D4576D00050A173 /* ClassNameTextViewController.m */,
+				8C88C24D1D4576E30050A173 /* StudentIdTextViewController.h */,
+				8C88C24E1D4576E30050A173 /* StudentIdTextViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -626,6 +656,7 @@
 				FE7AD2B21D354E2F00AE368C /* LogupViewController.m in Sources */,
 				FE7AD2B31D354E2F00AE368C /* moreViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
+				8C88C24C1D4576D00050A173 /* ClassNameTextViewController.m in Sources */,
 				F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */,
 				FE7AD2B41D354E2F00AE368C /* anymoreViewController.m in Sources */,
 				F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */,
@@ -637,15 +668,20 @@
 				FE7AD2601D352EAF00AE368C /* main.m in Sources */,
 				FE7AD2B11D354E2F00AE368C /* LoginViewController.m in Sources */,
 				FE7AD2A31D3544F200AE368C /* CustomNavigationController.m in Sources */,
+				8C88C2461D45767E0050A173 /* DepartmentNameTextViewController.m in Sources */,
+				8C88C2401D4576040050A173 /* SchoolNameTextViewController.m in Sources */,
 				F5AB95411D3CF0E8006D87F4 /* logup.m in Sources */,
 				FE7AD2D81D36017B00AE368C /* CustomnavView.m in Sources */,
 				FE7AD29D1D35431A00AE368C /* regeisterViewController.m in Sources */,
 				FE7AD2CD1D35D25D00AE368C /* detailUIView.m in Sources */,
 				FE7AD2D71D36017B00AE368C /* BaseViewController.m in Sources */,
+				8C88C24F1D4576E30050A173 /* StudentIdTextViewController.m in Sources */,
 				8C6604DC1D43815400C46C91 /* setCell.m in Sources */,
+				8C88C2491D4576B80050A173 /* SpecialtyNameTextViewController.m in Sources */,
 				F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */,
 				FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */,
 				F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */,
+				8C88C2431D4576490050A173 /* CollegeNameTextViewController.m in Sources */,
 				F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
 				F4A7689C1D4399C200B3DF3D /* AboutUsView.m in Sources */,

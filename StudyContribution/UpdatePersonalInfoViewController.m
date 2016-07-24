@@ -10,6 +10,12 @@
 #import "CustomNavigationController.h"
 #import "personalInfoCell.h"
 #import "PersonalInfoViewController.h"
+#import "SchoolNameTextViewController.h"
+#import "CollegeNameTextViewController.h"
+#import "DepartmentNameTextViewController.h"
+#import "SpecialtyNameTextViewController.h"
+#import "ClassNameTextViewController.h"
+#import "StudentIdTextViewController.h"
 
 @interface UpdatePersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -38,9 +44,9 @@
 //学生信息
 @property (nonatomic,strong) UITableView *updatePersonInfoTableView;
 
-//编辑按钮
-@property (nonatomic,strong) UIButton *completeBtn;
-@property (nonatomic,strong) UIImageView *completeLevel;
+//完成按钮
+@property (nonatomic,strong) UIButton *personCompleteBtn;
+@property (nonatomic,strong) UIImageView *personCompleteLevel;
 
 @end
 
@@ -87,8 +93,8 @@
     _updatePersonInfoTableView.showsVerticalScrollIndicator = NO;
     
 //    添加编辑按钮
-    [self.view addSubview:self.completeBtn];
-    [self.view addSubview:self.completeLevel];
+    [self.view addSubview:self.personCompleteBtn];
+    [self.view addSubview:self.personCompleteLevel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,10 +133,10 @@
     self.updatePersonInfoGradeLevel.frame = CGRectMake(183, 188, 213, 4.4);
     
 //    设置编辑按钮位置
-    self.completeBtn.frame = CGRectMake(312, 648, 80, 40);
+    self.personCompleteBtn.frame = CGRectMake(312, 648, 80, 40);
     
 //    设置编辑按钮下横线位置
-    self.completeLevel.frame = CGRectMake(314, 685, 78, 4.4);
+    self.personCompleteLevel.frame = CGRectMake(314, 685, 78, 4.4);
     
 }
 
@@ -295,44 +301,86 @@
     return cell;
 }
 
-////点击每一行时如何响应
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 0) {
-//        
-//    }else if(indexPath.section == 1){
-//    }
-//}
+//点击每一行时如何响应
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        {
+            SchoolNameTextViewController *schoolNameVC = [[SchoolNameTextViewController alloc]init];
+            [self.navigationController pushViewController:schoolNameVC animated:YES];
+        }
+            break;
+            
+        case 1:
+        {
+            CollegeNameTextViewController *collegeNameVC = [[CollegeNameTextViewController alloc]init];
+            [self.navigationController pushViewController:collegeNameVC animated:YES];
+        }
+            break;
+            
+        case 2:
+        {
+            DepartmentNameTextViewController *departmentNameVC = [[DepartmentNameTextViewController alloc]init];
+            [self.navigationController pushViewController:departmentNameVC animated:YES];
+        }
+            break;
+            
+        case 3:
+        {
+            SpecialtyNameTextViewController *specialtyNameVC = [[SpecialtyNameTextViewController alloc]init];
+            [self.navigationController pushViewController:specialtyNameVC animated:YES];
+        }
+            break;
+            
+        case 4:
+        {
+            ClassNameTextViewController *classNameVC = [[ClassNameTextViewController alloc]init];
+            [self.navigationController pushViewController:classNameVC animated:YES];
+        }
+            break;
+            
+        case 5:
+        {
+            StudentIdTextViewController *studentIdTextVC = [[StudentIdTextViewController alloc]init];
+            [self.navigationController pushViewController:studentIdTextVC animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 
 #pragma mark - 编辑按钮getter（）
 
-- (UIButton *)completeBtn{
-    if (!_completeBtn) {
-        _completeBtn = [[UIButton alloc]init];
+- (UIButton *)personCompleteBtn{
+    if (!_personCompleteBtn) {
+        _personCompleteBtn = [[UIButton alloc]init];
         
-//        _completeBtn.layer.borderWidth = 1.0f;
-//        _completeBtn.layer.borderColor = [[UIColor blackColor]CGColor];
+//        _personCompleteBtn.layer.borderWidth = 1.0f;
+//        _personCompleteBtn.layer.borderColor = [[UIColor blackColor]CGColor];
         
-        _completeBtn.titleLabel.font = [UIFont systemFontOfSize:26.5];
-        [_completeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_completeBtn setTitle:@"完成" forState:UIControlStateNormal];
-        [_completeBtn addTarget:self action:@selector(completeBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _personCompleteBtn.titleLabel.font = [UIFont systemFontOfSize:26.5];
+        [_personCompleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_personCompleteBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [_personCompleteBtn addTarget:self action:@selector(personCompleteBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _completeBtn;
+    return _personCompleteBtn;
 }
 
-- (void)completeBtnClick{
+- (void)personCompleteBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 //横线picture
-- (UIImageView *)completeLevel{
-    if (!_completeLevel) {
-        _completeLevel = [[UIImageView alloc]init];
-//        _completeLevel.layer.borderWidth = 1.0f;
-//        _completeLevel.layer.borderColor = [[UIColor blackColor]CGColor];
-        _completeLevel.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+- (UIImageView *)personCompleteLevel{
+    if (!_personCompleteLevel) {
+        _personCompleteLevel = [[UIImageView alloc]init];
+//        _personCompleteLevel.layer.borderWidth = 1.0f;
+//        _personCompleteLevel.layer.borderColor = [[UIColor blackColor]CGColor];
+        _personCompleteLevel.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
     }
-    return _completeLevel;
+    return _personCompleteLevel;
 }
 
 /*

@@ -31,11 +31,11 @@
 		F53AC8911D39AD6900A7E8D2 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8901D39AD6900A7E8D2 /* libstdc++.tbd */; };
 		F53AC8931D39AD7700A7E8D2 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8921D39AD7700A7E8D2 /* libicucore.tbd */; };
 		F53AC8951D39AD8100A7E8D2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8941D39AD8100A7E8D2 /* libz.tbd */; };
-		F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */; };
 		F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */; };
+		F56E79821D450B6900AECD6E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F56E797F1D450B6900AECD6E /* MBProgressHUD.m */; };
+		F56E79831D450B6900AECD6E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = F56E79811D450B6900AECD6E /* UIView+Toast.m */; };
 		F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = F598E75C1D3A74FB0081A4B2 /* LoginView.m */; };
 		F598E75F1D3A99280081A4B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F598E75E1D3A99280081A4B2 /* QuartzCore.framework */; };
-		F5AB95411D3CF0E8006D87F4 /* logup.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB95401D3CF0E8006D87F4 /* logup.m */; };
 		F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB95431D3CF379006D87F4 /* BaseInfoSave.m */; };
 		F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D0397B1D36CF9600476D65 /* ForgetPasswordViewController.m */; };
 		FE7AD2601D352EAF00AE368C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD25F1D352EAF00AE368C /* main.m */; };
@@ -47,8 +47,6 @@
 		FE7AD2A31D3544F200AE368C /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2A01D3544F200AE368C /* CustomNavigationController.m */; };
 		FE7AD2B11D354E2F00AE368C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2AA1D354E2F00AE368C /* LoginViewController.m */; };
 		FE7AD2B21D354E2F00AE368C /* LogupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2AC1D354E2F00AE368C /* LogupViewController.m */; };
-		FE7AD2B31D354E2F00AE368C /* moreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2AE1D354E2F00AE368C /* moreViewController.m */; };
-		FE7AD2B41D354E2F00AE368C /* anymoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2B01D354E2F00AE368C /* anymoreViewController.m */; };
 		FE7AD2BB1D35546200AE368C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE7AD2B91D35546200AE368C /* LaunchScreen.storyboard */; };
 		FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2C21D35550C00AE368C /* ContributionDetailViewController.m */; };
 		FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7AD2C91D35557100AE368C /* SettingViewController.m */; };
@@ -109,15 +107,15 @@
 		F53AC8901D39AD6900A7E8D2 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		F53AC8921D39AD7700A7E8D2 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		F53AC8941D39AD8100A7E8D2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		F5553BEC1D3796D500E38EA3 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordViewController.h; sourceTree = "<group>"; };
-		F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewController.m; sourceTree = "<group>"; };
 		F5553BEF1D3798D500E38EA3 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
 		F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		F56E797E1D450B6900AECD6E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		F56E797F1D450B6900AECD6E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		F56E79801D450B6900AECD6E /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		F56E79811D450B6900AECD6E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		F598E75B1D3A74FB0081A4B2 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		F598E75C1D3A74FB0081A4B2 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		F598E75E1D3A99280081A4B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F5AB953F1D3CF0E8006D87F4 /* logup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logup.h; sourceTree = "<group>"; };
-		F5AB95401D3CF0E8006D87F4 /* logup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = logup.m; sourceTree = "<group>"; };
 		F5AB95421D3CF379006D87F4 /* BaseInfoSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInfoSave.h; sourceTree = "<group>"; };
 		F5AB95431D3CF379006D87F4 /* BaseInfoSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInfoSave.m; sourceTree = "<group>"; };
 		F5D0397A1D36CF9600476D65 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
@@ -142,10 +140,6 @@
 		FE7AD2AA1D354E2F00AE368C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FE7AD2AB1D354E2F00AE368C /* LogupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogupViewController.h; sourceTree = "<group>"; };
 		FE7AD2AC1D354E2F00AE368C /* LogupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogupViewController.m; sourceTree = "<group>"; };
-		FE7AD2AD1D354E2F00AE368C /* moreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = moreViewController.h; sourceTree = "<group>"; };
-		FE7AD2AE1D354E2F00AE368C /* moreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = moreViewController.m; sourceTree = "<group>"; };
-		FE7AD2AF1D354E2F00AE368C /* anymoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anymoreViewController.h; sourceTree = "<group>"; };
-		FE7AD2B01D354E2F00AE368C /* anymoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = anymoreViewController.m; sourceTree = "<group>"; };
 		FE7AD2B91D35546200AE368C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE7AD2C11D35550C00AE368C /* ContributionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContributionDetailViewController.h; sourceTree = "<group>"; };
 		FE7AD2C21D35550C00AE368C /* ContributionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContributionDetailViewController.m; sourceTree = "<group>"; };
@@ -241,6 +235,17 @@
 			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
+		F56E797D1D450B2300AECD6E /* public */ = {
+			isa = PBXGroup;
+			children = (
+				F56E797E1D450B6900AECD6E /* MBProgressHUD.h */,
+				F56E797F1D450B6900AECD6E /* MBProgressHUD.m */,
+				F56E79801D450B6900AECD6E /* UIView+Toast.h */,
+				F56E79811D450B6900AECD6E /* UIView+Toast.m */,
+			);
+			name = public;
+			sourceTree = "<group>";
+		};
 		FE7AD2521D352EAF00AE368C = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +270,7 @@
 		FE7AD25D1D352EAF00AE368C /* StudyContribution */ = {
 			isa = PBXGroup;
 			children = (
+				F56E797D1D450B2300AECD6E /* public */,
 				F53AC87A1D39ACAD00A7E8D2 /* frameworks */,
 				F53AC8791D39AC9000A7E8D2 /* thirdpart */,
 				FE7AD2C41D35554200AE368C /* Settings */,
@@ -373,12 +379,6 @@
 				FE7AD2AA1D354E2F00AE368C /* LoginViewController.m */,
 				FE7AD2AB1D354E2F00AE368C /* LogupViewController.h */,
 				FE7AD2AC1D354E2F00AE368C /* LogupViewController.m */,
-				F5553BEC1D3796D500E38EA3 /* ResetPasswordViewController.h */,
-				F5553BED1D3796D500E38EA3 /* ResetPasswordViewController.m */,
-				FE7AD2AD1D354E2F00AE368C /* moreViewController.h */,
-				FE7AD2AE1D354E2F00AE368C /* moreViewController.m */,
-				FE7AD2AF1D354E2F00AE368C /* anymoreViewController.h */,
-				FE7AD2B01D354E2F00AE368C /* anymoreViewController.m */,
 				F5D0397A1D36CF9600476D65 /* ForgetPasswordViewController.h */,
 				F5D0397B1D36CF9600476D65 /* ForgetPasswordViewController.m */,
 			);
@@ -394,8 +394,6 @@
 				FE7AD2CF1D35D27900AE368C /* passWordView.m */,
 				F598E75B1D3A74FB0081A4B2 /* LoginView.h */,
 				F598E75C1D3A74FB0081A4B2 /* LoginView.m */,
-				F5AB953F1D3CF0E8006D87F4 /* logup.h */,
-				F5AB95401D3CF0E8006D87F4 /* logup.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -623,21 +621,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F56E79831D450B6900AECD6E /* UIView+Toast.m in Sources */,
 				FE7AD2B21D354E2F00AE368C /* LogupViewController.m in Sources */,
-				FE7AD2B31D354E2F00AE368C /* moreViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
 				F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */,
-				FE7AD2B41D354E2F00AE368C /* anymoreViewController.m in Sources */,
 				F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */,
 				18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */,
 				F4A7688D1D43483000B3DF3D /* personalInfoCell.m in Sources */,
 				18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */,
 				F4A768991D4365D200B3DF3D /* setExitBtnCell.m in Sources */,
 				FE7AD2631D352EAF00AE368C /* AppDelegate.m in Sources */,
+				F56E79821D450B6900AECD6E /* MBProgressHUD.m in Sources */,
 				FE7AD2601D352EAF00AE368C /* main.m in Sources */,
 				FE7AD2B11D354E2F00AE368C /* LoginViewController.m in Sources */,
 				FE7AD2A31D3544F200AE368C /* CustomNavigationController.m in Sources */,
-				F5AB95411D3CF0E8006D87F4 /* logup.m in Sources */,
 				FE7AD2D81D36017B00AE368C /* CustomnavView.m in Sources */,
 				FE7AD29D1D35431A00AE368C /* regeisterViewController.m in Sources */,
 				FE7AD2CD1D35D25D00AE368C /* detailUIView.m in Sources */,
@@ -645,7 +642,6 @@
 				8C6604DC1D43815400C46C91 /* setCell.m in Sources */,
 				F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */,
 				FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */,
-				F5553BEE1D3796D500E38EA3 /* ResetPasswordViewController.m in Sources */,
 				F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
 				F4A7689C1D4399C200B3DF3D /* AboutUsView.m in Sources */,

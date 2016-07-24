@@ -12,9 +12,7 @@
 @property(nonatomic,strong)NSMutableDictionary *allInfoDic;
 @property(nonatomic,strong)NSString *tel;
 
--(void)saveTel:(NSString *)aNum;
--(void)saveOneInfoWithUniversity:(NSString *)university School:(NSString *)schoolinfo Class:(NSString *)classinfo StuNum:(NSString *)stunuminfo;
--(void)savePassword:(NSString *)apassword;
+-(void)saveOneInfoWithTel:(NSString *)aNum apassword:(NSString *)apassword;
 -(BOOL)alertPassword:(NSString *)password;
 -(NSString *)searchBaseInfoWithTelnum:(NSString *)aTelnum;
 -(NSString *)searchPasswordWithTelnum:(NSString *)aTelnum;

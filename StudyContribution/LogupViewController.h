@@ -11,5 +11,4 @@
 #import "BaseViewController.h"
 #import "BaseInfoSave.h"
 @interface LogupViewController : UIViewController
-@property(nonatomic,strong)BaseInfoSave *bInfoSave;
 @end

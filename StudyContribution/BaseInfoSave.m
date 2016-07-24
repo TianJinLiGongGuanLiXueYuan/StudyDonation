@@ -28,25 +28,10 @@
 
 
 #pragma mark - 存储信息
-//存储手机号
--(void)saveTel:(NSString *)aNum
+//存储基本信息
+-(void)saveOneInfoWithTel:(NSString *)aNum apassword:(NSString *)apassword
 {
     [allInfoDic setObject:aNum forKey:@"telephonenumber"];
-    NSLog(@"%@",allInfoDic);
-}
-//存储基本信息
--(void)saveOneInfoWithUniversity:(NSString *)university School:(NSString *)schoolinfo Class:(NSString *)classinfo StuNum:(NSString *)stunuminfo
-{
-    [allInfoDic setObject:university forKey:@"universityname"];
-    [allInfoDic setObject:schoolinfo forKey:@"school"];
-    [allInfoDic setObject:classinfo forKey:@"class"];
-    [allInfoDic setObject:stunuminfo forKey:@"studentnumber"];
-    NSLog(@"%@",allInfoDic);
-    //[someInfoArr addObject:allInfoDic];
-}
-//存储密码
--(void)savePassword:(NSString *)apassword
-{
     [allInfoDic setObject:apassword forKey:@"password"];
     NSLog(@"%@",allInfoDic);
 }

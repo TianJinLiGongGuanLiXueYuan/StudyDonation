@@ -37,7 +37,7 @@
 //    添加完成按钮
     [self.view addSubview:self.schoolNameCompleteBtn];
     
-//    添加学校名字text
+//    添加学校名称text
     [self.view addSubview:self.schoolNameText];
 }
 
@@ -58,7 +58,7 @@
 //    设置完成按钮位置
     self.schoolNameCompleteBtn.frame = CGRectMake(364, 10, 40, 40);
     
-//    设置学校名字text位置
+//    设置学校名称text位置
     self.schoolNameText.frame = CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 200);
     
 }
@@ -74,7 +74,7 @@
     return _schoolNameBackground;
 }
 
-#pragma mark - 学校名字取消按钮
+#pragma mark - 学校名称取消按钮
 
 - (UIButton *)schoolNameCancleBtn{
     if (!_schoolNameCancleBtn) {
@@ -93,7 +93,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 学校名字完成按钮
+#pragma mark - 学校名称完成按钮
 
 - (UIButton *)schoolNameCompleteBtn{
     if (!_schoolNameCompleteBtn) {
@@ -112,7 +112,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 学校名字text
+#pragma mark - 学校名称text
 
 - (UITextField *)schoolNameText{
     if (!_schoolNameText) {

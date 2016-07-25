@@ -63,26 +63,27 @@
 //    添加返回按钮
     [self.view addSubview:self.personReturnBtn];
     
-    //    添加头像picture
+//    添加头像picture
     [self.view addSubview:self.personalPicture];
     
-    //    添加姓名
+//    添加姓名
     [self.view addSubview:self.personalNameLabel];
     [self.view addSubview:self.personalNameValueText];
     [self.view addSubview:self.personInfoNameLevel];
     
-    //    添加年级
+//    添加年级
     [self.view addSubview:self.personalGradeLabel];
     [self.view addSubview:self.personalGradeValueText];
     [self.view addSubview:self.personInfoGradeLevel];
     
 //    初始化TableView
     _personInfoTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 186.5, self.view.center.y - 140, 390, 390) style:UITableViewStylePlain];
-    _personInfoTableView.scrollEnabled = NO;
+//    设置tableview不能滑动
+    _personInfoTableView.scrollEnabled = NO;    
     _personInfoTableView.backgroundColor = [UIColor clearColor];
 //    _studentInfoTabel.layer.borderWidth = 1.0f;
 //    _studentInfoTabel.layer.borderColor = [[UIColor whiteColor]CGColor];
-//    设置cell无下划线
+    //    设置cell无下划线
     _personInfoTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_personInfoTableView];
     _personInfoTableView.dataSource = self;
@@ -280,6 +281,7 @@
         
         cell.backgroundColor = [UIColor clearColor];
         
+//        设置当前cell选中无样式
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.schoolLabel.text = _personalInfo[indexPath.row];

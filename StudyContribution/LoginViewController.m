@@ -14,7 +14,7 @@
 #import "SettingViewController.h"
 #import "ForgetPasswordViewController.h"
 #import "CustomnavView.h"
-
+#import "HttpTool.h"
 
 #define leftMargin 40
 #define upMargin 180
@@ -49,6 +49,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    NSDictionary *para=@{@"user_moblie":@"111111",@"user_newaddress":@"11112222"};
+    
+    [HttpTool postWithparamsWithURL:@"Update/AddressUpdate" andParam:para success:^(id responseObject) {
+        
+        NSData *data = [[NSData alloc] initWithData:responseObject];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        NSLog(@"%@",dic);
+        
+
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"失败");
+        
+    }];
+    
     UIImageView *background = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     background.image = [UIImage imageNamed:@"index"];
     [self.view addSubview:background];

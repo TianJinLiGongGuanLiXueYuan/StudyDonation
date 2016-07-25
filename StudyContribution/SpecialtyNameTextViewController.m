@@ -37,7 +37,7 @@
 //    添加完成按钮
     [self.view addSubview:self.specialtyNameCompleteBtn];
     
-//    添加专业text
+//    添加专业名称text
     [self.view addSubview:self.specialtyNameText];
 }
 
@@ -58,7 +58,7 @@
 //    设置完成按钮位置
     self.specialtyNameCompleteBtn.frame = CGRectMake(364, 10, 40, 40);
     
-//    设置专业text位置
+//    设置专业名称text位置
     self.specialtyNameText.frame = CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 200);
     
 }
@@ -74,7 +74,7 @@
     return _specialtyNameBackground;
 }
 
-#pragma mark - 专业text取消按钮
+#pragma mark - 专业名称取消按钮
 
 - (UIButton *)specialtyNameCancleBtn{
     if (!_specialtyNameCancleBtn) {
@@ -93,7 +93,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 专业text完成按钮
+#pragma mark - 专业名称完成按钮
 
 - (UIButton *)specialtyNameCompleteBtn{
     if (!_specialtyNameCompleteBtn) {
@@ -112,7 +112,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 专业text
+#pragma mark - 专业名称text
 
 - (UITextField *)specialtyNameText{
     if (!_specialtyNameText) {

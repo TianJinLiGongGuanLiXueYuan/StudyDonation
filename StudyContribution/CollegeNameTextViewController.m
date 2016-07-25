@@ -38,7 +38,7 @@
 //    添加完成按钮
     [self.view addSubview:self.collegeNameCompleteBtn];
     
-//    添加学院名字text
+//    添加学院名称text
     [self.view addSubview:self.collegeNameText];
 }
 
@@ -60,7 +60,7 @@
 //    设置完成按钮位置
     self.collegeNameCompleteBtn.frame = CGRectMake(364, 10, 40, 40);
     
-//    设置学院名字text位置
+//    设置学院名称text位置
     self.collegeNameText.frame = CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 200);
     
 }
@@ -76,7 +76,7 @@
     return _collegeNameBackground;
 }
 
-#pragma mark - 学院名字取消按钮
+#pragma mark - 学院名称取消按钮
 
 - (UIButton *)collegeNameCancleBtn{
     if (!_collegeNameCancleBtn) {
@@ -95,7 +95,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 学院名字完成按钮
+#pragma mark - 学院名称完成按钮
 
 - (UIButton *)collegeNameCompleteBtn{
     if (!_collegeNameCompleteBtn) {
@@ -114,7 +114,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 学院名字text
+#pragma mark - 学院名称text
 
 - (UITextField *)collegeNameText{
     if (!_collegeNameText) {

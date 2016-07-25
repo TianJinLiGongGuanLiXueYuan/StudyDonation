@@ -81,6 +81,7 @@
     
 //    初始化TableView
     _updatePersonInfoTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 186.5, self.view.center.y - 140, 390, 390) style:UITableViewStylePlain];
+//    设置cell不能滑动
     _updatePersonInfoTableView.scrollEnabled = NO;
     _updatePersonInfoTableView.backgroundColor = [UIColor clearColor];
 //    _updatePersonInfoTableView.layer.borderWidth = 1.0f;

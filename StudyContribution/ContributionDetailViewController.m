@@ -7,48 +7,59 @@
 //
 
 #import "ContributionDetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "MoreDetailViewController.h"
 #import "CustomNavigationController.h"
+#import "ButtonCell.h"
+#import "classInRecordCell.h"
+#import "contributionRecordCell.h"
+#import "contributionBtnCell.h"
 
 @interface ContributionDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,assign) bool aaa;
+@property (nonatomic,assign) bool bbb;
+
+@property (nonatomic,strong) UIImageView *contributionBackground;
+
+@property (nonatomic,strong) NSArray *dateArr;
+@property (nonatomic,strong) NSArray *countArr;
+@property (nonatomic,strong) NSArray *moneyArr;
+
+@property (nonatomic,strong) UIButton *contributionReturnBtn;
+
 @property (strong,nonatomic) UITableView *classInfo;
 @property (strong,nonatomic) UITableView *detailInfo;
-@property (nonatomic,strong) NSArray *dataSource1;
-@property (nonatomic,strong) NSArray *dataSource0;
-@property (nonatomic,strong) UIButton *confirmbtn;
-@property(nonatomic,strong)UILabel *donationLab;
-@property(nonatomic,strong)UILabel *donationText;
-@property(nonatomic,strong)UIButton *moreBtn;
-@property(nonatomic,strong)UIButton *selectAllBtn;
 
-@property (nonatomic,strong)IBOutlet UIButton *shangke;
-@property (nonatomic,strong)IBOutlet UIButton *juanzeng;
+@property (nonatomic,strong) NSIndexPath *nowIndexPath;
 
-- (IBAction)shangKe:(id)sender;
-- (IBAction)juanZeng:(id)sender;
-
+@property (nonatomic,strong) classInRecordCell *classInRecordcell;
+@property (nonatomic,strong) ButtonCell *BtnCell;
+@property (nonatomic,strong) contributionRecordCell *contributionRecordcell;
 
 @end
 
 
-@implementation ContributionDetailViewController{
-    int mark;
-}
-
+@implementation ContributionDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    mark=0;
     
+    _aaa = true;
+    _bbb = true;
     
-//    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
-    UIImageView *background = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    background.image = [UIImage imageNamed:@"123"];
-    [self.view addSubview:background];
+    [self.view addSubview:self.contributionBackground];
     
-    //上课信息
-    _classInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x-170,self.view.center.y-200, 340, 360) style:UITableViewStylePlain];
+    _dateArr = @[@"7月21日",@"7月23日",@"7月25日",@"7月26日",@"7月27日",@"7月29日"];
+    _countArr = @[@"三单",@"一单",@"四单",@"三单",@"一单",@"二单"];
+    _moneyArr = @[@"三分钱",@"一分钱",@"四分钱",@"三分钱",@"一分钱",@"二分钱"];
+    
+    [self.view addSubview:self.contributionReturnBtn];
+
+//上课信息
+    _classInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x-181,self.view.center.y-310, 363, 620) style:UITableViewStylePlain];
+    _classInfo.layer.cornerRadius = 5.0f;
     _classInfo.backgroundColor = [UIColor clearColor];
     _classInfo.layer.borderWidth = 2;
     _classInfo.layer.borderColor = [[UIColor whiteColor]CGColor];
@@ -59,8 +70,9 @@
     _classInfo.dataSource = self;
     _classInfo.showsVerticalScrollIndicator = NO;
     
-    //捐赠信息
-    _detailInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x-170,self.view.center.y-200, 340, 360) style:UITableViewStylePlain];
+////捐赠信息
+    _detailInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x-181,self.view.center.y-310, 363, 620) style:UITableViewStylePlain];
+    _detailInfo.layer.cornerRadius = 5.0f;
     _detailInfo.backgroundColor = [UIColor clearColor];
     _detailInfo.layer.borderWidth = 2;
     _detailInfo.layer.borderColor = [[UIColor whiteColor]CGColor];
@@ -70,29 +82,7 @@
     _detailInfo.delegate = self;
     _detailInfo.dataSource = self;
     _detailInfo.showsVerticalScrollIndicator = NO;
-    
     _detailInfo.hidden=YES;
-    
-    _dataSource1=@[@"可捐赠纪录1",@"可捐赠纪录2",@"可捐赠纪录3",@"可捐赠纪录4",@"可捐赠纪录5",@"可捐赠纪录6"];
-    _dataSource0=@[@"已捐赠纪录1",@"已捐赠纪录2",@"已捐赠纪录3",@"已捐赠纪录4",@"已捐赠纪录5",@"已捐赠纪录6"];
-    
-    _classInfo.allowsMultipleSelection = YES;
-    _detailInfo.allowsMultipleSelection = YES;
-    
-    [self.view addSubview:self.confirmbtn];
-    
-    [self.view addSubview:self.selectAllBtn];
-    
-    [self.view addSubview:self.donationLab];
-    
-    [self.view addSubview:self.donationText];
-    
-    [self.view addSubview:self.shangke];
-    [_shangke addTarget:self action:@selector(shangKe:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.juanzeng];
-    [_juanzeng addTarget:self action:@selector(juanZeng:) forControlEvents:UIControlEventTouchUpInside];
-    
-
    
 }
 - (void) viewDidDisappear:(BOOL)animated
@@ -100,215 +90,214 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+//    设置背景图位置
+    self.contributionBackground.frame = [UIScreen mainScreen].bounds;
+}
+#pragma mark - 背景图getter（）
+
+- (UIImageView *)contributionBackground{
+    if (!_contributionBackground) {
+        _contributionBackground = [[UIImageView alloc]init];
+        _contributionBackground.image = [UIImage imageNamed:@"学霸捐-设置"];
+    }
+    return _contributionBackground;
+}
+
+#pragma mark - 返回按钮getter（）
+
+- (UIButton *)contributionReturnBtn{
+    if (!_contributionReturnBtn) {
+        _contributionReturnBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 45, 45)];
+        
+//        _contributionReturnBtn.layer.borderWidth = 1.0f;
+//        _contributionReturnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        
+        _contributionReturnBtn.backgroundColor = [UIColor clearColor];
+        
+        [_contributionReturnBtn addTarget:self action:@selector(contributionReturnBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _contributionReturnBtn;
+}
+
+- (void)contributionReturnBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma 表视图协议
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    if (section == 0) {
+        return 6;
+    }
+    return 1;
 }
 //每个分组上边预留的空白高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    
+    if (section == 0) {
+        return 60;
+    }
     return 0;
 }
 //每个分组下边预留的空白高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    return 0;
+    return 0.00001f;
 }
 //每一个分组下对应的tableview 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 60;
+    if (indexPath.section == 0) {
+        return 60;
+    }
+    return 150;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        if ([tableView isEqual:_classInfo]) {
+            _BtnCell=[[ButtonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
+            //        _BtnCell.layer.borderWidth = 1.0f;
+            //        _BtnCell.layer.borderColor = [[UIColor blackColor]CGColor];
+            _BtnCell.classInRecordBtn.backgroundColor = [UIColor whiteColor];
+            [_BtnCell.classInRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            _BtnCell.contributionRecordBtn.backgroundColor = [UIColor clearColor];
+            [_BtnCell.contributionRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_BtnCell.classInRecordBtn addTarget:self action:@selector(classInRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
+            [_BtnCell.contributionRecordBtn addTarget:self action:@selector(contributionRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
+            _BtnCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return _BtnCell;
+        }else if ([tableView isEqual:_detailInfo]){
+                _BtnCell=[[ButtonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
+                //        _BtnCell.layer.borderWidth = 1.0f;
+                //        _BtnCell.layer.borderColor = [[UIColor blackColor]CGColor];
+                _BtnCell.classInRecordBtn.backgroundColor = [UIColor clearColor];
+                [_BtnCell.classInRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                _BtnCell.contributionRecordBtn.backgroundColor = [UIColor whiteColor];
+                [_BtnCell.contributionRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_BtnCell.classInRecordBtn addTarget:self action:@selector(classInRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
+                [_BtnCell.contributionRecordBtn addTarget:self action:@selector(contributionRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
+                _BtnCell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return _BtnCell;
+        }
+    }
+    return nil;
+}
+
 //设置每行cell的内容
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if ([tableView isEqual:_classInfo]) {
-        static NSString *identifer=@"cell";
-        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifer];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;//cell选中后颜色
-        if (cell==nil) {
-            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
-            
+    if ([tableView isEqual:_classInfo]) {        
+        if (indexPath.section == 0) {
+            _classInRecordcell=[[classInRecordCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
+            _classInRecordcell.backgroundColor = [UIColor clearColor];
+            _classInRecordcell.selectionStyle = UITableViewCellSelectionStyleNone;
+            _classInRecordcell.classInDateLabel.text = _dateArr[indexPath.row];
+            _classInRecordcell.classInDetailLabel.text = _countArr[indexPath.row];
+            _classInRecordcell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            return _classInRecordcell;
+        }else{
+            contributionBtnCell *contributionBtncell=[[contributionBtnCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
+            contributionBtncell.backgroundColor = [UIColor clearColor];
+            contributionBtncell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return contributionBtncell;
         }
-        cell.textLabel.text=_dataSource1[indexPath.row];
-        cell.backgroundColor = [UIColor clearColor];
-        
-        cell.textLabel.textAlignment=NSTextAlignmentCenter;
-        [cell.contentView addSubview:cell.textLabel];//        name横线picture
-        UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(cell.center.x-159,cell.center.y+32, 340, 2)];
-        imageView1.image = [UIImage imageNamed:@"学霸捐－短横线"];
-        
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(cell.center.x+130,cell.center.y-10, 30, 30)];
-        
-        UIImage *image2 = [UIImage imageNamed:@"学霸捐－白对勾"];
-        [btn setBackgroundImage:image2 forState:UIControlStateNormal];
-        UIImage *image3 = [UIImage imageNamed:@"tick"];
-        [btn setBackgroundImage:image3 forState:UIControlStateSelected];
-        
-        [btn addTarget:self action:@selector(choose:) forControlEvents:UIControlEventTouchUpInside];//打勾功能
-        [cell.contentView addSubview:btn];
-        
-        [cell.contentView addSubview:imageView1];
-        
-        cell.textLabel.textColor = [UIColor whiteColor];
-        return cell;
     }else
         if ([tableView isEqual:_detailInfo]){
-            static NSString *identifer=@"cell";
-            UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifer];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;//cell选中后颜色
-            if (cell==nil) {
-                cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
-                
-            }
-        cell.textLabel.text=_dataSource0[indexPath.row];
-        cell.backgroundColor = [UIColor clearColor];
-        
-        cell.textLabel.textAlignment=NSTextAlignmentCenter;
-        [cell.contentView addSubview:cell.textLabel];//        name横线picture
-        UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(cell.center.x-159,cell.center.y+32, 340, 2)];
-        imageView1.image = [UIImage imageNamed:@"学霸捐－短横线"];
-        [cell.contentView addSubview:imageView1];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        return cell;
+            _contributionRecordcell=[[contributionRecordCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"contributionRecordCell"];
+            _contributionRecordcell.backgroundColor = [UIColor clearColor];
+            _contributionRecordcell.contributionRecordnDateLabel.text = _dateArr[indexPath.row];
+            _contributionRecordcell.contributionRecordLabel.text = _countArr[indexPath.row];
+            _contributionRecordcell.contributionRecordMoney.text = _moneyArr[indexPath.row];
+        return _contributionRecordcell;
     }
-//    if (mark==1) {
-//        cell.textLabel.text=_dataSource1[indexPath.row];
-//    }
-//    else if (mark==0) {
-//        cell.textLabel.text=_dataSource0[indexPath.row];
-//    }
-        return nil;
+    return nil;
 }
 
-#pragma 上课记录
-
--(UIButton *)shangke
-{
-    if(!_shangke)
-    {
-        _shangke = [[UIButton alloc] initWithFrame:CGRectMake(100, 80, 100,25)];
-        [_shangke setTitle:@"上课记录" forState:UIControlStateNormal];
-        _shangke.backgroundColor = [UIColor purpleColor];
-        //   [_confirmbtn addTarget:self action:@selector(nextbtnclick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _shangke;
-}
-
-#pragma 捐赠记录
-
--(UIButton *)juanzeng
-{
-    if(!_juanzeng)
-    {
-        _juanzeng = [[UIButton alloc] initWithFrame:CGRectMake(250, 80, 100,25)];
-        [_juanzeng setTitle:@"捐赠记录" forState:UIControlStateNormal];
-        _juanzeng.backgroundColor = [UIColor purpleColor];
-//        [_confirmbtn addTarget:self action:@selector(click1) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _juanzeng;
-}
-
-
-#pragma 捐赠按钮
-
--(UIButton *)confirmbtn
-{
-    if(!_confirmbtn)
-    {
-        _confirmbtn = [[UIButton alloc] initWithFrame:CGRectMake(130, 605, 100,25)];
-        [_confirmbtn setTitle:@"确认捐赠" forState:UIControlStateNormal];
-        _confirmbtn.backgroundColor = [UIColor purpleColor];
-        //   [_confirmbtn addTarget:self action:@selector(nextbtnclick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _confirmbtn;
-}
-
-#pragma 捐赠label and textfield
--(UILabel *)donationLab
-{
-    if(!_donationLab)
-    {
-        _donationLab = [[UILabel alloc]initWithFrame:CGRectMake(70,545,180,25)];
-        //  _donationLab = UILineBreakModeWordWrap;
-        _donationLab.numberOfLines = 0;
-        _donationLab.textColor = [UIColor whiteColor];
-        _donationLab.font = [UIFont systemFontOfSize:20];
-        _donationLab.text = @"当前可捐赠额度：";
-    }
-    return _donationLab;
-}
-
--(UILabel *)donationText
-{
-    if(!_donationText){
+//点击每一行时如何响应
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.classInfo.allowsMultipleSelectionDuringEditing = YES;
     
-        _donationText = [[UILabel alloc]initWithFrame:CGRectMake(260,545,150,25)];
-        _donationText.numberOfLines = 0;
-        _donationText.textColor = [UIColor whiteColor];
-        _donationText.font = [UIFont systemFontOfSize:20];
-        _donationText.text = @"666.66";;
+    switch (indexPath.row) {
+        case 0:
+        {
+            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
+            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+        }
+            break;
+            
+        case 1:
+        {
+            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
+            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+        }
+            break;
+            
+        case 2:
+        {
+            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
+            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+        }
+            break;
+            
+        case 3:
+        {
+            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
+            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+
+        }
+            break;
+            
+        case 4:
+        {
+            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
+            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+        }
+            break;
+            
+        case 5:
+        {
+            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
+            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+        }
+            break;
+        default:
+            break;
     }
-    return _donationText;
 }
 
-#pragma choose函数
-- (void)choose:(UIButton *)sender{
-    if (sender.selected==YES) {
-    [sender setSelected:NO];
-    }else if (sender.selected==NO) {
-        [sender setSelected:YES];
-    }
+#pragma mark - 上课记录点击按钮点击事件
+
+- (void)classInRecordBtnClick{
+    _classInfo.hidden = NO;
+    _detailInfo.hidden = YES;
 }
 
+#pragma mark - 捐赠记录点击按钮点击事件
 
-#pragma 切换分页
-- (void)shangKe:(id)sender{
-    [_shangke setTitle:@"!!!!" forState:UIControlStateHighlighted];
-    _detailInfo.hidden=YES;
-    _classInfo.hidden=NO;
-    }
-
-- (void)juanZeng:(id)sender{
-    [_juanzeng setTitle:@"!!!!" forState:UIControlStateHighlighted];
-    _detailInfo.hidden=NO;
-    _classInfo.hidden=YES;
+- (void)contributionRecordBtnClick{
+    _classInfo.hidden = YES;
+    _detailInfo.hidden = NO;
 }
 
-
-// 全选
--(UIButton *)selectAllBtn{
-        if(!_selectAllBtn)
-                {
-                    _selectAllBtn = [[UIButton alloc] initWithFrame:CGRectMake(250, 605, 100,25)];
-                    [_selectAllBtn setTitle:@"全选" forState:UIControlStateNormal];
-                    _selectAllBtn.backgroundColor = [UIColor purpleColor];
-                    //   [_confirmbtn addTarget:self action:@selector(nextbtnclick) forControlEvents:UIControlEventTouchUpInside];
-                }
-                return _selectAllBtn;
-}
-
-
-- (void)selectAllBtnClick:(UIButton *)button {
-    //    [self.tableView reloadData];
-    for (int i = 0; i < self.dataSource0.count; i ++) {
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-        [_detailInfo selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-    }
-}
 
 
 @end

@@ -25,7 +25,7 @@
 
 @property (nonatomic,strong) UITableView *setTableView;
 
-@property (nonatomic,strong) UIButton *returnBtn;
+@property (nonatomic,strong) UIButton *setreturnBtn;
 
 @end
 
@@ -47,7 +47,7 @@
 //    初始化TableView
     _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
     _setTableView.backgroundColor = [UIColor clearColor];
-//    设置cell无下划线
+    //    设置cell无下划线
     _setTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_setTableView];
     _setTableView.dataSource = self;
@@ -55,7 +55,7 @@
     _setTableView.showsVerticalScrollIndicator = NO;
     
 //    添加返回按钮
-    [self.view addSubview:self.returnBtn];
+    [self.view addSubview:self.setreturnBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,11 +68,21 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //    设置背景图位置
+    self.setBackground.frame = [UIScreen mainScreen].bounds;
+    
+    //    设置返回按钮位置
+    self.setreturnBtn.frame = CGRectMake(10, 10, 45, 45);
+}
+
 #pragma mark - 背景图getter（）
 
 - (UIImageView *)setBackground{
     if (!_setBackground) {
-        _setBackground = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        _setBackground = [[UIImageView alloc]init];
 //        _setBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
         _setBackground.image = [UIImage imageNamed:@"学霸捐-设置"];
     }
@@ -81,18 +91,18 @@
 
 #pragma mark - 返回按钮getter（）
 
-- (UIButton *)returnBtn{
-    if (!_returnBtn) {
-        _returnBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 45, 45)];
+- (UIButton *)setreturnBtn{
+    if (!_setreturnBtn) {
+        _setreturnBtn = [[UIButton alloc]init];
         
-//        _returnBtn.layer.borderWidth = 1.0f;
-//        _returnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+//        _setreturnBtn.layer.borderWidth = 1.0f;
+//        _setreturnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         
-        _returnBtn.backgroundColor = [UIColor clearColor];
+        _setreturnBtn.backgroundColor = [UIColor clearColor];
         
-        [_returnBtn addTarget:self action:@selector(returnBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [_setreturnBtn addTarget:self action:@selector(returnBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _returnBtn;
+    return _setreturnBtn;
 }
 
 - (void)returnBtnClick{
@@ -162,8 +172,8 @@
         
         photocell.backgroundColor = [UIColor clearColor];
         
+//        设置当前cell选中无样式
         photocell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         return photocell;
     }else if(indexPath.section == 1){
         setCell *setInfocell = [[setCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"setInfo"];
@@ -172,6 +182,7 @@
         
         setInfocell.backgroundColor = [UIColor clearColor];
         
+//        设置当前cell选中无样式
         setInfocell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         setInfocell.setInfo.text = _settingArr[indexPath.row];
@@ -182,6 +193,7 @@
         
         exitBtncell.backgroundColor = [UIColor clearColor];
         
+//        设置当前cell选中无样式
         exitBtncell.selectionStyle = UITableViewCellSelectionStyleNone;
         return exitBtncell;
     }

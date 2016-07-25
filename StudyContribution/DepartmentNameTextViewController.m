@@ -37,7 +37,7 @@
 //    添加完成按钮
     [self.view addSubview:self.departmentNameCompleteBtn];
     
-//    添加所在系名字text
+//    添加所在系名称text
     [self.view addSubview:self.departmentNameText];
 }
 
@@ -58,7 +58,7 @@
 //    设置完成按钮位置
     self.departmentNameCompleteBtn.frame = CGRectMake(364, 10, 40, 40);
     
-//    设置所在系名字text位置
+//    设置所在系名称text位置
     self.departmentNameText.frame = CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 200);
     
 }
@@ -74,7 +74,7 @@
     return _departmentNameBackground;
 }
 
-#pragma mark - 所在系名字取消按钮
+#pragma mark - 所在系名称取消按钮
 
 - (UIButton *)departmentNameCancleBtn{
     if (!_departmentNameCancleBtn) {
@@ -93,7 +93,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 所在系字完成按钮
+#pragma mark - 所在系名称完成按钮
 
 - (UIButton *)departmentNameCompleteBtn{
     if (!_departmentNameCompleteBtn) {
@@ -112,7 +112,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 所在系名字text
+#pragma mark - 所在系名称text
 
 - (UITextField *)departmentNameText{
     if (!_departmentNameText) {

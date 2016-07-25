@@ -191,62 +191,47 @@
     self.regeisterBackground.frame = [UIScreen mainScreen].bounds;
     
 //    当前状态位置
-    self.weekdayLabel.frame =CGRectMake(14, 70,
-                                        170, 60);
+    self.weekdayLabel.frame =CGRectMake(14, 70, 170, 60);
     
-    self.monthLabel.frame = CGRectMake(30, 140,
-                                       150, 30);
+    self.monthLabel.frame = CGRectMake(30, 140, 150, 30);
     
-    self.currentstatusLabel.frame = CGRectMake(224, 74.5,
-                                               155, 100);
+    self.currentstatusLabel.frame = CGRectMake(224, 74.5, 155, 100);
     
 //    设置当前状态下横线位置
-    self.currentLevel.frame = CGRectMake(14, 190,
-                                         390, 4.4);
+    self.currentLevel.frame = CGRectMake(14, 190, 390, 4.4);
     
 //    设置课程详细按钮位置
-    self.classInfoBtn.frame = CGRectMake(46, YMargin - 143,
-                                         100, 230);
+    self.classInfoBtn.frame = CGRectMake(46, YMargin - 143, 100, 230);
     
 //    设置详细课程下横线位置
-    self.classInfoLevel.frame = CGRectMake(18, 477.5,
-                                           175, 4.4);
+    self.classInfoLevel.frame = CGRectMake(18, 477.5, 175, 4.4);
     
 //    中间竖直横线位置
-    self.centerLevel.frame = CGRectMake(204, YMargin - 161,
-                                        4.4, 462);
+    self.centerLevel.frame = CGRectMake(204, YMargin - 161, 4.4, 462);
 
 //    上课按钮设置位置
-    self.classInBtn.frame = CGRectMake(XMargin + 1, YMargin - 154,
-                                       BtnWidth, 130);
+    self.classInBtn.frame = CGRectMake(XMargin + 1, YMargin - 154, BtnWidth, 130);
     
 //    上课签到成功打钩图片位置
-    self.classInTick.frame = CGRectMake(355, 304,
-                                        40, 40);
+    self.classInTick.frame = CGRectMake(355, 304, 40, 40);
     
 //    设置上课按钮下横线;位置
-    self.classInLevel.frame = CGRectMake(223, 363,
-                                         175, 4.4);
+    self.classInLevel.frame = CGRectMake(223, 363, 175, 4.4);
     
 //    下课按钮位置
-    self.classUpBtn.frame = CGRectMake(XMargin + 1, YMargin + 32,
-                                       BtnWidth, 130);
+    self.classUpBtn.frame = CGRectMake(XMargin + 1, YMargin + 32, BtnWidth, 130);
     
 //    下课签到成功打钩图片位置
-    self.classUpTick.frame = CGRectMake(355, 490,
-                                        40, 40);
+    self.classUpTick.frame = CGRectMake(355, 490, 40, 40);
     
 //    设置下课按钮下横线位置
-    self.classUpLevel.frame = CGRectMake(223, 558,
-                                         175, 4.4);
+    self.classUpLevel.frame = CGRectMake(223, 558, 175, 4.4);
     
 //    软件信息label位置
-    _softwareInfoLabel.frame = CGRectMake(10, 571,
-                                          180, 50);
+    _softwareInfoLabel.frame = CGRectMake(10, 571, 180, 50);
     
 //    设置按钮位置
-    self.settingBtn.frame = CGRectMake(XMargin + 14.5,
-                                       602.5, 100, 50);
+    self.settingBtn.frame = CGRectMake(XMargin + 14.5, 602.5, 100, 50);
     
     /*
 //    开始定位
@@ -268,7 +253,9 @@
 - (UIImageView *)regeisterBackground{
     if (!_regeisterBackground) {
         _regeisterBackground = [[UIImageView alloc]init];
+        
 //        _regeisterBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+        
         _regeisterBackground.image = [UIImage imageNamed:@"背景"];
     }
     return _regeisterBackground;
@@ -281,6 +268,7 @@
     if(!_weekdayLabel)
     {
         _weekdayLabel = [[UILabel alloc]init];
+        
 //        _weekdayLabel.backgroundColor = [UIColor grayColor];
         
 //        _weekdayLabel.layer.borderWidth = 1;
@@ -365,7 +353,6 @@
 
 - (void)classInfoBtnClick
 {
-//    ClassInfoViewController *classinfoVC = [[ClassInfoViewController alloc]init];
     ContributionDetailViewController *classinfoVC = [[ContributionDetailViewController alloc]init];
     [self.navigationController pushViewController:classinfoVC animated:YES];
     
@@ -615,12 +602,12 @@
     [_classUpSignInMessage addAction:_yesAction];
     [_classUpSignInMessage addAction:_noAction];
     
-    NSDate *currentDate = [NSDate date];
+    NSDate *currentDate1 = [NSDate date];
     NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *currentComps = [[NSDateComponents alloc]init];
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
-    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
+    currentComps = [currentCalendar components:unitFlags fromDate:currentDate1];
     
     _classUpHour = [currentComps hour];
     _classUpMinute = [currentComps minute];
@@ -658,7 +645,7 @@
             
         case 10: /* 10:10~10:55 */
         {
-            if (45 <= (_classInMinute - _classUpMinute) || (_classInMinute - _classUpMinute) <= 55) {
+            if (45 <= (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 55) {
                 _classInTick.image = [UIImage imageNamed:@""];
                 _classUpTick.image = [UIImage imageNamed:@"tick"];
             }else if (55 < _classUpMinute) {
@@ -676,7 +663,7 @@
             
         case 11:/* 11:05~11:50 可以设置自动下课签到 */
         {
-            if (5 <= (_classInMinute - _classUpMinute) || (_classInMinute - _classUpMinute) <= 10) {
+            if (5 <= (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 10) {
                 _classInTick.image = [UIImage imageNamed:@""];
                 _classUpTick.image = [UIImage imageNamed:@"tick"];
             }else if (50 < _classUpMinute) {
@@ -724,7 +711,7 @@
             
         case 16:/* 16:10~16:55 */
         {
-            if (45 < (_classInMinute - _classUpMinute) || (_classInMinute - _classUpMinute) <= 55) {
+            if (45 < (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 55) {
                 _classInTick.image = [UIImage imageNamed:@""];
                 _classUpTick.image = [UIImage imageNamed:@"tick"];
             }else if (55 < _classUpMinute) {
@@ -919,12 +906,6 @@
     [self presentViewController:nav animated:YES completion:^{
         
     }];
-}
-
-#pragma mark - 我不知道干嘛用的
-
-- (void)leftbtnClick{
-    NSLog(@"aa");
 }
 
 #pragma mark - 定位信息

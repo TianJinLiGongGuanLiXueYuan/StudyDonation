@@ -25,6 +25,8 @@
 
 @implementation CollegeNameTextViewController
 
+#pragma mark - 初始化级添加控件
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -47,6 +49,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - 设置控件位置
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

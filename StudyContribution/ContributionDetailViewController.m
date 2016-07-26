@@ -16,9 +16,10 @@
 #import "contributionBtnCell.h"
 
 @interface ContributionDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    BOOL sceletState;
+}
 
-@property (nonatomic,assign) bool aaa;
-@property (nonatomic,assign) bool bbb;
 
 @property (nonatomic,strong) UIImageView *contributionBackground;
 
@@ -46,8 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _aaa = true;
-    _bbb = true;
+    sceletState=NO;
     
     [self.view addSubview:self.contributionBackground];
     
@@ -87,6 +87,7 @@
 }
 - (void) viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     self.hidesBottomBarWhenPushed = NO;
 }
 
@@ -169,8 +170,8 @@
     if (section == 0) {
         if ([tableView isEqual:_classInfo]) {
             _BtnCell=[[ButtonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
-            //        _BtnCell.layer.borderWidth = 1.0f;
-            //        _BtnCell.layer.borderColor = [[UIColor blackColor]CGColor];
+//        _BtnCell.layer.borderWidth = 1.0f;
+//        _BtnCell.layer.borderColor = [[UIColor blackColor]CGColor];
             _BtnCell.classInRecordBtn.backgroundColor = [UIColor whiteColor];
             [_BtnCell.classInRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             _BtnCell.contributionRecordBtn.backgroundColor = [UIColor clearColor];
@@ -207,11 +208,18 @@
             _classInRecordcell.classInDateLabel.text = _dateArr[indexPath.row];
             _classInRecordcell.classInDetailLabel.text = _countArr[indexPath.row];
             _classInRecordcell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            if(sceletState==YES){
+                [_classInRecordcell seleteMode];
+            }
+            
+            
             return _classInRecordcell;
         }else{
             contributionBtnCell *contributionBtncell=[[contributionBtnCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
             contributionBtncell.backgroundColor = [UIColor clearColor];
             contributionBtncell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [contributionBtncell.confirmContributionBtn addTarget:self action:@selector(confirmContributionBtnClick) forControlEvents:UIControlEventTouchUpInside];
+            [contributionBtncell.selectAllBtn addTarget:self action:@selector(selectAllBtnBtnClick) forControlEvents:UIControlEventTouchUpInside];
             return contributionBtncell;
         }
     }else
@@ -221,6 +229,7 @@
             _contributionRecordcell.contributionRecordnDateLabel.text = _dateArr[indexPath.row];
             _contributionRecordcell.contributionRecordLabel.text = _countArr[indexPath.row];
             _contributionRecordcell.contributionRecordMoney.text = _moneyArr[indexPath.row];
+            _contributionRecordcell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _contributionRecordcell;
     }
     return nil;
@@ -230,53 +239,70 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.classInfo.allowsMultipleSelectionDuringEditing = YES;
     
+    _nowIndexPath = [self.classInfo indexPathForSelectedRow];
+    classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+    cell.mark=!cell.mark;
+    
     switch (indexPath.row) {
         case 0:
         {
-            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
-            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
-            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            if(cell.mark==NO){
+                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            }else{
+                cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            }
+            
         }
             break;
             
         case 1:
         {
-            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
-            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
-            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            if(cell.mark==NO){
+                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            }else{
+                cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            }
         }
             break;
             
         case 2:
         {
-            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
-            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
-            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            if(cell.mark==NO){
+                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            }else{
+                cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            }
         }
             break;
             
         case 3:
         {
-            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
-            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
-            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            if(cell.mark==NO){
+                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            }else{
+                cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            }
 
         }
             break;
             
         case 4:
         {
-            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
-            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
-            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            if(cell.mark==NO){
+                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            }else{
+                cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            }
         }
             break;
             
         case 5:
         {
-            _nowIndexPath = [self.classInfo indexPathForSelectedRow];
-            classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
-            cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            if(cell.mark==NO){
+                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+            }else{
+                cell.tickImage.image = [UIImage imageNamed:@"tick"];
+            }
         }
             break;
         default:
@@ -299,5 +325,14 @@
 }
 
 
+#pragma mark - 确定捐献按钮
+- (void)confirmContributionBtnClick{
+    
+}
 
+#pragma mark - 全选按钮
+- (void)selectAllBtnBtnClick{
+    sceletState = !sceletState;
+    [self.classInfo reloadData];
+}
 @end

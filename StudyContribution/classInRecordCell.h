@@ -17,4 +17,8 @@
 
 @property (nonatomic,strong) UIImageView *classInRecordLevel;
 
+@property (nonatomic,assign)  BOOL mark;
+
+-(void)seleteMode;
+
 @end

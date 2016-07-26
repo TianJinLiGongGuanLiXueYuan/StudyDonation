@@ -11,6 +11,7 @@
 		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
 		8C6604DC1D43815400C46C91 /* setCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604DB1D43815400C46C91 /* setCell.m */; };
+		8C74609C1D47681000B74FE7 /* timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C74609B1D47681000B74FE7 /* timetable.m */; };
 		8C88C2401D4576040050A173 /* SchoolNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */; };
 		8C88C2431D4576490050A173 /* CollegeNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2421D4576490050A173 /* CollegeNameTextViewController.m */; };
 		8C88C2461D45767E0050A173 /* DepartmentNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2451D45767E0050A173 /* DepartmentNameTextViewController.m */; };
@@ -99,6 +100,8 @@
 		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8C6604DA1D43815400C46C91 /* setCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setCell.h; sourceTree = "<group>"; };
 		8C6604DB1D43815400C46C91 /* setCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setCell.m; sourceTree = "<group>"; };
+		8C74609A1D47680F00B74FE7 /* timetable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timetable.h; sourceTree = "<group>"; };
+		8C74609B1D47681000B74FE7 /* timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timetable.m; sourceTree = "<group>"; };
 		8C88C23E1D4576040050A173 /* SchoolNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolNameTextViewController.h; sourceTree = "<group>"; };
 		8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolNameTextViewController.m; sourceTree = "<group>"; };
 		8C88C2411D4576490050A173 /* CollegeNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeNameTextViewController.h; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 				FE7AD29C1D35431A00AE368C /* regeisterViewController.m */,
 				F5553BEF1D3798D500E38EA3 /* ClassInfoViewController.h */,
 				F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */,
+				8C74609A1D47680F00B74FE7 /* timetable.h */,
+				8C74609B1D47681000B74FE7 /* timetable.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -733,6 +738,7 @@
 				F56E79831D450B6900AECD6E /* UIView+Toast.m in Sources */,
 				FE7AD2B21D354E2F00AE368C /* LogupViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
+				8C74609C1D47681000B74FE7 /* timetable.m in Sources */,
 				8C88C24C1D4576D00050A173 /* ClassNameTextViewController.m in Sources */,
 				F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */,
 				F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */,

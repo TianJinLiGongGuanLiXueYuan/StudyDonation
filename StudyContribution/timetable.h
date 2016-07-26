@@ -1,14 +1,13 @@
 //
-//  ClassInfoViewController.h
+//  timetable.h
 //  StudyContribution
 //
-//  Created by Surprised on 16/7/14.
+//  Created by Dark on 16/7/25.
 //  Copyright © 2016年 刘芮东. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-
-@interface ClassInfoViewController : UIViewController
+@interface timetable : UIViewController
 
 @end

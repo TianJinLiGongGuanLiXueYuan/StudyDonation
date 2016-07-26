@@ -7,10 +7,13 @@
 //
 
 #import "ClassInfoViewController.h"
+#import "timetable.h"
 
 @interface ClassInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *TableView;
+@property (strong, nonatomic) UIImageView *background;
+@property(nonatomic,strong)UIButton *timetableBtn;
 @end
 @implementation ClassInfoViewController
 -(void)left_btnclick
@@ -27,17 +30,31 @@
 }
  - (void)viewDidLoad
  {
-     [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
-     [self.navitionBar.left_btn addTarget:self action:@selector(left_btnclick) forControlEvents:UIControlEventTouchUpInside];
+     [self.view addSubview:self.background];
+     
+//     [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
+//     [self.navitionBar.left_btn addTarget:self action:@selector(left_btnclick) forControlEvents:UIControlEventTouchUpInside];
        [super viewDidLoad];
          // 设置tableView的数据源
          self.TableView.dataSource = self;
      _TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+     _TableView.backgroundColor = [UIColor clearColor];
      [self.view addSubview:_TableView];
      _TableView.delegate = self;
      _TableView.dataSource = self;
+     [self.view addSubview:self.timetableBtn];
     
      }
+#pragma mark - 背景图
+
+- (UIImageView *)background{
+    if (!_background) {
+        _background = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        //        _background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+        _background.image = [UIImage imageNamed:@"背景"];
+    }
+    return _background;
+}
  #pragma mark - UITableViewDataSource
  /**
     20  *  1.告诉tableview一共有多少组
@@ -52,7 +69,7 @@
       */
  - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
  {
-         NSLog(@"numberOfRowsInSection %ld", section);
+         NSLog(@"numberOfRowsInSection %ld", (long)section);
          if (0 == section) {
                  // 第0组有多少行
                  return 4;
@@ -67,12 +84,13 @@
       */
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
  {
-     NSLog(@"cellForRowAtIndexPath %ld %ld", (long)indexPath.section, indexPath.row);
+     NSLog(@"cellForRowAtIndexPath %ld %ld", (long)indexPath.section, (long)indexPath.row);
     
      //    indexPath.section; // 第几组
      //    indexPath.row; // 第几行
         // 1.创建cell
        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+     cell.backgroundColor = [UIColor clearColor];
     
          // 2.设置数据
          // cell.textLabel.text = @"";
@@ -114,7 +132,7 @@
          // return @"标题";
          if (0 == section) {
                  return @"近期课程及详情";
-             }else
+                         }else
                  {
                          return @"下次课程时间及地点";
                      }
@@ -124,10 +142,30 @@
  {
          if (0 == section) {
                  return @"之前的课程都学会了吗？课后要复习哦~";
+             
              }else
                  {
                         return @"作为学霸一定要去上课啊~加油！";
                      }
     }
+-(UIButton *)timetableBtn
+{
+    if (!_timetableBtn)
+    {
+        _timetableBtn = [[UIButton alloc]initWithFrame:CGRectMake(180,180,100,50)];
+        _timetableBtn.center = CGPointMake(self.view.center.x, 600);
+        [_timetableBtn setTitle:@"课程表" forState:UIControlStateNormal];
+        [_timetableBtn  setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_timetableBtn addTarget:self action:@selector(timetableBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        //  [_forgetBtn addTarget:self action:@selector(forgetbtnclick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _timetableBtn;
+}
+
+- (void)timetableBtnClick{
+    timetable *timetb = [[timetable alloc]init];
+    [self.navigationController pushViewController:timetb animated:YES];
+}
+
 @end
 

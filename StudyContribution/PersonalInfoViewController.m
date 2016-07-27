@@ -86,12 +86,12 @@
     [self.view addSubview:self.personInfoGradeLevel];
     
 //    初始化TableView
-    _personInfoTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 186.5, self.view.center.y - 140, 390, 390) style:UITableViewStylePlain];
+    _personInfoTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 207, self.view.center.y - 140, 414, 390) style:UITableViewStylePlain];
 //    设置tableview不能滑动
     _personInfoTableView.scrollEnabled = NO;    
     _personInfoTableView.backgroundColor = [UIColor clearColor];
-//    _studentInfoTabel.layer.borderWidth = 1.0f;
-//    _studentInfoTabel.layer.borderColor = [[UIColor whiteColor]CGColor];
+//    _personInfoTableView.layer.borderWidth = 1.0f;
+//    _personInfoTableView.layer.borderColor = [[UIColor whiteColor]CGColor];
     //    设置cell无下划线
     _personInfoTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_personInfoTableView];
@@ -225,6 +225,7 @@
         _personalNameValueText = [[UITextField alloc]init];
 //        _personalNameValueText.layer.borderWidth = 1.0f;
 //        _personalNameValueText.layer.borderColor = [[UIColor blackColor]CGColor];
+        _personalNameValueText.userInteractionEnabled = NO;
         _personalNameValueText.font = [UIFont systemFontOfSize:26.5];
         _personalNameValueText.textColor = [UIColor whiteColor];
         _personalNameValueText.text = @"周颖英";
@@ -262,6 +263,7 @@
         _personalGradeValueText = [[UITextField alloc]init];
 //        _personalGradeValueText.layer.borderWidth = 1.0f;
 //        _personalGradeValueText.layer.borderColor = [[UIColor blackColor]CGColor];
+        _personalGradeValueText.userInteractionEnabled = NO;
         _personalGradeValueText.font = [UIFont systemFontOfSize:26.5];
         _personalGradeValueText.textColor = [UIColor whiteColor];
         _personalGradeValueText.text = @" 大二";
@@ -300,29 +302,25 @@
     static NSString *identifer = @"cell";
     _personalCell = [tableView dequeueReusableCellWithIdentifier:identifer];
     
-    if (_personalCell == nil) {
-        _personalCell = [[personalInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
+    _personalCell = [[personalInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
             
-//        _personalCell.layer.borderWidth = 1.0f;
-//        _personalCell.layer.borderColor = [[UIColor whiteColor]CGColor];
-        
-        _personalCell.backgroundColor = [UIColor clearColor];
+//    _personalCell.layer.borderWidth = 1.0f;
+//    _personalCell.layer.borderColor = [[UIColor whiteColor]CGColor];
+    
+    _personalCell.backgroundColor = [UIColor clearColor];
         
 //        设置当前cell选中无样式
-        _personalCell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-        _personalCell.schoolLabel.text = _personalInfo[indexPath.row];
-        _personalCell.schoolText.text = _temporaryArr[indexPath.row];
-        
-        [_personalCell noEnableEting];
-
-//        if(isequal == YES){
-//            [_personalCell enableEting];
-//        }else{
-//            [_personalCell noEnableEting];
-//        }
-    }
+    _personalCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    _personalCell.schoolLabel.text = _personalInfo[indexPath.row];
+    _personalCell.schoolText.text = _temporaryArr[indexPath.row];
+        
+    _personalCell.schoolText.userInteractionEnabled = NO;
+    
+    if (isequal == YES) {
+        [_personalCell EnableEditing];
+        [_personalCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
     
     return _personalCell;
 }
@@ -354,7 +352,18 @@
 
 - (void)ediBtnClick{
     isequal = !isequal;
-//    [self.personInfoTableView ];
+    
+    [self.personInfoTableView reloadData];
+    
+    if (isequal == YES) {
+        _personalNameValueText.userInteractionEnabled = YES;
+        _personalGradeValueText.userInteractionEnabled = YES;
+        [_editBtn setTitle:@"完成" forState:UIControlStateNormal];
+    }else{
+        _personalNameValueText.userInteractionEnabled = NO;
+        _personalGradeValueText.userInteractionEnabled = NO;
+        [_editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - 编辑按钮下横线

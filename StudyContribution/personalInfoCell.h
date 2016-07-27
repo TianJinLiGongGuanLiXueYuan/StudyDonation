@@ -16,7 +16,5 @@
 
 @property (nonatomic,strong) UIImageView *bottomLevel;
 
-- (void)enableEting;
-- (void)noEnableEting;
-
+- (void)EnableEditing;
 @end

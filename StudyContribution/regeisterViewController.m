@@ -22,8 +22,6 @@
 
 @interface regeisterViewController ()<CLLocationManagerDelegate>
 
-@property (nonatomic,strong) UIButton *tolotin;
-
 //存储上、下课时间
 @property (nonatomic,assign) long classInHour;
 @property (nonatomic,assign) long classInMinute;
@@ -80,13 +78,9 @@
  */
 
 //消息框
-@property (nonatomic,strong) UIAlertController *classInSignInMessage;
-@property (nonatomic,strong) UIAlertController *classUpSignInMessage;
-@property (nonatomic,strong) UIAlertAction *yesAction;
-@property (nonatomic,strong) UIAlertAction *noAction;
-
-
-
+@property (nonatomic,strong) UIAlertController *signInMessage;
+//@property (nonatomic,strong) UIAlertConter *classUpSignInMessage;
+@property (nonatomic,strong) UIAlertAction *determineBtn;
 
 @end
 
@@ -97,10 +91,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    初始化签到失败消息框
-    _yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    _noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    
+    _determineBtn = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:nil];
 //    隐藏导航栏
     [self.navigationController  setNavigationBarHidden:YES];
     
@@ -148,9 +139,6 @@
     
 //    添加设置按钮
     [self.view addSubview:self.settingBtn];
-    
-//    临时使用
-    [self.view addSubview:self.tolotin];
 
     /*
 //    初始化定位
@@ -189,8 +177,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.tolotin.frame = CGRectMake(0, 0, 100, 30);
     
 //    背景图位置
     self.regeisterBackground.frame = [UIScreen mainScreen].bounds;
@@ -266,15 +252,13 @@
     return _regeisterBackground;
 }
 
-#pragma mark - 当前状态getter（）
+#pragma mark - 日期label——getter（）
 
 - (UILabel *)weekdayLabel
 {
     if(!_weekdayLabel)
     {
         _weekdayLabel = [[UILabel alloc]init];
-        
-//        _weekdayLabel.backgroundColor = [UIColor grayColor];
         
 //        _weekdayLabel.layer.borderWidth = 1;
 //        _weekdayLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
@@ -292,7 +276,6 @@
     if(!_monthLabel)
     {
         _monthLabel = [[UILabel alloc]init];
-//        _monthLabel.backgroundColor = [UIColor purpleColor];
         
 //        _monthLabel.layer.borderWidth = 1;
 //        _monthLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
@@ -305,12 +288,13 @@
     return _monthLabel;
 }
 
+#pragma mark - 签到状态getter（）
+
 - (UILabel *)currentstatusLabel
 {
     if(!_currentstatusLabel)
     {
         _currentstatusLabel = [[UILabel alloc]init];
-//        _currentstatusLabel.backgroundColor = [UIColor purpleColor];
         
         _currentstatusLabel.layer.cornerRadius = 5.0f;
         _currentstatusLabel.layer.borderWidth = 1.0f;
@@ -320,7 +304,7 @@
         _currentstatusLabel.textColor = [UIColor whiteColor];
         _currentstatusLabel.font = [UIFont systemFontOfSize:25];
         _currentstatusLabel.textAlignment = NSTextAlignmentCenter;
-        _currentstatusLabel.text = @"在上课";
+        _currentstatusLabel.text = @"未签到";
     }
     return _currentstatusLabel;
 }
@@ -408,9 +392,8 @@
 - (void)classInBtnClick{
     
     
-    _classInSignInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"上课迟到\n现在不是上课签到时间" preferredStyle:UIAlertControllerStyleAlert];
-    [_classInSignInMessage addAction:_yesAction];
-    [_classInSignInMessage addAction:_noAction];
+    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"上课迟到\n或者是：现在不是上课签到时间" preferredStyle:UIAlertControllerStyleAlert];
+    [_signInMessage addAction:_determineBtn];
     
     NSDate *currentDate = [NSDate date];
     NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -429,7 +412,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -443,7 +426,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -454,7 +437,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -465,7 +448,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -476,7 +459,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -490,7 +473,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -501,7 +484,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -512,7 +495,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -523,7 +506,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -534,7 +517,7 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -545,14 +528,14 @@
                 _classInTick.image = [UIImage imageNamed:@"tick"];
                 _classUpTick.image = [UIImage imageNamed:@""];
             }else{
-                [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
             
         default:
         {
-            [self presentViewController:_classInSignInMessage animated:YES completion:nil];
+            [self presentViewController:_signInMessage animated:YES completion:nil];
         }
             break;
     }
@@ -602,9 +585,8 @@
 }
 
 - (void)classUpBtnClick{
-    _classUpSignInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"下课时间未到\n现在不是签到时间" preferredStyle:UIAlertControllerStyleAlert];
-    [_classUpSignInMessage addAction:_yesAction];
-    [_classUpSignInMessage addAction:_noAction];
+    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"下课时间未到\n现在不是签到时间" preferredStyle:UIAlertControllerStyleAlert];
+    [_signInMessage addAction:_determineBtn];
     
     NSDate *currentDate1 = [NSDate date];
     NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -624,10 +606,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -639,10 +621,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -657,10 +639,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -675,10 +657,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -690,10 +672,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -705,10 +687,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -723,10 +705,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -741,10 +723,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -756,10 +738,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -771,10 +753,10 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
@@ -786,17 +768,17 @@
                     _classInTick.image = [UIImage imageNamed:@""];
                     _classUpTick.image = [UIImage imageNamed:@"tick"];
                 }else{
-                    [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                    [self presentViewController:_signInMessage animated:YES completion:nil];
                 }
             }else{
-                [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+                [self presentViewController:_signInMessage animated:YES completion:nil];
             }
         }
             break;
             
         default:
         {
-            [self presentViewController:_classUpSignInMessage animated:YES completion:nil];
+            [self presentViewController:_signInMessage animated:YES completion:nil];
         }
             break;
     }
@@ -889,32 +871,6 @@
     
     _weekdayLabel.text = [NSString stringWithFormat:@"%@", [arrWeek objectAtIndex:week]];
     _monthLabel.text = [NSString stringWithFormat:@"%ld 月 %ld 号", month, day];
-}
-
-#pragma mark - 临时使用
-
-- (UIButton *)tolotin
-{
-    if(!_tolotin)
-    {
-        _tolotin = [[UIButton alloc] init];
-        _tolotin.backgroundColor = [UIColor blueColor];
-        [_tolotin setTitle:@"到登录界面" forState:UIControlStateNormal];
-        [_tolotin addTarget:self action:@selector(tolotinbtnclick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _tolotin;
-}
-
-- (void)tolotinbtnclick
-{
-    LoginViewController *logIn=[[LoginViewController alloc]init];
-    
-    CustomNavigationController *nav=[[CustomNavigationController alloc]initWithRootViewController:logIn];
-    ApplicationDelegate.window.rootViewController=nav;
-    //    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [self presentViewController:nav animated:YES completion:^{
-        
-    }];
 }
 
 #pragma mark - 定位信息

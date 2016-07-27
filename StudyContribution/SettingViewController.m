@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "CustomNavigationController.h"
 #import "CustomnavView.h"
+#import "LoginViewController.h"
 #import "setPhotoCell.h"
 #import "setCell.h"
 #import "setExitBtnCell.h"
@@ -196,6 +197,7 @@
         setExitBtnCell *exitBtncell = [[setExitBtnCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"exitInfo"];
         
         exitBtncell.backgroundColor = [UIColor clearColor];
+        [exitBtncell.exitBtn addTarget:self action:@selector(exitBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
 //        设置当前cell选中无样式
         exitBtncell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -261,6 +263,18 @@
     }
 }
 
+#pragma mark - 退出登录按钮事件
+
+- (void)exitBtnClick{
+    LoginViewController *logIn=[[LoginViewController alloc]init];
+    
+    CustomNavigationController *nav=[[CustomNavigationController alloc]initWithRootViewController:logIn];
+    ApplicationDelegate.window.rootViewController=nav;
+    //    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
+}
 /*
  #pragma mark - Navigation
  

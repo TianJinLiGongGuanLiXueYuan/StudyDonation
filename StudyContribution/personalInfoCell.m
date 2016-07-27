@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.contentView addSubview:self.schoolLabel];
-        [self.contentView addSubview:self.upschoolLabel];
+        [self.contentView addSubview:self.schoolText];
         [self.contentView addSubview:self.bottomLevel];
     }
     return self;
@@ -25,7 +25,7 @@
 {
     [super layoutSubviews];
     _schoolLabel.frame = CGRectMake(5, 13, 133, 40);
-    _upschoolLabel.frame = CGRectMake(142, 13, 220, 40);
+    _schoolText.frame = CGRectMake(142, 13, 220, 40);
     _bottomLevel.frame = CGRectMake(2, 52, 380, 4.4);
 }
 
@@ -44,16 +44,16 @@
 
 #pragma mark - 右边信息getter（）
 
-- (UILabel *)upschoolLabel{
-    if (!_upschoolLabel) {
-        _upschoolLabel = [[UILabel alloc]init];
-        //        _upschoolLabel.layer.borderWidth = 1.0f;
-        //        _upschoolLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
-        _upschoolLabel.textAlignment = NSTextAlignmentRight;
-        _upschoolLabel.textColor = [UIColor whiteColor];
-        _upschoolLabel.font = [UIFont systemFontOfSize:26.5];
+- (UITextField *)schoolText{
+    if (!_schoolText) {
+        _schoolText = [[UITextField alloc]init];
+//        _schoolText.layer.borderWidth = 1.0f;
+//        _schoolText.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _schoolText.textAlignment = NSTextAlignmentRight;
+        _schoolText.textColor = [UIColor whiteColor];
+        _schoolText.font = [UIFont systemFontOfSize:26.5];
     }
-    return _upschoolLabel;
+    return _schoolText;
 }
 
 #pragma mark - 底边横线getter（）
@@ -67,5 +67,13 @@
     }
     return _bottomLevel;
 }
+#pragma mark -编辑文本框
 
+- (void)enableEting{
+    self.schoolText.userInteractionEnabled = YES;
+}
+
+- (void)noEnableEting{
+    self.schoolText.userInteractionEnabled = NO;
+}
 @end

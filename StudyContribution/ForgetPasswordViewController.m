@@ -32,6 +32,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [_loginV.leftBtn addTarget:self action:@selector(leftbtnClick) forControlEvents:UIControlEventTouchUpInside];
     [_loginV.nextbtn addTarget:self action:@selector(nextBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [_loginV.nextbtn setTitle:@"重置" forState:UIControlStateNormal];
 }
 -(void)nextBtnClick
 {

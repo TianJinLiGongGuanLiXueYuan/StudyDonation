@@ -11,17 +11,12 @@
 		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
 		8C6604DC1D43815400C46C91 /* setCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604DB1D43815400C46C91 /* setCell.m */; };
-		8C88C2401D4576040050A173 /* SchoolNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */; };
-		8C88C2431D4576490050A173 /* CollegeNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2421D4576490050A173 /* CollegeNameTextViewController.m */; };
-		8C88C2461D45767E0050A173 /* DepartmentNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2451D45767E0050A173 /* DepartmentNameTextViewController.m */; };
-		8C88C2491D4576B80050A173 /* SpecialtyNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C2481D4576B80050A173 /* SpecialtyNameTextViewController.m */; };
-		8C88C24C1D4576D00050A173 /* ClassNameTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C24B1D4576D00050A173 /* ClassNameTextViewController.m */; };
-		8C88C24F1D4576E30050A173 /* StudentIdTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C88C24E1D4576E30050A173 /* StudentIdTextViewController.m */; };
+		8CED35921D48D24C00162115 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CED35911D48D24C00162115 /* ClassInfoViewController.m */; };
+		8CED35951D48D25300162115 /* timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CED35941D48D25300162115 /* timetable.m */; };
 		F43D880B1D45ECFF00269147 /* classInRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D880A1D45ECFF00269147 /* classInRecordCell.m */; };
 		F43D880E1D45ED1100269147 /* contributionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D880D1D45ED1100269147 /* contributionRecordCell.m */; };
 		F43D88111D4609EC00269147 /* contributionBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D88101D4609EC00269147 /* contributionBtnCell.m */; };
 		F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */; };
-		F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */; };
 		F488D09D1D45D2AE0015DC53 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F488D09C1D45D2AE0015DC53 /* ButtonCell.m */; };
 		F4A7688D1D43483000B3DF3D /* personalInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A7688C1D43483000B3DF3D /* personalInfoCell.m */; };
 		F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A768921D4357D600B3DF3D /* setPhotoCell.m */; };
@@ -41,7 +36,6 @@
 		F53AC8911D39AD6900A7E8D2 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8901D39AD6900A7E8D2 /* libstdc++.tbd */; };
 		F53AC8931D39AD7700A7E8D2 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8921D39AD7700A7E8D2 /* libicucore.tbd */; };
 		F53AC8951D39AD8100A7E8D2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F53AC8941D39AD8100A7E8D2 /* libz.tbd */; };
-		F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */; };
 		F56E79821D450B6900AECD6E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F56E797F1D450B6900AECD6E /* MBProgressHUD.m */; };
 		F56E79831D450B6900AECD6E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = F56E79811D450B6900AECD6E /* UIView+Toast.m */; };
 		F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = F598E75C1D3A74FB0081A4B2 /* LoginView.m */; };
@@ -99,18 +93,10 @@
 		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8C6604DA1D43815400C46C91 /* setCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setCell.h; sourceTree = "<group>"; };
 		8C6604DB1D43815400C46C91 /* setCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setCell.m; sourceTree = "<group>"; };
-		8C88C23E1D4576040050A173 /* SchoolNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolNameTextViewController.h; sourceTree = "<group>"; };
-		8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolNameTextViewController.m; sourceTree = "<group>"; };
-		8C88C2411D4576490050A173 /* CollegeNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeNameTextViewController.h; sourceTree = "<group>"; };
-		8C88C2421D4576490050A173 /* CollegeNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeNameTextViewController.m; sourceTree = "<group>"; };
-		8C88C2441D45767E0050A173 /* DepartmentNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentNameTextViewController.h; sourceTree = "<group>"; };
-		8C88C2451D45767E0050A173 /* DepartmentNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentNameTextViewController.m; sourceTree = "<group>"; };
-		8C88C2471D4576B80050A173 /* SpecialtyNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialtyNameTextViewController.h; sourceTree = "<group>"; };
-		8C88C2481D4576B80050A173 /* SpecialtyNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialtyNameTextViewController.m; sourceTree = "<group>"; };
-		8C88C24A1D4576D00050A173 /* ClassNameTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassNameTextViewController.h; sourceTree = "<group>"; };
-		8C88C24B1D4576D00050A173 /* ClassNameTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassNameTextViewController.m; sourceTree = "<group>"; };
-		8C88C24D1D4576E30050A173 /* StudentIdTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentIdTextViewController.h; sourceTree = "<group>"; };
-		8C88C24E1D4576E30050A173 /* StudentIdTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentIdTextViewController.m; sourceTree = "<group>"; };
+		8CED35901D48D24C00162115 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
+		8CED35911D48D24C00162115 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		8CED35931D48D25300162115 /* timetable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timetable.h; sourceTree = "<group>"; };
+		8CED35941D48D25300162115 /* timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timetable.m; sourceTree = "<group>"; };
 		F43D88091D45ECFF00269147 /* classInRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classInRecordCell.h; sourceTree = "<group>"; };
 		F43D880A1D45ECFF00269147 /* classInRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = classInRecordCell.m; sourceTree = "<group>"; };
 		F43D880C1D45ED1100269147 /* contributionRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contributionRecordCell.h; sourceTree = "<group>"; };
@@ -119,8 +105,6 @@
 		F43D88101D4609EC00269147 /* contributionBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contributionBtnCell.m; sourceTree = "<group>"; };
 		F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
 		F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
-		F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePersonalInfoViewController.h; sourceTree = "<group>"; };
-		F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePersonalInfoViewController.m; sourceTree = "<group>"; };
 		F488D09B1D45D2AE0015DC53 /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		F488D09C1D45D2AE0015DC53 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		F4A7688B1D43483000B3DF3D /* personalInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personalInfoCell.h; sourceTree = "<group>"; };
@@ -145,8 +129,6 @@
 		F53AC8901D39AD6900A7E8D2 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		F53AC8921D39AD7700A7E8D2 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		F53AC8941D39AD8100A7E8D2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		F5553BEF1D3798D500E38EA3 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
-		F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
 		F56E797E1D450B6900AECD6E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		F56E797F1D450B6900AECD6E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		F56E79801D450B6900AECD6E /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
@@ -385,8 +367,10 @@
 			children = (
 				FE7AD29B1D35431A00AE368C /* regeisterViewController.h */,
 				FE7AD29C1D35431A00AE368C /* regeisterViewController.m */,
-				F5553BEF1D3798D500E38EA3 /* ClassInfoViewController.h */,
-				F5553BF01D3798D500E38EA3 /* ClassInfoViewController.m */,
+				8CED35901D48D24C00162115 /* ClassInfoViewController.h */,
+				8CED35911D48D24C00162115 /* ClassInfoViewController.m */,
+				8CED35931D48D25300162115 /* timetable.h */,
+				8CED35941D48D25300162115 /* timetable.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -526,20 +510,6 @@
 				FE7AD2C91D35557100AE368C /* SettingViewController.m */,
 				F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */,
 				F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */,
-				F47AA3BA1D42416800CB22DB /* UpdatePersonalInfoViewController.h */,
-				F47AA3BB1D42416800CB22DB /* UpdatePersonalInfoViewController.m */,
-				8C88C23E1D4576040050A173 /* SchoolNameTextViewController.h */,
-				8C88C23F1D4576040050A173 /* SchoolNameTextViewController.m */,
-				8C88C2411D4576490050A173 /* CollegeNameTextViewController.h */,
-				8C88C2421D4576490050A173 /* CollegeNameTextViewController.m */,
-				8C88C2441D45767E0050A173 /* DepartmentNameTextViewController.h */,
-				8C88C2451D45767E0050A173 /* DepartmentNameTextViewController.m */,
-				8C88C2471D4576B80050A173 /* SpecialtyNameTextViewController.h */,
-				8C88C2481D4576B80050A173 /* SpecialtyNameTextViewController.m */,
-				8C88C24A1D4576D00050A173 /* ClassNameTextViewController.h */,
-				8C88C24B1D4576D00050A173 /* ClassNameTextViewController.m */,
-				8C88C24D1D4576E30050A173 /* StudentIdTextViewController.h */,
-				8C88C24E1D4576E30050A173 /* StudentIdTextViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -733,7 +703,7 @@
 				F56E79831D450B6900AECD6E /* UIView+Toast.m in Sources */,
 				FE7AD2B21D354E2F00AE368C /* LogupViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
-				8C88C24C1D4576D00050A173 /* ClassNameTextViewController.m in Sources */,
+				8CED35951D48D25300162115 /* timetable.m in Sources */,
 				F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */,
 				F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */,
 				18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */,
@@ -748,31 +718,25 @@
 				FED16F1E1D45BCBC00F10B47 /* APIClient.m in Sources */,
 				FE7AD2A31D3544F200AE368C /* CustomNavigationController.m in Sources */,
 				FED16F131D45BC2A00F10B47 /* AFHTTPSessionManager.m in Sources */,
+				8CED35921D48D24C00162115 /* ClassInfoViewController.m in Sources */,
 				F43D880E1D45ED1100269147 /* contributionRecordCell.m in Sources */,
-				8C88C2461D45767E0050A173 /* DepartmentNameTextViewController.m in Sources */,
 				FED16F141D45BC2A00F10B47 /* AFNetworkReachabilityManager.m in Sources */,
-				8C88C2401D4576040050A173 /* SchoolNameTextViewController.m in Sources */,
 				FE7AD2D81D36017B00AE368C /* CustomnavView.m in Sources */,
 				FE7AD29D1D35431A00AE368C /* regeisterViewController.m in Sources */,
 				FE7AD2CD1D35D25D00AE368C /* detailUIView.m in Sources */,
 				FE7AD2D71D36017B00AE368C /* BaseViewController.m in Sources */,
 				F488D09D1D45D2AE0015DC53 /* ButtonCell.m in Sources */,
 				FED16F181D45BC2A00F10B47 /* AFURLSessionManager.m in Sources */,
-				8C88C24F1D4576E30050A173 /* StudentIdTextViewController.m in Sources */,
 				FED16F1F1D45BCBC00F10B47 /* HttpTool.m in Sources */,
 				8C6604DC1D43815400C46C91 /* setCell.m in Sources */,
-				8C88C2491D4576B80050A173 /* SpecialtyNameTextViewController.m in Sources */,
 				F598E75D1D3A74FB0081A4B2 /* LoginView.m in Sources */,
 				FED16F171D45BC2A00F10B47 /* AFURLResponseSerialization.m in Sources */,
 				FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */,
 				FED16F151D45BC2A00F10B47 /* AFSecurityPolicy.m in Sources */,
-				8C88C2431D4576490050A173 /* CollegeNameTextViewController.m in Sources */,
-				F5553BF11D3798D500E38EA3 /* ClassInfoViewController.m in Sources */,
 				F43D88111D4609EC00269147 /* contributionBtnCell.m in Sources */,
 				F43D880B1D45ECFF00269147 /* classInRecordCell.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
 				F4A7689C1D4399C200B3DF3D /* AboutUsView.m in Sources */,
-				F47AA3BC1D42416800CB22DB /* UpdatePersonalInfoViewController.m in Sources */,
 				FE7AD2D01D35D27900AE368C /* passWordView.m in Sources */,
 				F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */,
 			);

@@ -113,6 +113,7 @@ typedef void (^RNBlurCompletion)(void);
     messageLabel.top = titleLabel.bottom + padding;
     [view addSubview:messageLabel];
     
+//    更改高度
     view.height = messageLabel.bottom + padding;
     
     return view;

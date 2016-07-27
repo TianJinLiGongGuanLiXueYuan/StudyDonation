@@ -13,6 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "SettingViewController.h"
 #import "ContributionDetailViewController.h"
+#import "ClassInfoViewController.h"
 
 #define BtnWidth 120
 #define XMarginText 57
@@ -67,8 +68,8 @@
 //下课按钮下横线
 @property (nonatomic,strong) UIImageView *classUpLevel;
 
-//软件信息label
-@property (nonatomic,strong) UILabel *softwareInfoLabel;
+//捐赠信息按钮
+@property (nonatomic,strong) UIButton *myContributionInfoBtn;
 
 //设置按钮
 @property (nonatomic,strong) UIButton *settingBtn;
@@ -90,6 +91,8 @@
 @end
 
 @implementation regeisterViewController
+
+#pragma mark - 初始化级添加控件
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -140,8 +143,8 @@
 //    添加下课按钮下横线
     [self.view addSubview:self.classUpLevel];
     
-//    添加软件信息label
-    [self.view addSubview:self.softwareInfoLabel];
+//    添加捐赠信息按钮
+    [self.view addSubview:self.myContributionInfoBtn];
     
 //    添加设置按钮
     [self.view addSubview:self.settingBtn];
@@ -180,6 +183,8 @@
 {
     self.hidesBottomBarWhenPushed = NO;
 }
+
+#pragma mark - 设置控件位置
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -227,8 +232,8 @@
 //    设置下课按钮下横线位置
     self.classUpLevel.frame = CGRectMake(223, 558, 175, 4.4);
     
-//    软件信息label位置
-    _softwareInfoLabel.frame = CGRectMake(10, 571, 180, 50);
+//    设置捐赠信息按钮位置
+    _myContributionInfoBtn.frame = CGRectMake(10, 571, 180, 50);
     
 //    设置按钮位置
     self.settingBtn.frame = CGRectMake(XMargin + 14.5, 602.5, 100, 50);
@@ -353,9 +358,8 @@
 
 - (void)classInfoBtnClick
 {
-    ContributionDetailViewController *classinfoVC = [[ContributionDetailViewController alloc]init];
-    [self.navigationController pushViewController:classinfoVC animated:YES];
-    
+    ClassInfoViewController *classInfoVC = [[ClassInfoViewController alloc]init];
+    [self.navigationController pushViewController:classInfoVC animated:YES];
 }
 
 #pragma mark - 课程详情下横线
@@ -822,23 +826,28 @@
     return _classUpLevel;
 }
 
-#pragma mark - 软件信息getter（）
+#pragma mark - 捐赠信息按钮getter（）
 
-- (UILabel *)softwareInfoLabel
+- (UIButton *)myContributionInfoBtn
 {
-    if(!_softwareInfoLabel)
+    if(!_myContributionInfoBtn)
     {
-        _softwareInfoLabel = [[UILabel alloc]init];
+        _myContributionInfoBtn = [[UIButton alloc]init];
         
-//        _softwareInfoLabel.layer.borderWidth = 1.0f;
-//        _softwareInfoLabel.layer.borderColor = [[UIColor whiteColor]CGColor];
+//        _softwareInfoBtn.layer.borderWidth = 1.0f;
+//        _softwareInfoBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         
-        _softwareInfoLabel.font = [UIFont systemFontOfSize:30];
-        _softwareInfoLabel.textAlignment = NSTextAlignmentCenter;
-        _softwareInfoLabel.textColor = [UIColor whiteColor];
-        _softwareInfoLabel.text = @"我的学霸捐";
+        _myContributionInfoBtn.titleLabel.font = [UIFont systemFontOfSize:30];
+        [_myContributionInfoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_myContributionInfoBtn setTitle:@"我的学霸捐赠" forState:UIControlStateNormal];
+        [_myContributionInfoBtn addTarget:self action:@selector(myContributionInfoBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _softwareInfoLabel;
+    return _myContributionInfoBtn;
+}
+
+- (void)myContributionInfoBtnClick{
+    ContributionDetailViewController *classinfoVC = [[ContributionDetailViewController alloc]init];
+    [self.navigationController pushViewController:classinfoVC animated:YES];
 }
 
 #pragma mark - 设置按钮getter（）

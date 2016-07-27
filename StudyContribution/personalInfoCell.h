@@ -11,8 +11,12 @@
 @interface personalInfoCell : UITableViewCell
 
 @property (nonatomic,strong) UILabel *schoolLabel;
-@property (nonatomic,strong) UILabel *upschoolLabel;
+
+@property (nonatomic,strong) UITextField *schoolText;
 
 @property (nonatomic,strong) UIImageView *bottomLevel;
+
+- (void)enableEting;
+- (void)noEnableEting;
 
 @end

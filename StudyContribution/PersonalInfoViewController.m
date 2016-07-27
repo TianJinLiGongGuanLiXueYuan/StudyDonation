@@ -10,10 +10,11 @@
 #import "CustomNavigationController.h"
 #import "personalInfoCell.h"
 #import "SettingViewController.h"
-#import "UpdatePersonalInfoViewController.h"
 
 @interface PersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+{
+    BOOL isequal;
+}
 @property (nonatomic,strong) NSArray *personalInfo;
 @property (nonatomic,strong) NSArray *temporaryArr;
 
@@ -25,6 +26,7 @@
 
 //头像图片
 @property (nonatomic,strong) UIImageView *personalPicture;
+@property (nonatomic,strong) UIButton *pictureBtn;
 
 //姓名
 @property (nonatomic,strong) UILabel *personalNameLabel;
@@ -39,6 +41,8 @@
 //学生信息
 @property (nonatomic,strong) UITableView *personInfoTableView;
 
+@property (nonatomic,strong) personalInfoCell *personalCell;
+
 //编辑按钮
 @property (nonatomic,strong) UIButton *editBtn;
 
@@ -49,9 +53,13 @@
 
 @implementation PersonalInfoViewController
 
+#pragma mark - 初始化级添加控件
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    isequal = NO;
     
 //    数组初始化
     _personalInfo = @[@"学校：",@"所在学院：",@"所在系：",@"专业名称：",@"班级：",@"学号："];
@@ -65,6 +73,7 @@
     
 //    添加头像picture
     [self.view addSubview:self.personalPicture];
+    [self.view addSubview:self.pictureBtn];
     
 //    添加姓名
     [self.view addSubview:self.personalNameLabel];
@@ -102,6 +111,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 设置控件位置
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -113,6 +124,7 @@
     
 //    设置头像位置
     self.personalPicture.frame = CGRectMake(50, 46.5, 102.4, 145);
+    self.pictureBtn.frame = CGRectMake(50, 46.5, 102.4, 145);
     
 //    设置名字了label位置
     self.personalNameLabel.frame = CGRectMake(185, 62, 100, 50);
@@ -177,6 +189,21 @@
         _personalPicture.image = [UIImage imageNamed:@"学霸捐-头像"];
     }
     return _personalPicture;
+}
+
+- (UIButton *)pictureBtn{
+    if (!_pictureBtn) {
+        _pictureBtn = [[UIButton alloc]init];
+        //        _pictureBtn.layer.borderWidth = 1;
+        //        _pictureBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _pictureBtn.backgroundColor = [UIColor clearColor];
+        [_pictureBtn addTarget:self action:@selector(pictureBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _pictureBtn;
+}
+
+- (void)pictureBtnClick{
+    NSLog(@"头像点击事件");
 }
 
 #pragma mark - 名字getter（）
@@ -271,25 +298,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifer = @"cell";
-    personalInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
+    _personalCell = [tableView dequeueReusableCellWithIdentifier:identifer];
     
-    if (cell == nil) {
-        cell = [[personalInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
+    if (_personalCell == nil) {
+        _personalCell = [[personalInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
             
-//        cell.layer.borderWidth = 1.0f;
-//        cell.layer.borderColor = [[UIColor whiteColor]CGColor];
+//        _personalCell.layer.borderWidth = 1.0f;
+//        _personalCell.layer.borderColor = [[UIColor whiteColor]CGColor];
         
-        cell.backgroundColor = [UIColor clearColor];
+        _personalCell.backgroundColor = [UIColor clearColor];
         
 //        设置当前cell选中无样式
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _personalCell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+        _personalCell.schoolLabel.text = _personalInfo[indexPath.row];
+        _personalCell.schoolText.text = _temporaryArr[indexPath.row];
         
-        cell.schoolLabel.text = _personalInfo[indexPath.row];
-        cell.upschoolLabel.text = _temporaryArr[indexPath.row];
+        [_personalCell noEnableEting];
+
+//        if(isequal == YES){
+//            [_personalCell enableEting];
+//        }else{
+//            [_personalCell noEnableEting];
+//        }
     }
     
     
-    return cell;
+    return _personalCell;
 }
 
 ////点击每一行时如何响应
@@ -318,8 +353,8 @@
 }
 
 - (void)ediBtnClick{
-    UpdatePersonalInfoViewController *updatePersonInfoVC = [[UpdatePersonalInfoViewController alloc]init];
-    [self.navigationController pushViewController:updatePersonInfoVC animated:YES];
+    isequal = !isequal;
+//    [self.personInfoTableView ];
 }
 
 #pragma mark - 编辑按钮下横线

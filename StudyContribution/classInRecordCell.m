@@ -14,6 +14,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.mark=NO;
         [self.contentView addSubview:self.classInDateLabel];
         [self.contentView addSubview:self.classInDetailLabel];
         [self.contentView addSubview:self.tickImage];
@@ -81,4 +82,10 @@
     }
     return _classInRecordLevel;
 }
+
+-(void)seleteMode{
+    self.tickImage.image = [UIImage imageNamed:@"tick"];
+    self.mark = YES;
+}
+
 @end

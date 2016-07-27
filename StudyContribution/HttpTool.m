@@ -16,7 +16,7 @@
 
 + (void)postWithparamsWithURL:(NSString *)url andParam:(NSDictionary *)params success:(Success)success failure:(Failure)failure{
     
-    NSString *needURL=[NSString stringWithFormat:@"/OralEduServer/index.php/Home/%@",url];
+    NSString *needURL=[NSString stringWithFormat:@"/StudyContribution/index.php/Home/%@",url];
     
     [[APIClient sharedClient]POST:needURL parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         

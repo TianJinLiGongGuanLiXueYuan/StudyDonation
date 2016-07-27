@@ -78,7 +78,7 @@
     if (!_background) {
         
          _background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        _background.image = [UIImage imageNamed:@"124"];
+        _background.image = [UIImage imageNamed:@"123"];
     }
     return _background;
 }

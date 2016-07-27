@@ -48,6 +48,7 @@
     // Do any additional setup after loading the view.
     
     sceletState = NO;
+
     
     [self.view addSubview:self.contributionBackground];
     
@@ -208,7 +209,7 @@
             _classInRecordcell.classInDateLabel.text = _dateArr[indexPath.row];
             _classInRecordcell.classInDetailLabel.text = _countArr[indexPath.row];
             _classInRecordcell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            if(sceletState == YES){
+            if(sceletState==YES){
                 [_classInRecordcell seleteMode];
             }
             
@@ -241,6 +242,7 @@
     
     _nowIndexPath = [self.classInfo indexPathForSelectedRow];
     classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+    
     cell.mark = !cell.mark;
     
     switch (indexPath.row) {

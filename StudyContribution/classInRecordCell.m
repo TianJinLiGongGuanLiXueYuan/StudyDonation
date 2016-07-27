@@ -83,9 +83,12 @@
     return _classInRecordLevel;
 }
 
+
+#pragma mark - 全选按钮事件
+
 -(void)seleteMode{
     self.tickImage.image = [UIImage imageNamed:@"tick"];
-    self.mark = YES;
+    self.mark=YES;
 }
 
 @end

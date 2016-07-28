@@ -79,7 +79,6 @@
 
 //消息框
 @property (nonatomic,strong) UIAlertController *signInMessage;
-//@property (nonatomic,strong) UIAlertConter *classUpSignInMessage;
 @property (nonatomic,strong) UIAlertAction *determineBtn;
 
 @end
@@ -390,155 +389,154 @@
 }
 
 - (void)classInBtnClick{
-    
-    
-    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"上课迟到\n或者是：现在不是上课签到时间" preferredStyle:UIAlertControllerStyleAlert];
-    [_signInMessage addAction:_determineBtn];
-    
-    NSDate *currentDate = [NSDate date];
-    NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *currentComps = [[NSDateComponents alloc]init];
-    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-    
-    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
-    
-    _classInHour = [currentComps hour];
-    _classInMinute = [currentComps minute];
 
-    switch (_classInHour) {
-        case 7:/* 8:00~8:45 */
-        {
-            if (50 <= _classInMinute && _classInMinute <= 59) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 8:/* 8:00~8:45  8:55~9:40 */
-        {
-            if (0 <= _classInMinute && _classInMinute <= 5) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else if (50 <= _classInMinute && _classInMinute <= 59) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 10:/* 10:10~10:55 */
-        {
-            if (0 <= _classInMinute && _classInMinute <= 15) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 11:/* 11:05~11:50 */
-        {
-            if (0 <= _classInMinute && _classInMinute <= 10) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 13:/* 14:00~14:40 */
-        {
-            if (40 <= _classInMinute && _classInMinute <= 59) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 14:/* 14:00~14:40 14:55~15:40 */
-        {
-            if (0 <= _classInMinute && _classInMinute <= 5) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else if (50 <= _classInMinute && _classInMinute <= 59) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 16:/* 16:10~16:55 */
-        {
-            if (0 <= _classInMinute && _classInMinute <= 15) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 17:/* 17:05~17:50 */
-        {
-            if (0 <= _classInMinute && _classInMinute <= 10) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 18:/* 18:30~19:15 */
-        {
-            if (20 <= _classInMinute && _classInMinute <= 35) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 19:/* 19:25~20:10 */
-        {
-            if (20 <= _classInMinute && _classInMinute <= 25) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 20:/* 20:20~21:05 */
-        {
-            if (15 <= _classInMinute && _classInMinute <= 25) {
-                _classInTick.image = [UIImage imageNamed:@"tick"];
-                _classUpTick.image = [UIImage imageNamed:@""];
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        default:
-        {
-            [self presentViewController:_signInMessage animated:YES completion:nil];
-        }
-            break;
-    }
+//    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"上课迟到\n或者是：现在不是上课签到时间" preferredStyle:UIAlertControllerStyleAlert];
+//    [_signInMessage addAction:_determineBtn];
+//    
+//    NSDate *currentDate = [NSDate date];
+//    NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *currentComps = [[NSDateComponents alloc]init];
+//    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+//    
+//    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
+//    
+//    _classInHour = [currentComps hour];
+//    _classInMinute = [currentComps minute];
+//    switch (_classInHour) {
+//        case 7:/* 8:00~8:45 */
+//        {
+//            if (50 <= _classInMinute && _classInMinute <= 59) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 8:/* 8:00~8:45  8:55~9:40 */
+//        {
+//            if (0 <= _classInMinute && _classInMinute <= 5) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else if (50 <= _classInMinute && _classInMinute <= 59) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 10:/* 10:10~10:55 */
+//        {
+//            if (0 <= _classInMinute && _classInMinute <= 15) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 11:/* 11:05~11:50 */
+//        {
+//            if (0 <= _classInMinute && _classInMinute <= 10) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 13:/* 14:00~14:40 */
+//        {
+//            if (40 <= _classInMinute && _classInMinute <= 59) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 14:/* 14:00~14:40 14:55~15:40 */
+//        {
+//            if (0 <= _classInMinute && _classInMinute <= 5) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else if (50 <= _classInMinute && _classInMinute <= 59) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 16:/* 16:10~16:55 */
+//        {
+//            if (0 <= _classInMinute && _classInMinute <= 15) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 17:/* 17:05~17:50 */
+//        {
+//            if (0 <= _classInMinute && _classInMinute <= 10) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 18:/* 18:30~19:15 */
+//        {
+//            if (20 <= _classInMinute && _classInMinute <= 35) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 19:/* 19:25~20:10 */
+//        {
+//            if (20 <= _classInMinute && _classInMinute <= 25) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 20:/* 20:20~21:05 */
+//        {
+//            if (15 <= _classInMinute && _classInMinute <= 25) {
+//                _classInTick.image = [UIImage imageNamed:@"tick"];
+//                _classUpTick.image = [UIImage imageNamed:@""];
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        default:
+//        {
+//            [self presentViewController:_signInMessage animated:YES completion:nil];
+//        }
+//            break;
+//    }
+    _currentstatusLabel.text = @"在上课";
 }
 
 #pragma mark - 上课签到成功打钩图片getter（）
@@ -585,203 +583,204 @@
 }
 
 - (void)classUpBtnClick{
-    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"下课时间未到\n现在不是签到时间" preferredStyle:UIAlertControllerStyleAlert];
-    [_signInMessage addAction:_determineBtn];
-    
-    NSDate *currentDate1 = [NSDate date];
-    NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *currentComps = [[NSDateComponents alloc]init];
-    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-    
-    currentComps = [currentCalendar components:unitFlags fromDate:currentDate1];
-    
-    _classUpHour = [currentComps hour];
-    _classUpMinute = [currentComps minute];
-   
-    switch (_classUpHour) {
-        case 8: /* 8:00~8:45 */
-        {
-            if (45 < _classUpMinute && _classInMinute <= 54) {
-                if (45 <= (_classUpMinute - _classInMinute) || (_classUpMinute - _classInMinute) <= 54) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 9:/* 8:55~9:40 */
-        {
-            if (40 < _classUpMinute && _classUpMinute<= 59) {
-                if (5 < (_classInMinute - _classUpMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 10: /* 10:10~10:55 */
-        {
-            if (45 <= (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 55) {
-                _classInTick.image = [UIImage imageNamed:@""];
-                _classUpTick.image = [UIImage imageNamed:@"tick"];
-            }else if (55 < _classUpMinute) {
-                if (45 < (_classUpMinute - _classInMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 11:/* 11:05~11:50 可以设置自动下课签到 */
-        {
-            if (5 <= (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 10) {
-                _classInTick.image = [UIImage imageNamed:@""];
-                _classUpTick.image = [UIImage imageNamed:@"tick"];
-            }else if (50 < _classUpMinute) {
-                if (45 < (_classUpMinute - _classInMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 14:/* 14:00~14:45 */
-        {
-            if (45 < _classUpMinute && _classUpMinute <= 54) {
-                if (45 < (_classUpMinute - _classInMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 15:/* 14:55~15:40 */
-        {
-            if (40 < _classUpMinute && _classUpMinute<= 59) {
-                if (5 < (_classInMinute - _classUpMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 16:/* 16:10~16:55 */
-        {
-            if (45 < (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 55) {
-                _classInTick.image = [UIImage imageNamed:@""];
-                _classUpTick.image = [UIImage imageNamed:@"tick"];
-            }else if (55 < _classUpMinute) {
-                if (45 < (_classUpMinute - _classInMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 17:/* 17:05~17:50 */
-        {
-            if (5 <= (_classInMinute - _classUpMinute) || (_classInMinute - _classUpMinute) <= 10) {
-                _classInTick.image = [UIImage imageNamed:@""];
-                _classUpTick.image = [UIImage imageNamed:@"tick"];
-            }else if (50 < _classUpMinute) {
-                if (45 < (_classUpMinute - _classInMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 19:/* 18:30~19:15 */
-        {
-            if (15 < _classUpMinute && _classUpMinute <= 25) {
-                if (45 <= (_classInMinute + _classUpMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 20:/* 19:25~20:10 */
-        {
-            if (10 < _classUpMinute && _classUpMinute <= 20) {
-                if (35 <= (_classInMinute + _classUpMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        case 21:/* 20:20~21:05 */
-        {
-            if (5 < _classUpMinute && _classUpMinute <= 20) {
-                if (25 <= (_classInMinute + _classUpMinute)) {
-                    _classInTick.image = [UIImage imageNamed:@""];
-                    _classUpTick.image = [UIImage imageNamed:@"tick"];
-                }else{
-                    [self presentViewController:_signInMessage animated:YES completion:nil];
-                }
-            }else{
-                [self presentViewController:_signInMessage animated:YES completion:nil];
-            }
-        }
-            break;
-            
-        default:
-        {
-            [self presentViewController:_signInMessage animated:YES completion:nil];
-        }
-            break;
-    }
+//    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"下课时间未到\n现在不是签到时间" preferredStyle:UIAlertControllerStyleAlert];
+//    [_signInMessage addAction:_determineBtn];
+//    
+//    NSDate *currentDate1 = [NSDate date];
+//    NSCalendar *currentCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *currentComps = [[NSDateComponents alloc]init];
+//    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+//    
+//    currentComps = [currentCalendar components:unitFlags fromDate:currentDate1];
+//    
+//    _classUpHour = [currentComps hour];
+//    _classUpMinute = [currentComps minute];
+//   
+//    switch (_classUpHour) {
+//        case 8: /* 8:00~8:45 */
+//        {
+//            if (45 < _classUpMinute && _classInMinute <= 54) {
+//                if (45 <= (_classUpMinute - _classInMinute) || (_classUpMinute - _classInMinute) <= 54) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 9:/* 8:55~9:40 */
+//        {
+//            if (40 < _classUpMinute && _classUpMinute<= 59) {
+//                if (5 < (_classInMinute - _classUpMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 10: /* 10:10~10:55 */
+//        {
+//            if (45 <= (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 55) {
+//                _classInTick.image = [UIImage imageNamed:@""];
+//                _classUpTick.image = [UIImage imageNamed:@"tick"];
+//            }else if (55 < _classUpMinute) {
+//                if (45 < (_classUpMinute - _classInMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 11:/* 11:05~11:50 可以设置自动下课签到 */
+//        {
+//            if (5 <= (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 10) {
+//                _classInTick.image = [UIImage imageNamed:@""];
+//                _classUpTick.image = [UIImage imageNamed:@"tick"];
+//            }else if (50 < _classUpMinute) {
+//                if (45 < (_classUpMinute - _classInMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 14:/* 14:00~14:45 */
+//        {
+//            if (45 < _classUpMinute && _classUpMinute <= 54) {
+//                if (45 < (_classUpMinute - _classInMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 15:/* 14:55~15:40 */
+//        {
+//            if (40 < _classUpMinute && _classUpMinute<= 59) {
+//                if (5 < (_classInMinute - _classUpMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 16:/* 16:10~16:55 */
+//        {
+//            if (45 < (_classInMinute - _classUpMinute) && (_classInMinute - _classUpMinute) <= 55) {
+//                _classInTick.image = [UIImage imageNamed:@""];
+//                _classUpTick.image = [UIImage imageNamed:@"tick"];
+//            }else if (55 < _classUpMinute) {
+//                if (45 < (_classUpMinute - _classInMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 17:/* 17:05~17:50 */
+//        {
+//            if (5 <= (_classInMinute - _classUpMinute) || (_classInMinute - _classUpMinute) <= 10) {
+//                _classInTick.image = [UIImage imageNamed:@""];
+//                _classUpTick.image = [UIImage imageNamed:@"tick"];
+//            }else if (50 < _classUpMinute) {
+//                if (45 < (_classUpMinute - _classInMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 19:/* 18:30~19:15 */
+//        {
+//            if (15 < _classUpMinute && _classUpMinute <= 25) {
+//                if (45 <= (_classInMinute + _classUpMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 20:/* 19:25~20:10 */
+//        {
+//            if (10 < _classUpMinute && _classUpMinute <= 20) {
+//                if (35 <= (_classInMinute + _classUpMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        case 21:/* 20:20~21:05 */
+//        {
+//            if (5 < _classUpMinute && _classUpMinute <= 20) {
+//                if (25 <= (_classInMinute + _classUpMinute)) {
+//                    _classInTick.image = [UIImage imageNamed:@""];
+//                    _classUpTick.image = [UIImage imageNamed:@"tick"];
+//                }else{
+//                    [self presentViewController:_signInMessage animated:YES completion:nil];
+//                }
+//            }else{
+//                [self presentViewController:_signInMessage animated:YES completion:nil];
+//            }
+//        }
+//            break;
+//            
+//        default:
+//        {
+//            [self presentViewController:_signInMessage animated:YES completion:nil];
+//        }
+//            break;
+//    }
+    _currentstatusLabel.text = @"未到\n上课时间";
 }
 
 #pragma mark - 下课打钩图片getter（）
@@ -821,7 +820,7 @@
         
         _myContributionInfoBtn.titleLabel.font = [UIFont systemFontOfSize:30];
         [_myContributionInfoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_myContributionInfoBtn setTitle:@"我的学霸捐赠" forState:UIControlStateNormal];
+        [_myContributionInfoBtn setTitle:@"我的学霸捐" forState:UIControlStateNormal];
         [_myContributionInfoBtn addTarget:self action:@selector(myContributionInfoBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _myContributionInfoBtn;

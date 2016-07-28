@@ -11,12 +11,14 @@
 #import "personalInfoCell.h"
 #import "SettingViewController.h"
 
+#define SSDD 2
 @interface PersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL isequal;
 }
 @property (nonatomic,strong) NSArray *personalInfo;
 @property (nonatomic,strong) NSArray *temporaryArr;
+@property (nonatomic,strong) NSArray *test;
 
 //背景图
 @property (nonatomic,strong) UIImageView *personalBackground;
@@ -49,6 +51,8 @@
 //编辑按钮下横线
 @property (nonatomic,strong) UIImageView *editBtnLevel;
 
+//获取数据
+@property (nonatomic,strong) NSArray *personInfoData;
 @end
 
 @implementation PersonalInfoViewController
@@ -64,6 +68,8 @@
 //    数组初始化
     _personalInfo = @[@"学校：",@"所在学院：",@"所在系：",@"专业名称：",@"班级：",@"学号："];
     _temporaryArr = @[@"天津财经大学",@"理工学院",@"信息科学与技术系",@"计科",@"计科1301",@"201311146"];
+    _test = @[@"1",@"2",@"3",@"4",@"",@""];
+    
     
 //    添加背景图
     [self.view addSubview:self.personalBackground];
@@ -308,13 +314,19 @@
 //    _personalCell.layer.borderColor = [[UIColor whiteColor]CGColor];
     
     _personalCell.backgroundColor = [UIColor clearColor];
-        
+    
 //        设置当前cell选中无样式
     _personalCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _personalCell.schoolLabel.text = _personalInfo[indexPath.row];
     _personalCell.schoolText.text = _temporaryArr[indexPath.row];
-        
+    NSString *ste = _personalCell.schoolText.text;
+    [_test[indexPath.row] addObject:ste];
+    NSLog(@"ss%@",_test[indexPath.row]);
+    [_personalCell.schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidBegin];
+    [_personalCell.schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidEnd];
+
+    
     _personalCell.schoolText.userInteractionEnabled = NO;
     
     if (isequal == YES) {
@@ -325,13 +337,24 @@
     return _personalCell;
 }
 
-////点击每一行时如何响应
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 0) {
-//        
-//    }else if(indexPath.section == 1){
-//    }
-//}
+//点击每一行时如何响应
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        {
+            NSIndexPath *nowIndexPath1 = [self.personInfoTableView indexPathForSelectedRow];
+            personalInfoCell *cell = [self.personInfoTableView cellForRowAtIndexPath:nowIndexPath1];
+            NSString *str1 = cell.schoolText.text;
+            [_temporaryArr[nowIndexPath1.row] addObject:str1];
+        }
+            break;
+        case 1:
+        {}
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma mark - 编辑按钮getter（）
 
@@ -378,7 +401,14 @@
     }
     return _editBtnLevel;
 }
-
+#pragma mark - 返回数据
+- (void)returnTextData{
+//    NSIndexPath *nowIndexPath1 = [self.personInfoTableView indexPathForSelectedRow];
+//    NSLog(@"%ld",(long)nowIndexPath1.row);
+//    personalInfoCell *cell = [self.personInfoTableView cellForRowAtIndexPath:nowIndexPath1];
+//    NSString *str1 = cell.schoolText.text;
+//    [_temporaryArr[nowIndexPath1.row] addObject:str1];
+}
 /*
 #pragma mark - Navigation
 

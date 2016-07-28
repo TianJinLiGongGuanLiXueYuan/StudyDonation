@@ -17,7 +17,6 @@
 		F43D880E1D45ED1100269147 /* contributionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D880D1D45ED1100269147 /* contributionRecordCell.m */; };
 		F43D88111D4609EC00269147 /* contributionBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D88101D4609EC00269147 /* contributionBtnCell.m */; };
 		F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */; };
-		F488D09D1D45D2AE0015DC53 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F488D09C1D45D2AE0015DC53 /* ButtonCell.m */; };
 		F4A7688D1D43483000B3DF3D /* personalInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A7688C1D43483000B3DF3D /* personalInfoCell.m */; };
 		F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A768921D4357D600B3DF3D /* setPhotoCell.m */; };
 		F4A768991D4365D200B3DF3D /* setExitBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A768981D4365D200B3DF3D /* setExitBtnCell.m */; };
@@ -105,8 +104,6 @@
 		F43D88101D4609EC00269147 /* contributionBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contributionBtnCell.m; sourceTree = "<group>"; };
 		F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
 		F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
-		F488D09B1D45D2AE0015DC53 /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
-		F488D09C1D45D2AE0015DC53 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		F4A7688B1D43483000B3DF3D /* personalInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personalInfoCell.h; sourceTree = "<group>"; };
 		F4A7688C1D43483000B3DF3D /* personalInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personalInfoCell.m; sourceTree = "<group>"; };
 		F4A768911D4357D600B3DF3D /* setPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setPhotoCell.h; sourceTree = "<group>"; };
@@ -474,8 +471,6 @@
 		FE7AD2BF1D3554E300AE368C /* view */ = {
 			isa = PBXGroup;
 			children = (
-				F488D09B1D45D2AE0015DC53 /* ButtonCell.h */,
-				F488D09C1D45D2AE0015DC53 /* ButtonCell.m */,
 				F43D88091D45ECFF00269147 /* classInRecordCell.h */,
 				F43D880A1D45ECFF00269147 /* classInRecordCell.m */,
 				F43D880C1D45ED1100269147 /* contributionRecordCell.h */,
@@ -724,7 +719,6 @@
 				FE7AD29D1D35431A00AE368C /* regeisterViewController.m in Sources */,
 				FE7AD2CD1D35D25D00AE368C /* detailUIView.m in Sources */,
 				FE7AD2D71D36017B00AE368C /* BaseViewController.m in Sources */,
-				F488D09D1D45D2AE0015DC53 /* ButtonCell.m in Sources */,
 				FED16F181D45BC2A00F10B47 /* AFURLSessionManager.m in Sources */,
 				FED16F1F1D45BCBC00F10B47 /* HttpTool.m in Sources */,
 				8C6604DC1D43815400C46C91 /* setCell.m in Sources */,

@@ -51,7 +51,10 @@
 //        _schoolText.layer.borderColor = [[UIColor blackColor]CGColor];
         _schoolText.textAlignment = NSTextAlignmentRight;
         _schoolText.textColor = [UIColor whiteColor];
-        _schoolText.font = [UIFont systemFontOfSize:26.5];    }
+        _schoolText.font = [UIFont systemFontOfSize:26.5];
+//        [_schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidBegin];
+//        [_schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidEnd];
+    }
     return _schoolText;
 }
 
@@ -73,4 +76,9 @@
 //    self.schoolText.layer.borderWidth = 2.0f;
 //    self.schoolText.layer.borderColor = [[UIColor blackColor]CGColor];
 }
+
+//#pragma mark - 返回数据
+//- (void)returnTextData{
+//    
+//}
 @end

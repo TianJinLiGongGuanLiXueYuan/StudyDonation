@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MoreDetailViewController.h"
 #import "CustomNavigationController.h"
-#import "ButtonCell.h"
 #import "classInRecordCell.h"
 #import "contributionRecordCell.h"
 #import "contributionBtnCell.h"
@@ -19,23 +18,44 @@
 {
     BOOL sceletState;
 }
-
-
+//背景图
 @property (nonatomic,strong) UIImageView *contributionBackground;
 
+//临时数据
 @property (nonatomic,strong) NSArray *dateArr;
 @property (nonatomic,strong) NSArray *countArr;
 @property (nonatomic,strong) NSArray *moneyArr;
 
+//返回按钮
 @property (nonatomic,strong) UIButton *contributionReturnBtn;
 
+//两个数据表
 @property (strong,nonatomic) UITableView *classInfo;
 @property (strong,nonatomic) UITableView *detailInfo;
+
+//上课记录按钮和捐献纪录按钮
+@property (nonatomic,strong) UIButton *classInRecordBtn;
+@property (nonatomic,strong) UIButton *contributionRecordBtn;
+
+//当前可捐献lebel
+@property (nonatomic,strong) UILabel *contributionInfo;
+
+//金钱图片
+@property (nonatomic,strong) UIImageView *moneyImage;
+
+//可捐献钱数
+@property (nonatomic,strong) UILabel *moneyCount;
+
+//确定捐献按钮
+@property (nonatomic,strong) UIButton *confirmContributionBtn;
+
+//全选按钮
+@property (nonatomic,strong) UIButton *selectAllBtn;
+
 
 @property (nonatomic,strong) NSIndexPath *nowIndexPath;
 
 @property (nonatomic,strong) classInRecordCell *classInRecordcell;
-@property (nonatomic,strong) ButtonCell *BtnCell;
 @property (nonatomic,strong) contributionRecordCell *contributionRecordcell;
 
 @end
@@ -57,13 +77,14 @@
     _moneyArr = @[@"三分钱",@"一分钱",@"四分钱",@"三分钱",@"一分钱",@"二分钱"];
     
     [self.view addSubview:self.contributionReturnBtn];
-
+    
+    [self.view addSubview:self.classInRecordBtn];
+    [self.view addSubview:self.contributionRecordBtn];
 //上课信息
-    _classInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x-181,self.view.center.y-310, 363, 620) style:UITableViewStylePlain];
-    _classInfo.layer.cornerRadius = 5.0f;
+    _classInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 181,self.view.center.y - 250, 363, 360) style:UITableViewStylePlain];
     _classInfo.backgroundColor = [UIColor clearColor];
-    _classInfo.layer.borderWidth = 2;
-    _classInfo.layer.borderColor = [[UIColor whiteColor]CGColor];
+//    _classInfo.layer.borderWidth = 2.0f;
+//    _classInfo.layer.borderColor = [[UIColor blackColor]CGColor];
     _classInfo.backgroundColor = [UIColor clearColor];
     _classInfo.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_classInfo];
@@ -72,11 +93,10 @@
     _classInfo.showsVerticalScrollIndicator = NO;
     
 ////捐赠信息
-    _detailInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x-181,self.view.center.y-310, 363, 620) style:UITableViewStylePlain];
-    _detailInfo.layer.cornerRadius = 5.0f;
-    _detailInfo.backgroundColor = [UIColor clearColor];
-    _detailInfo.layer.borderWidth = 2;
-    _detailInfo.layer.borderColor = [[UIColor whiteColor]CGColor];
+    _detailInfo=[[UITableView alloc]initWithFrame:CGRectMake(self.view.center.x - 181,self.view.center.y - 250, 363, 360) style:UITableViewStylePlain];
+    _detailInfo.backgroundColor = [UIColor blackColor];
+//    _detailInfo.layer.borderWidth = 2.0f;
+//    _detailInfo.layer.borderColor = [[UIColor whiteColor]CGColor];
     _detailInfo.backgroundColor = [UIColor clearColor];
     _detailInfo.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_detailInfo];
@@ -84,7 +104,12 @@
     _detailInfo.dataSource = self;
     _detailInfo.showsVerticalScrollIndicator = NO;
     _detailInfo.hidden=YES;
-   
+    
+    [self.view addSubview:self.contributionInfo];
+    [self.view addSubview:self.moneyImage];
+    [self.view addSubview:self.moneyCount];
+    [self.view addSubview:self.confirmContributionBtn];
+    [self.view addSubview:self.selectAllBtn];
 }
 - (void) viewDidDisappear:(BOOL)animated
 {
@@ -97,6 +122,16 @@
 
 //    设置背景图位置
     self.contributionBackground.frame = [UIScreen mainScreen].bounds;
+    
+    self.classInRecordBtn.frame = CGRectMake(self.view.center.x - 181, self.view.center.y - 310, self.classInfo.bounds.size.width / 2, 60);
+    self.contributionRecordBtn.frame = CGRectMake(self.view.center.x, self.view.center.y - 310, self.classInfo.bounds.size.width / 2, 60);
+    
+    self.contributionInfo.frame = CGRectMake(30, 500, 200, 50);
+    self.moneyImage.frame = CGRectMake(240, 500, 30, 50);
+    self.moneyCount.frame = CGRectMake(280, 500 ,100, 50);
+    self.confirmContributionBtn.frame = CGRectMake(115, 572, 150, 50);
+    self.selectAllBtn.frame = CGRectMake(270, 600, 100, 50);
+
 }
 #pragma mark - 背景图getter（）
 
@@ -132,97 +167,45 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 6;
-    }
-    return 1;
+    return 6;
 }
 //每个分组上边预留的空白高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 60;
-    }
     return 0;
 }
 //每个分组下边预留的空白高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    return 0.00001f;
+    return 0;
 }
 //每一个分组下对应的tableview 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.section == 0) {
-        return 60;
-    }
-    return 150;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        if ([tableView isEqual:_classInfo]) {
-            _BtnCell=[[ButtonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
-//        _BtnCell.layer.borderWidth = 1.0f;
-//        _BtnCell.layer.borderColor = [[UIColor blackColor]CGColor];
-            _BtnCell.classInRecordBtn.backgroundColor = [UIColor whiteColor];
-            [_BtnCell.classInRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            _BtnCell.contributionRecordBtn.backgroundColor = [UIColor clearColor];
-            [_BtnCell.contributionRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [_BtnCell.classInRecordBtn addTarget:self action:@selector(classInRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            [_BtnCell.contributionRecordBtn addTarget:self action:@selector(contributionRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            _BtnCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return _BtnCell;
-        }else if ([tableView isEqual:_detailInfo]){
-                _BtnCell=[[ButtonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
-                //        _BtnCell.layer.borderWidth = 1.0f;
-                //        _BtnCell.layer.borderColor = [[UIColor blackColor]CGColor];
-                _BtnCell.classInRecordBtn.backgroundColor = [UIColor clearColor];
-                [_BtnCell.classInRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                _BtnCell.contributionRecordBtn.backgroundColor = [UIColor whiteColor];
-                [_BtnCell.contributionRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [_BtnCell.classInRecordBtn addTarget:self action:@selector(classInRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
-                [_BtnCell.contributionRecordBtn addTarget:self action:@selector(contributionRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
-                _BtnCell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return _BtnCell;
-        }
-    }
-    return nil;
+    return 60;
 }
 
 //设置每行cell的内容
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([tableView isEqual:_classInfo]) {        
-        if (indexPath.section == 0) {
-            _classInRecordcell=[[classInRecordCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
-            _classInRecordcell.backgroundColor = [UIColor clearColor];
-            _classInRecordcell.selectionStyle = UITableViewCellSelectionStyleNone;
-            _classInRecordcell.classInDateLabel.text = _dateArr[indexPath.row];
-            _classInRecordcell.classInDetailLabel.text = _countArr[indexPath.row];
-            _classInRecordcell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            if(sceletState==YES){
-                [_classInRecordcell seleteMode];
-            }
-            
-            
-            return _classInRecordcell;
-        }else{
-            contributionBtnCell *contributionBtncell=[[contributionBtnCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
-            contributionBtncell.backgroundColor = [UIColor clearColor];
-            contributionBtncell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [contributionBtncell.confirmContributionBtn addTarget:self action:@selector(confirmContributionBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            [contributionBtncell.selectAllBtn addTarget:self action:@selector(selectAllBtnBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            return contributionBtncell;
+    if ([tableView isEqual:_classInfo]) {
+        _classInRecordcell=[[classInRecordCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BtnCell"];
+        _classInRecordcell.backgroundColor = [UIColor clearColor];
+        _classInRecordcell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _classInRecordcell.classInDateLabel.text = _dateArr[indexPath.row];
+        _classInRecordcell.classInDetailLabel.text = _countArr[indexPath.row];
+        _classInRecordcell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+        if(sceletState==YES){
+            [_classInRecordcell seleteMode];
         }
+        return _classInRecordcell;
     }else
         if ([tableView isEqual:_detailInfo]){
             _contributionRecordcell=[[contributionRecordCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"contributionRecordCell"];
@@ -312,27 +295,129 @@
     }
 }
 
-#pragma mark - 上课记录点击按钮点击事件
+#pragma mark - 上课记录点击按钮getter（）
+
+- (UIButton *)classInRecordBtn{
+    if (!_classInRecordBtn) {
+        _classInRecordBtn = [[UIButton alloc]init];
+//        _classInRecordBtn.layer.borderWidth = 2.0f;
+//        _classInRecordBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+//        _classInRecordBtn.layer.cornerRadius = 5.0f;
+        _classInRecordBtn.backgroundColor = [UIColor whiteColor];
+        [_classInRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _classInRecordBtn.titleLabel.font = [UIFont systemFontOfSize:26.5];
+        [_classInRecordBtn setTitle:@"上课记录" forState:UIControlStateNormal];
+        [_classInRecordBtn addTarget:self action:@selector(classInRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _classInRecordBtn;
+}
 
 - (void)classInRecordBtnClick{
     _classInfo.hidden = NO;
     _detailInfo.hidden = YES;
+    _classInRecordBtn.backgroundColor = [UIColor whiteColor];
+    [_classInRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _contributionRecordBtn.backgroundColor = [UIColor clearColor];
+    [_contributionRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
 }
 
-#pragma mark - 捐赠记录点击按钮点击事件
+#pragma mark - 捐献记录按钮getter（）
+
+- (UIButton *)contributionRecordBtn{
+    if (!_contributionRecordBtn) {
+        _contributionRecordBtn = [[UIButton alloc]init];
+//        _contributionRecordBtn.layer.cornerRadius = 5.0f;
+//        _contributionRecordBtn.layer.borderWidth = 2.0f;
+//        _contributionRecordBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _contributionRecordBtn.titleLabel.font = [UIFont systemFontOfSize:26.5];
+        _contributionRecordBtn.backgroundColor = [UIColor clearColor];
+        [_contributionRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_contributionRecordBtn setTitle:@"捐赠记录" forState:UIControlStateNormal];
+        [_contributionRecordBtn addTarget:self action:@selector(contributionRecordBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _contributionRecordBtn;
+}
 
 - (void)contributionRecordBtnClick{
     _classInfo.hidden = YES;
     _detailInfo.hidden = NO;
+    _classInRecordBtn.backgroundColor = [UIColor clearColor];
+    [_classInRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _contributionRecordBtn.backgroundColor = [UIColor whiteColor];
+    [_contributionRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
+#pragma mark - 当前可捐献额度label
+
+- (UILabel *)contributionInfo{
+    if (!_contributionInfo) {
+        _contributionInfo = [[UILabel alloc]init];
+//        _contributionInfo.layer.borderWidth = 1.0f;
+//        _contributionInfo.layer.borderColor = [[UIColor blackColor]CGColor];
+        _contributionInfo.textAlignment = NSTextAlignmentCenter;
+        _contributionInfo.font = [UIFont systemFontOfSize:25];
+        _contributionInfo.textColor = [UIColor whiteColor];
+        _contributionInfo.text = @"当前可捐献额度:";
+    }
+    return _contributionInfo;
+}
+
+#pragma mark - 金钱图片
+
+- (UIImageView *)moneyImage{
+    if (!_moneyImage) {
+        _moneyImage = [[UIImageView alloc]init];
+//                _moneyImage.layer.borderWidth = 1.0f;
+//                _moneyImage.layer.borderColor = [[UIColor blackColor]CGColor];
+        _moneyImage.image = [UIImage imageNamed:@"money"];
+    }
+    return _moneyImage;
+}
+#pragma mark - 可捐献钱数
+
+- (UILabel *)moneyCount{
+    if (!_moneyCount) {
+        _moneyCount = [[UILabel alloc]init];
+//                _moneyCount.layer.borderWidth = 1.0f;
+//                _moneyCount.layer.borderColor = [[UIColor blackColor]CGColor];
+        _moneyCount.textAlignment = NSTextAlignmentCenter;
+        _moneyCount.font = [UIFont systemFontOfSize:26];
+        _moneyCount.textColor = [UIColor whiteColor];
+        _moneyCount.textAlignment = NSTextAlignmentLeft;
+        _moneyCount.text = @"6.66";
+    }
+    return _moneyCount;
+}
 
 #pragma mark - 确定捐献按钮
-- (void)confirmContributionBtnClick{
-    
+
+- (UIButton *)confirmContributionBtn{
+    if (!_confirmContributionBtn) {
+        _confirmContributionBtn = [[UIButton alloc]init];
+        _confirmContributionBtn.layer.borderWidth = 1.0f;
+        _confirmContributionBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _confirmContributionBtn.layer.cornerRadius = 5.0f;
+        _confirmContributionBtn.titleLabel.font = [UIFont systemFontOfSize:26];
+        [_confirmContributionBtn setTitle:@"确定捐献" forState:UIControlStateNormal];
+    }
+    return _confirmContributionBtn;
 }
 
 #pragma mark - 全选按钮
+
+- (UIButton *)selectAllBtn{
+    if (!_selectAllBtn) {
+        _selectAllBtn = [[UIButton alloc]init];
+//                _selectAllBtn.layer.borderWidth = 1.0f;
+//                _selectAllBtn.layer.borderColor = [[UIColor blackColor]CGColor];
+        _selectAllBtn.titleLabel.font = [UIFont systemFontOfSize:26];
+        [_selectAllBtn setTitle:@"全选" forState:UIControlStateNormal];
+        [_selectAllBtn addTarget:self action:@selector(selectAllBtnBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _selectAllBtn;
+}
+
 - (void)selectAllBtnBtnClick{
     sceletState = !sceletState;
     [self.classInfo reloadData];

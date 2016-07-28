@@ -16,5 +16,7 @@
 
 @property (nonatomic,strong) UIImageView *bottomLevel;
 
+//@property (nonatomic,strong) NSArray *schoolData;
+
 - (void)EnableEditing;
 @end

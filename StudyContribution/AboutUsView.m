@@ -83,15 +83,16 @@ typedef void (^RNBlurCompletion)(void);
     
     UIColor *whiteColor = [UIColor colorWithRed:0.816 green:0.788 blue:0.788 alpha:1.000];
     
-    view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8f];
+//    view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8f];
+    view.backgroundColor = [UIColor clearColor];
     view.layer.borderColor = whiteColor.CGColor;
     view.layer.borderWidth = 2.f;
     view.layer.cornerRadius = 10.f;
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, 0, defaultWidth - padding * 2.f, 0)];
     titleLabel.text = title;
-    titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17.f];
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:25.f];
+    titleLabel.textColor = [UIColor blackColor];
     titleLabel.shadowColor = [UIColor blackColor];
     titleLabel.shadowOffset = CGSizeMake(0, -1);
     titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -103,7 +104,7 @@ typedef void (^RNBlurCompletion)(void);
     UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, 0, defaultWidth - padding * 2.f, 0)];
     messageLabel.text = message;
     messageLabel.numberOfLines = 0;
-    messageLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17.f];
+    messageLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:20.f];
     messageLabel.textColor = titleLabel.textColor;
     messageLabel.shadowOffset = titleLabel.shadowOffset;
     messageLabel.shadowColor = titleLabel.shadowColor;

@@ -28,6 +28,10 @@
 
 @property (nonatomic,strong) UIButton *setreturnBtn;
 
+@property (nonatomic,strong) UIAlertController *cacheMessage;
+@property (nonatomic,strong) UIAlertAction *messageConfirmBtn;
+@property (nonatomic,strong) UIAlertAction *messageCancelBtn;
+
 @end
 
 @implementation SettingViewController
@@ -43,7 +47,9 @@
     
 //    初始化数组
     _settingArr = @[@"修改个人信息",@"清除缓存",@"关于学霸捐"];
-    
+//    _messageConfirmBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^];
+//    _messageCancelBtn = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+
 //    添加背景图
     [self.view addSubview:self.setBackground];
     
@@ -219,18 +225,29 @@
                 break;
             case 1:
             {
-                NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-                NSString *path=[[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+                NSString *path = [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
                 NSFileManager *fileManager=[NSFileManager defaultManager];
                 
+                NSString *Message = [NSString stringWithFormat:@"当前缓存的大小为\n%0.2fM",[self folderSizeAtPath:path]];
+                
+                _cacheMessage = [UIAlertController alertControllerWithTitle:@"清理缓存" message:Message preferredStyle:UIAlertControllerStyleAlert];
+                
+                
                 if ([fileManager fileExistsAtPath:path]) {
-                    NSArray *childerFiles=[fileManager subpathsAtPath:path];
-                    for (NSString *fileName in childerFiles) {
-                        //如有需要，加入条件，过滤掉不想删除的文件
-                        NSString *absolutePath=[path stringByAppendingPathComponent:fileName];
-                        [fileManager removeItemAtPath:absolutePath error:nil];
-                        NSLog(@"成功");
-                    }
+                    _messageConfirmBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            NSArray *childerFiles = [fileManager subpathsAtPath:path];
+                            for (NSString *fileName in childerFiles) {
+                                //如有需要，加入条件，过滤掉不想删除的文件
+                                NSString *absolutePath=[path stringByAppendingPathComponent:fileName];
+                                [fileManager removeItemAtPath:absolutePath error:nil];
+                                NSLog(@"成功");
+                            }
+                    }];
+                    _messageCancelBtn = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+                    [_cacheMessage addAction:_messageCancelBtn];
+                    [_cacheMessage addAction:_messageConfirmBtn];
+                    [self presentViewController:_cacheMessage animated:YES completion:nil];
                 }else{
                     NSLog(@"失败");
                 }
@@ -275,6 +292,38 @@
         
     }];
 }
+
+#pragma mark - 清除缓存大小
+
+//计算单个文件大小
+- (float)folderSizeAtPath:(NSString *)folderPath{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:folderPath]) {
+        return 0;
+    }
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath]objectEnumerator];
+    NSString *fileName;
+    long long folderSize = 0;
+    while ((fileName = [childFilesEnumerator nextObject]) != nil) {
+        NSString *fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    return folderSize / (1024.0 * 1024.0);
+}
+// 遍历文件夹，返回多少M
+- (long long)fileSizeAtPath:(NSString *)filePath{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]) {
+        return [[manager attributesOfItemAtPath:filePath error:nil]fileSize];
+    }
+    return 0;
+}
+
+
+//- (float)filePath{
+//    NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+//    return [self folderSizeAtPath:cachPath];
+//}
 /*
  #pragma mark - Navigation
  

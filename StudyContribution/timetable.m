@@ -25,9 +25,9 @@
     [self.view addSubview:self.background];
     [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
     [self.navitionBar.left_btn addTarget:self action:@selector(left_btnclick) forControlEvents:UIControlEventTouchUpInside];
-    NSArray *arr=[self aaadata];
-    NSLog(@"aa");
-    [self classqqq:arr];
+    NSArray *arr=[self classdata];
+    NSLog(@"课程表");
+    [self classtb:arr];
 }
 -(void)left_btnclick
 {
@@ -68,7 +68,7 @@
 
 #pragma mark -  用二维数组生成课程
 
--(NSMutableArray *)aaadata{
+-(NSMutableArray *)classdata{
     
     //    NSArray *rowArr=[NSArray alloc]init;
     NSMutableArray *rowArr=[NSMutableArray array];
@@ -90,7 +90,7 @@
     
 }
 
--(void)classqqq:(NSArray *)arr{
+-(void)classtb:(NSArray *)arr{
     
     for(int i=0;i<6;i++){
         for(int j=0;j<8;j++){

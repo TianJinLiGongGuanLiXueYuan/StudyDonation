@@ -16,23 +16,36 @@
 @property (strong, nonatomic) UIImageView *background;
 @property(nonatomic,strong)UIButton *timetableBtn;
 @property (nonatomic,strong) UIButton *returnBtn;
+@property (nonatomic,strong) NSArray *classArr;
+@property (nonatomic,strong) NSArray *locArr;
+@property (nonatomic,strong) NSArray *timeArr;
+@property (nonatomic,strong) NSArray *class1Arr;
+@property (nonatomic,strong) NSArray *loc1Arr;
+@property (nonatomic,strong) NSArray *time1Arr;
+
 @end
 @implementation ClassInfoViewController
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
+
     
     // Dispose of any resources that can be recreated.
-}
+
  - (void)viewDidLoad
- {
+ {   [super viewDidLoad];
      [self.view addSubview:self.background];
      [self.view addSubview:self.returnBtn];
+     [[self navigationController] setNavigationBarHidden:YES animated:YES];
      
-            [super viewDidLoad];
-         // 设置tableView的数据源
+     _classArr = @[@"大英",@"大物",@"现代",@"毛概",@"高数"];
+     _locArr = @[@"四教201",@"一教101",@"二教203",@"四教503",@"四教304"];
+     _timeArr = @[@"50分钟前",@"四小时前",@"一天前",@"一天前",@"两天前"];
+     _class1Arr = @[@"高数"];
+     _loc1Arr = @[@"四教304"];
+     _time1Arr = @[@"一小时后"];
+
+
+ // 设置tableView的数据源
      self.TableView.dataSource = self;
      _TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
      _TableView.backgroundColor = [UIColor clearColor];
@@ -42,24 +55,21 @@
      _TableView.delegate = self;
      _TableView.dataSource = self;
      [self.view addSubview:self.timetableBtn];
+     [self.navitionBar.left_btn setTitle:@"返回" forState:UIControlStateNormal];
+     [self.navitionBar.left_btn addTarget:self action:@selector(left_btnclick) forControlEvents:UIControlEventTouchUpInside];
+    
      }
 
 #pragma mark - 返回按钮
 
-- (UIButton *)returnBtn{
-    if (!_returnBtn) {
-        _returnBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 45, 45)];
-        _returnBtn.backgroundColor = [UIColor clearColor];
-        [_returnBtn addTarget:self action:@selector(returnBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _returnBtn;
+-(void)left_btnclick
+{
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)returnBtnClick{
-    regeisterViewController *regeisterVC = [[ regeisterViewController alloc]init];
-    [self.navigationController pushViewController:regeisterVC animated:YES];
-}
-
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];}
 
 #pragma mark - 背景图
 
@@ -89,7 +99,7 @@
  {
          NSLog(@"numberOfSectionsInTableView");
          return 2;
-     }
+}
    //2.第section组有多少行
 
  - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -115,6 +125,7 @@
      //    indexPath.row; // 第几行
         // 1.创建cell
        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+   
      cell.backgroundColor = [UIColor clearColor];
      [self.TableView       setSeparatorStyle:UITableViewCellSeparatorStyleNone];
      
@@ -122,34 +133,46 @@
          // cell.textLabel.text = @"";
          // 判断是第几组的第几行
          if (0 == indexPath.section) { // 第0组
-            if (0 == indexPath.row)
-                // 第0组第0行
-            {cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                   cell.textLabel.text = @"  大英   四教203   30分钟前";
-            }else if (1 == indexPath.row) // 第0组第1行
-                {cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                   cell.textLabel.text = @"  大物   一教211   2小时前";
-                }else if (2 == indexPath.row)
-                {cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                   cell.textLabel.text = @"  高数   一教101   一天前";
-                }else if (3== indexPath.row)
-                {cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                   cell.textLabel.text = @"  毛概   一教309   一天前";
-                }else if (4== indexPath.row)
-                {cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                   cell.textLabel.text = @"  线代   一教212   两天前";
-                 }
-
+//            if (0 == indexPath.row)
+//                // 第0组第0行
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(40, 0, 108, 40)];
+            label1.text = _classArr[indexPath.row];
+            UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(173, 0, 108, 40)];
+            label2.text = _locArr[indexPath.row];
+            UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(320, 0, 108, 40)];
+            label3.text = _timeArr[indexPath.row];
+             
+//             字典用法
+//             NSDictionary *dic=[NSDictionary dictionary];
+//             [dic setValue:@"aasdf" forKey:@"class"];
+//             [dic setValue:@"aasdf" forKey:@""];
+//             [dic setValue:@"aasdf" forKey:@"name"];
+//             
+//             NSString *str=dic[@"name"];
+     
+             [cell addSubview:label1];
+             [cell addSubview:label2];
+             [cell addSubview:label3];
+//
              }else if (1 == indexPath.section) // 第1组
                 {
-                  if (0 == indexPath.row)
-                  { // 第0组第0行
-                      cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                     cell.textLabel.text = @"线性代数 四教303 50分钟后";
-                  }
-                }
-    
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    UILabel *labela = [[UILabel alloc]initWithFrame:CGRectMake(40, 0, 108, 40)];
+                    
+                    labela.text = _class1Arr[indexPath.row];
+                    UILabel *labelb = [[UILabel alloc]initWithFrame:CGRectMake(173, 0, 108, 40)];
+                    
+                    labelb.text = _loc1Arr[indexPath.row];
+                    
+                    UILabel *labelc = [[UILabel alloc]initWithFrame:CGRectMake(320, 0, 108, 40)];
+                    labelc.text = _time1Arr[indexPath.row];
+                    [cell addSubview:labela];
+                    [cell addSubview:labelb];
+                    [cell addSubview:labelc];
+                    }
          // 3.返回要显示的控件
+     
          return cell;
     
      }
@@ -159,7 +182,7 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(10, 5, self.view.bounds.size.width-20, 40)];
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10,2, 400, 30) ];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10,20, 400, 30) ];
     label.textAlignment = NSTextAlignmentCenter;
     
         if (0 == section) {
@@ -180,7 +203,8 @@
 //第section组底部显示什么标题
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(10, 5, self.view.bounds.size.width-20, 40)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(10, 5, self.view.bounds.size.width-20, 100)];
+
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10,2, self.view.bounds.size.width, 30)];
     if (0 == section) {
         label.text=@"近期课程都学会了么？课后要复习哦~";
@@ -218,13 +242,13 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  22;
+    return 50;
 }
 
-    - (CGFloat)tableView:(UITableView *)tableView heightForFootInSection:(NSInteger)section{
-        return  200;
+- (CGFloat)tableView:(UITableView *)tableView heightForFootInSection:(NSInteger)section{
+    return 50;
 
 }
-
+            
 @end
 

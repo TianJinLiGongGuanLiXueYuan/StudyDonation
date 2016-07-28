@@ -12,13 +12,13 @@
 #import "SettingViewController.h"
 
 #define SSDD 2
-@interface PersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface PersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     BOOL isequal;
 }
+//临时使用
 @property (nonatomic,strong) NSArray *personalInfo;
-@property (nonatomic,strong) NSArray *temporaryArr;
-@property (nonatomic,strong) NSArray *test;
+@property (nonatomic,strong) NSMutableArray *test;
 
 //背景图
 @property (nonatomic,strong) UIImageView *personalBackground;
@@ -40,9 +40,8 @@
 @property (nonatomic,strong) UITextField *personalGradeValueText;
 @property (nonatomic,strong) UIImageView *personInfoGradeLevel;
 
-//学生信息
+//学生信息表视图
 @property (nonatomic,strong) UITableView *personInfoTableView;
-
 @property (nonatomic,strong) personalInfoCell *personalCell;
 
 //编辑按钮
@@ -52,7 +51,8 @@
 @property (nonatomic,strong) UIImageView *editBtnLevel;
 
 //获取数据
-@property (nonatomic,strong) NSArray *personInfoData;
+@property (nonatomic,strong) NSMutableDictionary *personInfoData;
+
 @end
 
 @implementation PersonalInfoViewController
@@ -61,14 +61,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _test = [NSMutableArray array];
+    _personInfoData = [NSMutableDictionary dictionary];
+    _test = [NSMutableArray arrayWithObjects:@"天津财经大学",@"理工学院",@"信息科学与技术系",@"计科",@"计科1301",@"201311146", nil];
     // Do any additional setup after loading the view.
     
     isequal = NO;
     
 //    数组初始化
     _personalInfo = @[@"学校：",@"所在学院：",@"所在系：",@"专业名称：",@"班级：",@"学号："];
-    _temporaryArr = @[@"天津财经大学",@"理工学院",@"信息科学与技术系",@"计科",@"计科1301",@"201311146"];
-    _test = @[@"1",@"2",@"3",@"4",@"",@""];
     
     
 //    添加背景图
@@ -319,13 +320,13 @@
     _personalCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _personalCell.schoolLabel.text = _personalInfo[indexPath.row];
-    _personalCell.schoolText.text = _temporaryArr[indexPath.row];
-    NSString *ste = _personalCell.schoolText.text;
-    [_test[indexPath.row] addObject:ste];
-    NSLog(@"ss%@",_test[indexPath.row]);
-    [_personalCell.schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidBegin];
-    [_personalCell.schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidEnd];
-
+    _personalCell.schoolText.text = _test[indexPath.row];
+    _personalCell.schoolText.tag = indexPath.row;
+    _personalCell.schoolText.delegate = self;
+    [_test replaceObjectAtIndex:indexPath.row withObject:_personalCell.schoolText.text];
+    NSLog(@"%@在第%ld行",_test[indexPath.row],(long)_personalCell.schoolText.tag);
+//此方法为关键方法
+    [_personalCell.schoolText addTarget:self action:@selector(textFieldWithText:) forControlEvents:UIControlEventEditingChanged];
     
     _personalCell.schoolText.userInteractionEnabled = NO;
     
@@ -337,15 +338,18 @@
     return _personalCell;
 }
 
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    //get cell
+//    personalInfoCell *cell = (personalInfoCell *)[[textField superview] superview];
+//    NSIndexPath *indexPath = [_personInfoTableView indexPathForCell:cell];
+//}
+
 //点击每一行时如何响应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:
         {
-            NSIndexPath *nowIndexPath1 = [self.personInfoTableView indexPathForSelectedRow];
-            personalInfoCell *cell = [self.personInfoTableView cellForRowAtIndexPath:nowIndexPath1];
-            NSString *str1 = cell.schoolText.text;
-            [_temporaryArr[nowIndexPath1.row] addObject:str1];
         }
             break;
         case 1:
@@ -401,13 +405,32 @@
     }
     return _editBtnLevel;
 }
-#pragma mark - 返回数据
-- (void)returnTextData{
-//    NSIndexPath *nowIndexPath1 = [self.personInfoTableView indexPathForSelectedRow];
-//    NSLog(@"%ld",(long)nowIndexPath1.row);
-//    personalInfoCell *cell = [self.personInfoTableView cellForRowAtIndexPath:nowIndexPath1];
-//    NSString *str1 = cell.schoolText.text;
-//    [_temporaryArr[nowIndexPath1.row] addObject:str1];
+#pragma mark - 编辑完后返回数据
+
+- (void)textFieldWithText:(UITextField *)textField
+{
+    switch (textField.tag) {
+        case 0:
+            [_test replaceObjectAtIndex:0 withObject:textField.text];
+            break;
+        case 1:
+            [_test replaceObjectAtIndex:1 withObject:textField.text];
+            break;
+        case 2:
+            [_test replaceObjectAtIndex:2 withObject:textField.text];
+            break;
+        case 3:
+            [_test replaceObjectAtIndex:3 withObject:textField.text];
+            break;
+        case 4:
+            [_test replaceObjectAtIndex:4 withObject:textField.text];
+            break;
+        case 5:
+            [_test replaceObjectAtIndex:5 withObject:textField.text];
+            break;
+        default:
+            break;
+    }
 }
 /*
 #pragma mark - Navigation

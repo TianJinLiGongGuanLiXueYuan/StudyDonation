@@ -72,10 +72,14 @@
 //设置按钮
 @property (nonatomic,strong) UIButton *settingBtn;
 
-/*
- //定位
- @property (nonatomic,strong) CLLocationManager *locationManager;
- */
+//定位
+@property (nonatomic,strong) CLLocationManager *locationManager;
+
+//基点坐标
+@property (nonatomic,strong) CLLocation *basePoint;
+
+//学生坐标
+@property (nonatomic,strong) CLLocation *userPoint;
 
 //消息框
 @property (nonatomic,strong) UIAlertController *signInMessage;
@@ -139,25 +143,15 @@
 //    添加设置按钮
     [self.view addSubview:self.settingBtn];
 
-    /*
-//    初始化定位
-     self.locationManager = [[CLLocationManager alloc]init];
-     self.locationManager.delegate = self;
-     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-     self.locationManager.distanceFilter = 1000.0f;
-     
-     [self.locationManager requestWhenInUseAuthorization];
-     [self.locationManager requestAlwaysAuthorization];
-     
-     
-//根据经纬度创建两个位置对象
-     CLLocation *loc1=[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
-//    CLLocation *loc1=[[CLLocation alloc]initWithLatitude:39.9 longitude:116.3];
-     CLLocation *loc2=[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
-//计算两个位置之间的距离
-     CLLocationDistance distance=[loc1 distanceFromLocation:loc2];
-     NSLog(@"(%@)和(%@)的距离=%fKM",loc1,loc2,distance/1000);
-     */
+
+////    初始化定位
+//     self.locationManager = [[CLLocationManager alloc]init];
+//     self.locationManager.delegate = self;
+//     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//     self.locationManager.distanceFilter = 1000.0f;
+//     
+//     [self.locationManager requestWhenInUseAuthorization];
+//     [self.locationManager requestAlwaysAuthorization];
     
 }
 
@@ -223,20 +217,16 @@
 //    设置按钮位置
     self.settingBtn.frame = CGRectMake(XMargin + 14.5, 602.5, 100, 50);
     
-    /*
-//    开始定位
-     [self.locationManager startUpdatingLocation];
-     */
-    
+////    开始定位
+//    [self.locationManager startUpdatingLocation];
 }
 
-/*
- -(void)viewWillDisappear:(BOOL)animated{
+
+- (void)viewWillDisappear:(BOOL)animated{
  [super viewWillDisappear:animated];
  
  [self.locationManager stopUpdatingLocation];
- }
- */
+}
 
 #pragma mark - 背景图getter（）
 
@@ -389,7 +379,26 @@
 }
 
 - (void)classInBtnClick{
-
+    
+//    初始化定位
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 1000.0f;
+    
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestAlwaysAuthorization];
+    
+//开始定位
+    [self.locationManager startUpdatingLocation];
+    
+    //根据经纬度创建两个位置对象
+    _basePoint =[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
+//    _userPoint =[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
+    //计算两个位置之间的距离
+    CLLocationDistance distance=[_basePoint distanceFromLocation:_userPoint];
+    NSLog(@"(%@)和(%@)的距离=%fKM",_basePoint,_userPoint,distance / 1000);
+    
 //    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"上课迟到\n或者是：现在不是上课签到时间" preferredStyle:UIAlertControllerStyleAlert];
 //    [_signInMessage addAction:_determineBtn];
 //    
@@ -874,37 +883,33 @@
 
 #pragma mark - 定位信息
 
-/*
- - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
- CLLocation *currLocation = [locations lastObject];
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    CLLocation *currLocation = [locations lastObject];
  
- NSLog(@"定位信息：%3.5f,%3.5f,%3.5f",currLocation.coordinate.latitude,currLocation.coordinate.longitude,currLocation.altitude);
+    _userPoint =[[CLLocation alloc]initWithLatitude:currLocation.coordinate.latitude longitude:currLocation.coordinate.longitude];
+    
+    NSLog(@"纬度：%3.5f  经度：%3.5f  高度：%3.5f",currLocation.coordinate.latitude
+          ,currLocation.coordinate.longitude
+          ,currLocation.altitude);
  
- //    纬度Text赋值
- self.txtLat.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.latitude];
- //    经度度Text赋值
- self.txtLng.text = [NSString stringWithFormat:@"%3.5f",currLocation.coordinate.longitude];
- //    高度Text赋值
- self.txtAlt.text = [NSString stringWithFormat:@"%3.5f",currLocation.altitude];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"error:%@",error);
+}
  
- }
- 
- -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
- NSLog(@"error:%@",error);
- }
- 
- - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
- if (status == kCLAuthorizationStatusAuthorizedAlways) {
- NSLog(@"Authorized");
- }else if (status == kCLAuthorizationStatusAuthorizedWhenInUse){
- NSLog(@"AuthorizedWhenInUse");
- }else if (status == kCLAuthorizationStatusDenied){
- NSLog(@"Denied");
- }else if (status == kCLAuthorizationStatusRestricted) {
- NSLog(@"Restricted");
- }else if (status == kCLAuthorizationStatusNotDetermined){
- NSLog(@"NotDetermined");
- }
- }
- */
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+     if (status == kCLAuthorizationStatusAuthorizedAlways) {
+            NSLog(@"Authorized");
+     }else if (status == kCLAuthorizationStatusAuthorizedWhenInUse){
+            NSLog(@"AuthorizedWhenInUse");
+     }else if (status == kCLAuthorizationStatusDenied){
+            NSLog(@"Denied");
+     }else if (status == kCLAuthorizationStatusRestricted) {
+            NSLog(@"Restricted");
+     }else if (status == kCLAuthorizationStatusNotDetermined){
+            NSLog(@"NotDetermined");
+     }
+}
+
 @end

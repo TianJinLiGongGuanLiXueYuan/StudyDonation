@@ -22,15 +22,22 @@
 
 @property (nonatomic,strong) NSArray *settingArr;
 
+//背景图
 @property (nonatomic,strong) UIImageView *setBackground;
 
+//布局表视图
 @property (nonatomic,strong) UITableView *setTableView;
 
+//返回按钮
 @property (nonatomic,strong) UIButton *setreturnBtn;
 
+//消息框
 @property (nonatomic,strong) UIAlertController *cacheMessage;
 @property (nonatomic,strong) UIAlertAction *messageConfirmBtn;
 @property (nonatomic,strong) UIAlertAction *messageCancelBtn;
+
+//数据获取
+@property (nonatomic,strong) NSMutableDictionary *setPersonInfoData;
 
 @end
 

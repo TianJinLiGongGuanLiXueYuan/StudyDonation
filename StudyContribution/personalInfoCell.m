@@ -76,9 +76,4 @@
 //    self.schoolText.layer.borderWidth = 2.0f;
 //    self.schoolText.layer.borderColor = [[UIColor blackColor]CGColor];
 }
-
-//#pragma mark - 返回数据
-//- (void)returnTextData{
-//    
-//}
 @end

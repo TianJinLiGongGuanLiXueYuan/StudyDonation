@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface ClassInfoViewController : UIViewController
+@interface ClassInfoViewController : BaseViewController
 
 @end

@@ -75,17 +75,59 @@
     for(int i=0;i<6;i++){
         NSMutableArray *lineArr=[NSMutableArray array];
         for(int j=0;j<8;j++){
-            //            if i!==null,{
+            //            //            if i!==null,{
+            //            //
+            //            //            }
+            //            //
+            //            NSString *dataStr=@"体育\n下雨不上了";
             //
-            //            }
-            //
-            NSString *dataStr=@"体育\n下雨不上了";
+            //            [lineArr addObject:dataStr];
+            //        }
+            //        [rowArr addObject:lineArr];
             
-            [lineArr addObject:dataStr];
-        }
-        [rowArr addObject:lineArr];
+            if (i == 0 && j == 0)
+                
+            {
+                NSString * dataStr = @"    大物\n    一教101";
+                [lineArr addObject : dataStr];
+            }
+            if (i == 2 && j == 0)
+                
+            {
+                NSString * dataStr = @"    高数\n    四教304";
+                [lineArr addObject : dataStr];
+            }
+            if (i == 3 && j == 5)
+                
+            {
+                NSString * dataStr = @"    大物\n    一教101";
+                [lineArr addObject : dataStr];
+            }
+            if (i == 4 && j == 2)
+                
+            {
+                NSString * dataStr = @"    高数\n    四教304";
+                [lineArr addObject : dataStr];
+            }
+            if (i == 0 && j == 5)
+                
+            {
+                NSString * dataStr = @"    大英\n    四教201";
+                [lineArr addObject : dataStr];
+            }
+            if (i == 5 && j == 1)
+                
+            {
+                NSString * dataStr = @"    大英\n    四教201";
+                [lineArr addObject : dataStr];
+            }
+            else
+            {
+                NSString * dataStr = @"";
+                [lineArr addObject : dataStr];
+            }}
+        [rowArr addObject : lineArr];
     }
-    
     return rowArr;
     
 }
@@ -100,7 +142,7 @@
             }else{
                 UILabel *label=[self makeLabel];
                 label.text=arr[i][j];
-                label.frame=CGRectMake(44+i*60, 127+j*55, 55, 50);
+                label.frame=CGRectMake(47+i*60, 127+j*55, 55, 50);
                 [self.view addSubview:label];
             }
         }

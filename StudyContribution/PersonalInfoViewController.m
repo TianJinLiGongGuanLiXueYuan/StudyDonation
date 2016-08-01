@@ -10,8 +10,9 @@
 #import "CustomNavigationController.h"
 #import "personalInfoCell.h"
 #import "SettingViewController.h"
+#import "UpdateSchoolViewController.h"
 
-#define SSDD 2
+
 @interface PersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     BOOL isequal;
@@ -323,27 +324,17 @@
     _personalCell.schoolText.text = _test[indexPath.row];
     _personalCell.schoolText.tag = indexPath.row;
     _personalCell.schoolText.delegate = self;
+    
     [_test replaceObjectAtIndex:indexPath.row withObject:_personalCell.schoolText.text];
-    NSLog(@"%@在第%ld行",_test[indexPath.row],(long)_personalCell.schoolText.tag);
 //此方法为关键方法
     [_personalCell.schoolText addTarget:self action:@selector(textFieldWithText:) forControlEvents:UIControlEventEditingChanged];
-    
-    _personalCell.schoolText.userInteractionEnabled = NO;
-    
+
     if (isequal == YES) {
-        [_personalCell EnableEditing];
         [_personalCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     
     return _personalCell;
 }
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    //get cell
-//    personalInfoCell *cell = (personalInfoCell *)[[textField superview] superview];
-//    NSIndexPath *indexPath = [_personInfoTableView indexPathForCell:cell];
-//}
 
 //点击每一行时如何响应
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -386,6 +377,8 @@
         _personalNameValueText.userInteractionEnabled = YES;
         _personalGradeValueText.userInteractionEnabled = YES;
         [_editBtn setTitle:@"完成" forState:UIControlStateNormal];
+        UpdateSchoolViewController *upVC = [[UpdateSchoolViewController alloc]init];
+        [self.navigationController pushViewController:upVC animated:YES];
     }else{
         _personalNameValueText.userInteractionEnabled = NO;
         _personalGradeValueText.userInteractionEnabled = NO;

@@ -9,6 +9,7 @@
 #import "LogupViewController.h"
 #import "LoginView.h"
 #import "BaseInfoSave.h"
+#import "regeisterViewController.h"
 
 //引入第三方头文件
 #import <SMS_SDK/SMSSDK.h>
@@ -52,7 +53,9 @@
     else if(_loginV.setPasswordTextF.text .length != 0 &&  _loginV.confirmPasswordTextF.text.length != 0)
     {
         [[BaseInfoSave sharedInstance] saveOneInfoWithTel:_loginV.telTextF.text apassword:_loginV.setPasswordTextF.text];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+        regeisterViewController *resVC = [[regeisterViewController alloc]init];
+        [self.navigationController pushViewController:resVC animated:YES];
     }
 }
 //-(void)nextBtnClick

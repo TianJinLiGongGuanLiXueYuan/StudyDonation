@@ -16,5 +16,4 @@
 
 @property (nonatomic,strong) UIImageView *bottomLevel;
 
-- (void)EnableEditing;
 @end

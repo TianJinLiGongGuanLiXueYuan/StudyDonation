@@ -142,17 +142,6 @@
     
 //    添加设置按钮
     [self.view addSubview:self.settingBtn];
-
-
-////    初始化定位
-//     self.locationManager = [[CLLocationManager alloc]init];
-//     self.locationManager.delegate = self;
-//     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//     self.locationManager.distanceFilter = 1000.0f;
-//     
-//     [self.locationManager requestWhenInUseAuthorization];
-//     [self.locationManager requestAlwaysAuthorization];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -216,9 +205,6 @@
     
 //    设置按钮位置
     self.settingBtn.frame = CGRectMake(XMargin + 14.5, 602.5, 100, 50);
-    
-////    开始定位
-//    [self.locationManager startUpdatingLocation];
 }
 
 
@@ -392,12 +378,7 @@
 //开始定位
     [self.locationManager startUpdatingLocation];
     
-    //根据经纬度创建两个位置对象
-    _basePoint =[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
-//    _userPoint =[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
-    //计算两个位置之间的距离
-    CLLocationDistance distance=[_basePoint distanceFromLocation:_userPoint];
-    NSLog(@"(%@)和(%@)的距离=%fKM",_basePoint,_userPoint,distance / 1000);
+   
     
 //    _signInMessage = [UIAlertController alertControllerWithTitle:@"签到失败" message:@"上课迟到\n或者是：现在不是上课签到时间" preferredStyle:UIAlertControllerStyleAlert];
 //    [_signInMessage addAction:_determineBtn];
@@ -789,7 +770,7 @@
 //        }
 //            break;
 //    }
-    _currentstatusLabel.text = @"未到\n上课时间";
+    _currentstatusLabel.text = @"未签到";
 }
 
 #pragma mark - 下课打钩图片getter（）
@@ -891,6 +872,12 @@
     NSLog(@"纬度：%3.5f  经度：%3.5f  高度：%3.5f",currLocation.coordinate.latitude
           ,currLocation.coordinate.longitude
           ,currLocation.altitude);
+    //根据经纬度创建两个位置对象
+    _basePoint =[[CLLocation alloc]initWithLatitude:26.081 longitude:119.3];
+    //    _userPoint =[[CLLocation alloc]initWithLatitude:26.08 longitude:119.3];
+    //计算两个位置之间的距离
+    CLLocationDistance distance=[_basePoint distanceFromLocation:_userPoint];
+    NSLog(@"(%@)和(%@)的距离=%fKM",_basePoint,_userPoint,distance / 1000);
  
 }
 

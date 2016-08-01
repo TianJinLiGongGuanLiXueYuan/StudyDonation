@@ -49,11 +49,10 @@
         _schoolText = [[UITextField alloc]init];
 //        _schoolText.layer.borderWidth = 1.0f;
 //        _schoolText.layer.borderColor = [[UIColor blackColor]CGColor];
+        _schoolText.userInteractionEnabled = NO;
         _schoolText.textAlignment = NSTextAlignmentRight;
         _schoolText.textColor = [UIColor whiteColor];
         _schoolText.font = [UIFont systemFontOfSize:26.5];
-//        [_schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidBegin];
-//        [_schoolText addTarget:self action:@selector(returnTextData) forControlEvents:UIControlEventEditingDidEnd];
     }
     return _schoolText;
 }
@@ -68,12 +67,5 @@
         _bottomLevel.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
     }
     return _bottomLevel;
-}
-#pragma mark -编辑文本框
-
-- (void)EnableEditing{
-    self.schoolText.userInteractionEnabled = YES;
-//    self.schoolText.layer.borderWidth = 2.0f;
-//    self.schoolText.layer.borderColor = [[UIColor blackColor]CGColor];
 }
 @end

@@ -12,7 +12,9 @@
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
 		8C6604DC1D43815400C46C91 /* setCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604DB1D43815400C46C91 /* setCell.m */; };
 		8C74609C1D47681000B74FE7 /* timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C74609B1D47681000B74FE7 /* timetable.m */; };
+		8CE7CA521D4CA73B0024265D /* UpdateSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE7CA511D4CA73B0024265D /* UpdateSchoolViewController.m */; };
 		8CED35981D48DCB100162115 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CED35971D48DCB100162115 /* ClassInfoViewController.m */; };
+		F39C22AF1D4F2652009CD312 /* dropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F39C22AE1D4F2652009CD312 /* dropDownMenu.m */; };
 		F43D880B1D45ECFF00269147 /* classInRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D880A1D45ECFF00269147 /* classInRecordCell.m */; };
 		F43D880E1D45ED1100269147 /* contributionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D880D1D45ED1100269147 /* contributionRecordCell.m */; };
 		F43D88111D4609EC00269147 /* contributionBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D88101D4609EC00269147 /* contributionBtnCell.m */; };
@@ -94,8 +96,12 @@
 		8C6604DB1D43815400C46C91 /* setCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setCell.m; sourceTree = "<group>"; };
 		8C74609A1D47680F00B74FE7 /* timetable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timetable.h; sourceTree = "<group>"; };
 		8C74609B1D47681000B74FE7 /* timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timetable.m; sourceTree = "<group>"; };
+		8CE7CA501D4CA73B0024265D /* UpdateSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateSchoolViewController.h; sourceTree = "<group>"; };
+		8CE7CA511D4CA73B0024265D /* UpdateSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateSchoolViewController.m; sourceTree = "<group>"; };
 		8CED35961D48DCB100162115 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
 		8CED35971D48DCB100162115 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		F39C22AD1D4F2652009CD312 /* dropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dropDownMenu.h; sourceTree = "<group>"; };
+		F39C22AE1D4F2652009CD312 /* dropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dropDownMenu.m; sourceTree = "<group>"; };
 		F43D88091D45ECFF00269147 /* classInRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classInRecordCell.h; sourceTree = "<group>"; };
 		F43D880A1D45ECFF00269147 /* classInRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = classInRecordCell.m; sourceTree = "<group>"; };
 		F43D880C1D45ED1100269147 /* contributionRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contributionRecordCell.h; sourceTree = "<group>"; };
@@ -505,6 +511,8 @@
 				FE7AD2C91D35557100AE368C /* SettingViewController.m */,
 				F47AA3B71D42415100CB22DB /* PersonalInfoViewController.h */,
 				F47AA3B81D42415100CB22DB /* PersonalInfoViewController.m */,
+				8CE7CA501D4CA73B0024265D /* UpdateSchoolViewController.h */,
+				8CE7CA511D4CA73B0024265D /* UpdateSchoolViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -522,6 +530,8 @@
 				F4A7688C1D43483000B3DF3D /* personalInfoCell.m */,
 				F4A7689A1D4399C200B3DF3D /* AboutUsView.h */,
 				F4A7689B1D4399C200B3DF3D /* AboutUsView.m */,
+				F39C22AD1D4F2652009CD312 /* dropDownMenu.h */,
+				F39C22AE1D4F2652009CD312 /* dropDownMenu.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -727,8 +737,10 @@
 				FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */,
 				FED16F151D45BC2A00F10B47 /* AFSecurityPolicy.m in Sources */,
 				F43D88111D4609EC00269147 /* contributionBtnCell.m in Sources */,
+				8CE7CA521D4CA73B0024265D /* UpdateSchoolViewController.m in Sources */,
 				F43D880B1D45ECFF00269147 /* classInRecordCell.m in Sources */,
 				FE7AD2C31D35550C00AE368C /* ContributionDetailViewController.m in Sources */,
+				F39C22AF1D4F2652009CD312 /* dropDownMenu.m in Sources */,
 				F4A7689C1D4399C200B3DF3D /* AboutUsView.m in Sources */,
 				FE7AD2D01D35D27900AE368C /* passWordView.m in Sources */,
 				F5AB95441D3CF379006D87F4 /* BaseInfoSave.m in Sources */,

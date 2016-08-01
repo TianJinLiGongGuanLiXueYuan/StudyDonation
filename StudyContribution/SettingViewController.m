@@ -60,7 +60,7 @@
 //    添加背景图
     [self.view addSubview:self.setBackground];
     
-//    初始化TableView
+//    添加设置视图
     _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
     _setTableView.backgroundColor = [UIColor clearColor];
     //    设置cell无下划线
@@ -89,11 +89,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    //    设置背景图位置
+//    设置背景图位置
     self.setBackground.frame = [UIScreen mainScreen].bounds;
     
-    //    设置返回按钮位置
+//    设置返回按钮位置
     self.setreturnBtn.frame = CGRectMake(10, 10, 45, 45);
+    
+//    self.setTableView.frame = CGRectMake(0, 64, 414, 600);
 }
 
 #pragma mark - 背景图getter（）
@@ -101,7 +103,6 @@
 - (UIImageView *)setBackground{
     if (!_setBackground) {
         _setBackground = [[UIImageView alloc]init];
-//        _setBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
         _setBackground.image = [UIImage imageNamed:@"学霸捐-设置"];
     }
     return _setBackground;
@@ -127,8 +128,20 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 表视图协议
+//#pragma mark - 设置视图getter（）
+//
+//- (UITableView *)setTableView{
+//    if (!_setTableView) {
+//        _setTableView = [[UITableView alloc]init];
+////        _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
+//        _setTableView.backgroundColor = [UIColor clearColor];
+////    设置cell无下划线
+//        _setTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+//    }
+//    return _setTableView;
+//}
 
+#pragma mark - 表视图协议
 
 //控制表视图有多少行
 

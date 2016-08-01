@@ -22,6 +22,20 @@
 @property(nonatomic,strong)UIImageView *borderOne;
 @property(nonatomic,strong)UIImageView *boederTwo;
 @property(nonatomic,strong)UIImageView *btnBg;
+@property(nonatomic,strong)UIImageView *lineOne;
+@property(nonatomic,strong)UIImageView *lineTwo;
+@property(nonatomic,strong)UIImageView *lineThree;
+@property(nonatomic,strong)UIImageView *lineFour;
+@property(nonatomic,strong)UIImageView *imageOne;
+@property(nonatomic,strong)UIImageView *imageTwo;
+@property(nonatomic,strong)UIImageView *imageThree;
+@property(nonatomic,strong)UIImageView *imageFour;
+@property(nonatomic,strong)UILabel *labOne;
+@property(nonatomic,strong)UILabel *labTwo;
+@property(nonatomic,strong)UILabel *labThree;
+@property(nonatomic,strong)UILabel *labFour;
+
+
 
 + (BOOL) isMobile:(NSString *)mobileNumbel;
 -(UITextField *)telTextF;

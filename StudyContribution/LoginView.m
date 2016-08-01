@@ -28,25 +28,57 @@
 @synthesize boederTwo;
 @synthesize borderOne;
 @synthesize btnBg;
+@synthesize lineOne;
+@synthesize lineTwo;
+@synthesize lineThree;
+@synthesize lineFour;
+@synthesize imageOne;
+@synthesize imageTwo;
+@synthesize imageThree;
+@synthesize imageFour;
+@synthesize labOne;
+@synthesize labTwo;
+@synthesize labThree;
+@synthesize labFour;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         UIImageView *customBackgournd = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, hight)];
-        customBackgournd.image = [UIImage imageNamed:@"注册(改)"];
+        customBackgournd.image = [UIImage imageNamed:@"regeister"];
         [self addSubview:customBackgournd];
 //        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"学霸捐- 注册"]];
+        [self addSubview:self.leftBtn];
         [self addSubview:self.btnBg];
+        
+        [self addSubview:self.imageOne];
+        [self addSubview:self.labOne];
         [self addSubview:self.telTextF];
+        [self addSubview:self.lineOne];
+        
+        [self addSubview:self.imageTwo];
+        [self addSubview:self.labTwo];
+        [self addSubview:self.verifyTexF];
         [self addSubview:self.inputBtn];
+        [self addSubview:self.borderOne];
+        [self addSubview:self.lineTwo];
+        
+        [self addSubview:self.imageThree];
+        [self addSubview:self.labThree];
+        [self addSubview:self.setPasswordTextF];
+        [self addSubview:self.lineThree];
+        
+        [self addSubview:self.imageFour];
+        [self addSubview:self.labFour];
+        [self addSubview:self.confirmPasswordTextF];
+        [self addSubview:self.lineFour];
+        
         [self addSubview:self.boederTwo];
         [self addSubview:self.nextbtn];
-        [self addSubview:self.borderOne];
-        [self addSubview:self.verifyTexF];
-        [self addSubview:self.leftBtn];
-        [self addSubview:self.setPasswordTextF];
-        [self addSubview:self.confirmPasswordTextF];
+        
+        
+
         
         //手势，收起键盘
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
@@ -69,11 +101,30 @@
 {
     if (!btnBg) {
         btnBg = [[UIImageView alloc]initWithFrame:CGRectMake(0.03*width, 25, 0.043*width, 0.075*width)];
-        btnBg.image = [UIImage imageNamed:@"返回"];
+        btnBg.image = [UIImage imageNamed:@"returnPictrue"];
     }
     return btnBg;
 }
-//手机号textfiled
+
+// 手机号
+-(UIImageView *)imageOne
+{
+    if (!imageOne) {
+        imageOne = [[UIImageView alloc]initWithFrame:CGRectMake(0.137*width, 0.293*hight, 0.045*hight, 0.045*hight)];
+        imageOne.image = [UIImage imageNamed:@"学霸捐－人"];
+    }
+    return imageOne;
+}
+-(UILabel *)labOne
+{
+    if (!labOne) {
+        labOne = [[UILabel alloc]initWithFrame:CGRectMake(0.23*width, 0.291*hight, 0.03*width, 0.06*hight)];
+        labOne.text = @":";
+        [labOne setFont:[UIFont systemFontOfSize:40]];
+        [labOne setTextColor:[UIColor whiteColor]];
+    }
+    return labOne;
+}
 -(UITextField *)telTextF
 {
     if(!telTextF)
@@ -95,7 +146,36 @@
     }
     return telTextF;
 }
-//验证码verifyTextF
+-(UIImageView *)lineOne
+{
+    if (!lineOne) {
+        lineOne = [[UIImageView alloc]initWithFrame:CGRectMake(0.099*width, 0.355*hight, 0.8*width, 0.004*hight)];
+        lineOne.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return lineOne;
+}
+
+
+//验证码
+
+-(UIImageView *)imageTwo
+{
+    if (!imageTwo) {
+        imageTwo = [[UIImageView alloc]initWithFrame:CGRectMake(0.152*width, 0.393*hight, 0.04*width, 0.04*hight)];
+        imageTwo.image = [UIImage imageNamed:@"钥匙"];
+    }
+    return imageTwo;
+}
+-(UILabel *)labTwo
+{
+    if (!labTwo) {
+        labTwo = [[UILabel alloc]initWithFrame:CGRectMake(0.23*width, 0.384*hight, 0.03*width, 0.06*hight)];
+        labTwo.text = @":";
+        [labTwo setFont:[UIFont systemFontOfSize:40]];
+        [labTwo setTextColor:[UIColor whiteColor]];
+    }
+    return labTwo;
+}
 -(UITextField *)verifyTexF
 {
     if(!verifyTexF)
@@ -117,15 +197,16 @@
     }
     return verifyTexF;
 }
+
+//发送验证码
 -(UIImageView *)borderOne
 {
     if (!borderOne) {
-        borderOne = [[UIImageView alloc]initWithFrame:CGRectMake(0.695*width, 0.396*hight, 0.2*width, 0.035*hight)];
+        borderOne = [[UIImageView alloc]initWithFrame:CGRectMake(0.695*width, 0.396*hight, 0.2*width, 0.033*hight)];
         borderOne.image = [UIImage imageNamed:@"验证码按钮框"];
     }
     return borderOne;
 }
-//发送验证码
 -(UIButton *)inputBtn
 {
     if(!inputBtn)
@@ -143,7 +224,34 @@
     return inputBtn;
 }
 
-//设置密码Tf
+-(UIImageView *)lineTwo
+{
+    if (!lineTwo) {
+        lineTwo = [[UIImageView alloc]initWithFrame:CGRectMake(0.099*width, 0.447*hight, 0.8*width, 0.004*hight)];
+        lineTwo.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return lineTwo;
+}
+
+//设置密码
+-(UIImageView *)imageThree
+{
+    if (!imageThree) {
+        imageThree = [[UIImageView alloc]initWithFrame:CGRectMake(0.137*width, 0.48*hight, 0.042*hight, 0.042*hight)];
+        imageThree.image = [UIImage imageNamed:@"学霸捐－锁"];
+    }
+    return imageThree;
+}
+-(UILabel *)labThree
+{
+    if (!labThree) {
+        labThree = [[UILabel alloc]initWithFrame:CGRectMake(0.23*width, 0.468*hight, 0.03*width, 0.06*hight)];
+        labThree.text = @":";
+        [labThree setFont:[UIFont systemFontOfSize:40]];
+        [labThree setTextColor:[UIColor whiteColor]];
+    }
+    return labThree;
+}
 -(UITextField *)setPasswordTextF
 {
     if (!setPasswordTextF) {
@@ -164,7 +272,35 @@
     }
     return setPasswordTextF;
 }
+-(UIImageView *)lineThree
+{
+    if (!lineThree) {
+        lineThree = [[UIImageView alloc]initWithFrame:CGRectMake(0.099*width, 0.534*hight, 0.8*width, 0.004*hight)];
+        lineThree.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return lineThree;
+}
+
+
 //确认密码
+-(UIImageView *)imageFour
+{
+    if (!imageFour) {
+        imageFour = [[UIImageView alloc]initWithFrame:CGRectMake(0.137*width, 0.555*hight, 0.042*hight, 0.042*hight)];
+        imageFour.image = [UIImage imageNamed:@"学霸捐－锁"];
+    }
+    return imageFour;
+}
+-(UILabel *)labFour
+{
+    if (!labFour) {
+        labFour = [[UILabel alloc]initWithFrame:CGRectMake(0.23*width, 0.544*hight, 0.03*width, 0.06*hight)];
+        labFour.text = @":";
+        [labFour setFont:[UIFont systemFontOfSize:40]];
+        [labFour setTextColor:[UIColor whiteColor]];
+    }
+    return labFour;
+}
 -(UITextField *)confirmPasswordTextF
 {
     if (!confirmPasswordTextF) {
@@ -185,6 +321,16 @@
     }
     return confirmPasswordTextF;
 }
+
+-(UIImageView *)lineFour
+{
+    if (!lineFour) {
+        lineFour = [[UIImageView alloc]initWithFrame:CGRectMake(0.099*width, 0.61*hight, 0.8*width, 0.004*hight)];
+        lineFour.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return lineFour;
+}
+//注册按钮
 -(UIImageView *)boederTwo
 {
     if (!boederTwo) {
@@ -193,7 +339,7 @@
     }
     return boederTwo;
 }
-//注册按钮
+
 -(UIButton *)nextbtn
 {
     if (!nextbtn) {
@@ -210,6 +356,7 @@
     }
     return nextbtn;
 }
+
 #pragma mark - 单机事件
 
 -(void)inputBtnClick

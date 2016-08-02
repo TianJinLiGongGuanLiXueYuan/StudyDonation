@@ -10,4 +10,6 @@
 #import "BaseViewController.h"
 @interface ContributionDetailViewController : UIViewController
 
+@property (nonatomic,assign)  float i;
+
 @end

@@ -100,6 +100,7 @@
     
 //    添加背景图
     [self.view addSubview:self.regeisterBackground];
+//    self.view.backgroundColor = [UIColor purpleColor];
     
 //    添加日期label
     [self.view addSubview:self.weekdayLabel];

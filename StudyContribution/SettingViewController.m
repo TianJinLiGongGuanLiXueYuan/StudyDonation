@@ -18,6 +18,9 @@
 #import "PersonalInfoViewController.h"
 #import "AboutUsView.h"
 
+#define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define TABLE_HEIGHT [UIScreen mainScreen].bounds.size.height * 4 / 5
+
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSArray *settingArr;
@@ -61,7 +64,7 @@
     [self.view addSubview:self.setBackground];
     
 //    添加设置视图
-    _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
+    _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, UISCREEN_WIDTH, TABLE_HEIGHT) style:UITableViewStyleGrouped];
     _setTableView.backgroundColor = [UIColor clearColor];
     //    设置cell无下划线
     _setTableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -94,8 +97,6 @@
     
 //    设置返回按钮位置
     self.setreturnBtn.frame = CGRectMake(10, 10, 45, 45);
-    
-//    self.setTableView.frame = CGRectMake(0, 64, 414, 600);
 }
 
 #pragma mark - 背景图getter（）

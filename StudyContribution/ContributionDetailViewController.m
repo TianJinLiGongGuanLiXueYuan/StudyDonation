@@ -16,15 +16,19 @@
 
 @interface ContributionDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    BOOL sceletState;
-}
+    BOOL sceletState;}
 //背景图
 @property (nonatomic,strong) UIImageView *contributionBackground;
 
 //临时数据
-@property (nonatomic,strong) NSArray *dateArr;
-@property (nonatomic,strong) NSArray *countArr;
-@property (nonatomic,strong) NSArray *moneyArr;
+@property (nonatomic,strong) NSMutableArray *dateArr;
+@property (nonatomic,strong) NSMutableArray *countArr;
+@property (nonatomic,strong) NSMutableArray *moneyArrhistory;
+@property (nonatomic,strong) NSMutableArray *dateArrhistory;
+@property (nonatomic,strong) NSMutableArray *countArrhistory;
+@property (nonatomic,strong) NSMutableArray *removeArr;
+//@property (nonatomic,strong) NSMutableDictionary *recordData;
+
 
 //返回按钮
 @property (nonatomic,strong) UIButton *contributionReturnBtn;
@@ -37,7 +41,7 @@
 @property (nonatomic,strong) UIButton *classInRecordBtn;
 @property (nonatomic,strong) UIButton *contributionRecordBtn;
 
-//当前可捐献lebel
+//当前可捐献label
 @property (nonatomic,strong) UILabel *contributionInfo;
 
 //金钱图片
@@ -52,10 +56,14 @@
 //全选按钮
 @property (nonatomic,strong) UIButton *selectAllBtn;
 
+//粉笔粗线
+@property (nonatomic,strong) UIImageView *cuXian;
+
 
 @property (nonatomic,strong) NSIndexPath *nowIndexPath;
 
 @property (nonatomic,strong) classInRecordCell *classInRecordcell;
+@property (nonatomic,strong) classInRecordCell *cell;
 @property (nonatomic,strong) contributionRecordCell *contributionRecordcell;
 
 @end
@@ -71,10 +79,12 @@
 
     
     [self.view addSubview:self.contributionBackground];
-    
-    _dateArr = @[@"7月21日",@"7月23日",@"7月25日",@"7月26日",@"7月27日",@"7月29日"];
-    _countArr = @[@"三单",@"一单",@"四单",@"三单",@"一单",@"二单"];
-    _moneyArr = @[@"三分钱",@"一分钱",@"四分钱",@"三分钱",@"一分钱",@"二分钱"];
+    _dateArr = [[NSMutableArray alloc] initWithObjects:@"7月21日",@"7月23日",@"7月25日",@"7月26日",@"7月27日",@"7月29日", nil];
+    _countArr = [[NSMutableArray alloc] initWithObjects:@"3单",@"1单",@"4单",@"3单",@"1单",@"2单", nil];
+    _moneyArrhistory = [[NSMutableArray alloc] initWithObjects:@"￥0.02",@"￥0.01",@"",@"",@"",@"",@"", nil];
+    _dateArrhistory = [[NSMutableArray alloc] initWithObjects:@"7月22日",@"7月24日",@"",@"",@"",@"",nil];
+    _countArrhistory = [[NSMutableArray alloc] initWithObjects:@"2单",@"1单",@"",@"",@"",@"",nil];
+    _removeArr=[NSMutableArray array];
     
     [self.view addSubview:self.contributionReturnBtn];
     
@@ -110,6 +120,8 @@
     [self.view addSubview:self.moneyCount];
     [self.view addSubview:self.confirmContributionBtn];
     [self.view addSubview:self.selectAllBtn];
+    [self.view addSubview:self.cuXian];
+    
 }
 - (void) viewDidDisappear:(BOOL)animated
 {
@@ -124,13 +136,14 @@
     self.contributionBackground.frame = [UIScreen mainScreen].bounds;
     
     self.classInRecordBtn.frame = CGRectMake(self.view.center.x - 181, self.view.center.y - 310, self.classInfo.bounds.size.width / 2, 60);
-    self.contributionRecordBtn.frame = CGRectMake(self.view.center.x, self.view.center.y - 310, self.classInfo.bounds.size.width / 2, 60);
+    self.contributionRecordBtn.frame = CGRectMake(self.view.center.x, self.view.center.y - 310, self.classInfo.bounds.size.width / 2-1, 60);
     
-    self.contributionInfo.frame = CGRectMake(30, 500, 200, 50);
-    self.moneyImage.frame = CGRectMake(240, 500, 30, 50);
-    self.moneyCount.frame = CGRectMake(280, 500 ,100, 50);
+    self.contributionInfo.frame = CGRectMake(40, 500, 200, 50);
+    self.moneyImage.frame = CGRectMake(260, 505, 25, 40);
+    self.moneyCount.frame = CGRectMake(290, 500 ,100, 50);
     self.confirmContributionBtn.frame = CGRectMake(115, 572, 150, 50);
     self.selectAllBtn.frame = CGRectMake(270, 600, 100, 50);
+    self.cuXian.frame = CGRectMake(self.view.center.x-170, 550, 340, 5);
 
 }
 #pragma mark - 背景图getter（）
@@ -138,7 +151,7 @@
 - (UIImageView *)contributionBackground{
     if (!_contributionBackground) {
         _contributionBackground = [[UIImageView alloc]init];
-        _contributionBackground.image = [UIImage imageNamed:@"学霸捐-设置"];
+        _contributionBackground.image = [UIImage imageNamed:@"捐赠框架"];
     }
     return _contributionBackground;
 }
@@ -168,12 +181,17 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+    
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    if ([tableView isEqual:_classInfo]) {
+        return _dateArr.count;
+    }
+    return _dateArrhistory.count;
+
 }
 //每个分组上边预留的空白高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -190,6 +208,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
+    
 }
 
 //设置每行cell的内容
@@ -204,17 +223,24 @@
         _classInRecordcell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
         if(sceletState==YES){
             [_classInRecordcell seleteMode];
+            NSInteger s = [_classInRecordcell.classInDetailLabel.text intValue];
+            self.i += s;
+            _moneyCount.text = [ NSString stringWithFormat:@"%.2f",self.i * 0.01];
+        }else{
+            self.i = 0;
+            _moneyCount.text = [ NSString stringWithFormat:@"%.2f",self.i];
         }
         return _classInRecordcell;
     }else
         if ([tableView isEqual:_detailInfo]){
             _contributionRecordcell=[[contributionRecordCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"contributionRecordCell"];
             _contributionRecordcell.backgroundColor = [UIColor clearColor];
-            _contributionRecordcell.contributionRecordnDateLabel.text = _dateArr[indexPath.row];
-            _contributionRecordcell.contributionRecordLabel.text = _countArr[indexPath.row];
-            _contributionRecordcell.contributionRecordMoney.text = _moneyArr[indexPath.row];
+//            _contributionRecordcell.contributionRecordnDateLabel.text = [[_dateArrhistory objectAtIndex:indexPath.row] objectAtIndex:2];
+            _contributionRecordcell.contributionRecordnDateLabel.text = _dateArrhistory[indexPath.row];
+            _contributionRecordcell.contributionRecordLabel.text = _countArrhistory[indexPath.row];
+            _contributionRecordcell.contributionRecordMoney.text = _moneyArrhistory[indexPath.row];
             _contributionRecordcell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return _contributionRecordcell;
+            return _contributionRecordcell;
     }
     return nil;
 }
@@ -224,74 +250,23 @@
     self.classInfo.allowsMultipleSelectionDuringEditing = YES;
     
     _nowIndexPath = [self.classInfo indexPathForSelectedRow];
-    classInRecordCell *cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
+    _cell = [self.classInfo cellForRowAtIndexPath:_nowIndexPath];
     
-    cell.mark = !cell.mark;
+    _cell.mark = !_cell.mark;
     
-    switch (indexPath.row) {
-        case 0:
-        {
-            if(cell.mark == NO){
-                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            }else{
-                cell.tickImage.image = [UIImage imageNamed:@"tick"];
-            }
-            
-        }
-            break;
-            
-        case 1:
-        {
-            if(cell.mark == NO){
-                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            }else{
-                cell.tickImage.image = [UIImage imageNamed:@"tick"];
-            }
-        }
-            break;
-            
-        case 2:
-        {
-            if(cell.mark == NO){
-                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            }else{
-                cell.tickImage.image = [UIImage imageNamed:@"tick"];
-            }
-        }
-            break;
-            
-        case 3:
-        {
-            if(cell.mark == NO){
-                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            }else{
-                cell.tickImage.image = [UIImage imageNamed:@"tick"];
-            }
+    NSInteger s = [_cell.classInDetailLabel.text intValue];
+    
+    if(_cell.mark == NO){
+        _cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
+        self.i -= s;
+        _moneyCount.text = [NSString stringWithFormat:@"%.2f",0.01 * self.i];
+        [_removeArr removeObject:[ NSString stringWithFormat:@"%ld",_nowIndexPath.row]];
 
-        }
-            break;
-            
-        case 4:
-        {
-            if(cell.mark == NO){
-                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            }else{
-                cell.tickImage.image = [UIImage imageNamed:@"tick"];
-            }
-        }
-            break;
-            
-        case 5:
-        {
-            if(cell.mark == NO){
-                cell.tickImage.image = [UIImage imageNamed:@"学霸捐－白对勾"];
-            }else{
-                cell.tickImage.image = [UIImage imageNamed:@"tick"];
-            }
-        }
-            break;
-        default:
-            break;
+    }else{
+        _cell.tickImage.image = [UIImage imageNamed:@"tick"];
+        self.i += s;
+        _moneyCount.text = [NSString stringWithFormat:@"%.2f",0.01*self.i];
+        [_removeArr addObject:[ NSString stringWithFormat:@"%ld",_nowIndexPath.row]];
     }
 }
 
@@ -319,7 +294,14 @@
     [_classInRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     _contributionRecordBtn.backgroundColor = [UIColor clearColor];
     [_contributionRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _contributionInfo.hidden = NO;
+    _moneyImage.hidden = NO;
+    _moneyCount.hidden = NO;
+    _confirmContributionBtn.hidden = NO;
+    _selectAllBtn.hidden = NO;
+    _cuXian.hidden = NO;
 
+    
 }
 
 #pragma mark - 捐献记录按钮getter（）
@@ -346,6 +328,12 @@
     [_classInRecordBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _contributionRecordBtn.backgroundColor = [UIColor whiteColor];
     [_contributionRecordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _contributionInfo.hidden = YES;
+    _moneyImage.hidden = YES;
+    _moneyCount.hidden = YES;
+    _confirmContributionBtn.hidden = YES;
+    _selectAllBtn.hidden = YES;
+    _cuXian.hidden = YES;
 }
 
 #pragma mark - 当前可捐献额度label
@@ -363,13 +351,22 @@
     return _contributionInfo;
 }
 
+#pragma mark - 粉笔粗线
+- (UIImageView *)cuXian{
+    if (!_cuXian) {
+        _cuXian = [[UIImageView alloc]init];
+        //                _moneyImage.layer.borderWidth = 1.0f;
+        //                _moneyImage.layer.borderColor = [[UIColor blackColor]CGColor];
+        _cuXian.image = [UIImage imageNamed:@"学霸捐－粉笔粗线"];
+    }
+    return _cuXian;
+}
+
 #pragma mark - 金钱图片
 
 - (UIImageView *)moneyImage{
     if (!_moneyImage) {
         _moneyImage = [[UIImageView alloc]init];
-//                _moneyImage.layer.borderWidth = 1.0f;
-//                _moneyImage.layer.borderColor = [[UIColor blackColor]CGColor];
         _moneyImage.image = [UIImage imageNamed:@"money"];
     }
     return _moneyImage;
@@ -385,7 +382,8 @@
         _moneyCount.font = [UIFont systemFontOfSize:26];
         _moneyCount.textColor = [UIColor whiteColor];
         _moneyCount.textAlignment = NSTextAlignmentLeft;
-        _moneyCount.text = @"6.66";
+        
+        
     }
     return _moneyCount;
 }
@@ -400,9 +398,31 @@
         _confirmContributionBtn.layer.cornerRadius = 5.0f;
         _confirmContributionBtn.titleLabel.font = [UIFont systemFontOfSize:26];
         [_confirmContributionBtn setTitle:@"确定捐献" forState:UIControlStateNormal];
+        [_confirmContributionBtn addTarget:self action:@selector(confirmContributionBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmContributionBtn;
 }
+
+- (void)confirmContributionBtnClick{
+    NSLog(@"%@",_removeArr);
+    for (int n = 0; n < _removeArr.count; n++) {
+        int j = [_removeArr[n] intValue];
+        [_dateArrhistory insertObject:_dateArr[j] atIndex:0];
+        [_countArrhistory insertObject:_countArr[j] atIndex:0];
+        NSInteger a = [_countArr[j] intValue];
+        [_moneyArrhistory insertObject:[ NSString stringWithFormat:@"￥%.2f",a * 0.01] atIndex:0];
+    }
+    for (long n = (_removeArr.count-1); n >= 0; n--) {
+        int j = [_removeArr[n] intValue];
+        [_dateArr removeObjectAtIndex:j];
+        [_countArr removeObjectAtIndex:j];
+    }
+    [self.classInfo reloadData];
+    [self.detailInfo reloadData];
+    _removeArr=[NSMutableArray array];
+    _moneyCount.text = @"0.00";
+}
+
 
 #pragma mark - 全选按钮
 
@@ -422,4 +442,5 @@
     sceletState = !sceletState;
     [self.classInfo reloadData];
 }
+
 @end

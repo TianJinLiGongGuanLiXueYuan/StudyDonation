@@ -11,7 +11,7 @@
 		18E5D0DB1D407BAF00CA20DF /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0DA1D407BAF00CA20DF /* Info.m */; };
 		8C59072B1D40E32D003FD355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C59072A1D40E32D003FD355 /* CoreLocation.framework */; };
 		8C6604DC1D43815400C46C91 /* setCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604DB1D43815400C46C91 /* setCell.m */; };
-		8C74609C1D47681000B74FE7 /* timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C74609B1D47681000B74FE7 /* timetable.m */; };
+		8CB9791E1D54A64D00E3420D /* drawRactangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9791D1D54A64D00E3420D /* drawRactangle.m */; };
 		8CE7CA521D4CA73B0024265D /* UpdateSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE7CA511D4CA73B0024265D /* UpdateSchoolViewController.m */; };
 		8CED35981D48DCB100162115 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CED35971D48DCB100162115 /* ClassInfoViewController.m */; };
 		F39C22AF1D4F2652009CD312 /* dropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F39C22AE1D4F2652009CD312 /* dropDownMenu.m */; };
@@ -94,8 +94,8 @@
 		8C59072A1D40E32D003FD355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8C6604DA1D43815400C46C91 /* setCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setCell.h; sourceTree = "<group>"; };
 		8C6604DB1D43815400C46C91 /* setCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setCell.m; sourceTree = "<group>"; };
-		8C74609A1D47680F00B74FE7 /* timetable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timetable.h; sourceTree = "<group>"; };
-		8C74609B1D47681000B74FE7 /* timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timetable.m; sourceTree = "<group>"; };
+		8CB9791C1D54A64D00E3420D /* drawRactangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawRactangle.h; sourceTree = "<group>"; };
+		8CB9791D1D54A64D00E3420D /* drawRactangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawRactangle.m; sourceTree = "<group>"; };
 		8CE7CA501D4CA73B0024265D /* UpdateSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateSchoolViewController.h; sourceTree = "<group>"; };
 		8CE7CA511D4CA73B0024265D /* UpdateSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateSchoolViewController.m; sourceTree = "<group>"; };
 		8CED35961D48DCB100162115 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
@@ -372,8 +372,6 @@
 				FE7AD29C1D35431A00AE368C /* regeisterViewController.m */,
 				8CED35961D48DCB100162115 /* ClassInfoViewController.h */,
 				8CED35971D48DCB100162115 /* ClassInfoViewController.m */,
-				8C74609A1D47680F00B74FE7 /* timetable.h */,
-				8C74609B1D47681000B74FE7 /* timetable.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -479,6 +477,8 @@
 			children = (
 				F43D88091D45ECFF00269147 /* classInRecordCell.h */,
 				F43D880A1D45ECFF00269147 /* classInRecordCell.m */,
+				8CB9791C1D54A64D00E3420D /* drawRactangle.h */,
+				8CB9791D1D54A64D00E3420D /* drawRactangle.m */,
 				F43D880C1D45ED1100269147 /* contributionRecordCell.h */,
 				F43D880D1D45ED1100269147 /* contributionRecordCell.m */,
 				F43D880F1D4609EC00269147 /* contributionBtnCell.h */,
@@ -708,7 +708,6 @@
 				F56E79831D450B6900AECD6E /* UIView+Toast.m in Sources */,
 				FE7AD2B21D354E2F00AE368C /* LogupViewController.m in Sources */,
 				F5D0397C1D36CF9600476D65 /* ForgetPasswordViewController.m in Sources */,
-				8C74609C1D47681000B74FE7 /* timetable.m in Sources */,
 				F47AA3B91D42415100CB22DB /* PersonalInfoViewController.m in Sources */,
 				F4A768931D4357D600B3DF3D /* setPhotoCell.m in Sources */,
 				18E5D0D81D407B9700CA20DF /* MoreDetailViewController.m in Sources */,
@@ -736,6 +735,7 @@
 				FED16F171D45BC2A00F10B47 /* AFURLResponseSerialization.m in Sources */,
 				FE7AD2CA1D35557100AE368C /* SettingViewController.m in Sources */,
 				FED16F151D45BC2A00F10B47 /* AFSecurityPolicy.m in Sources */,
+				8CB9791E1D54A64D00E3420D /* drawRactangle.m in Sources */,
 				F43D88111D4609EC00269147 /* contributionBtnCell.m in Sources */,
 				8CE7CA521D4CA73B0024265D /* UpdateSchoolViewController.m in Sources */,
 				F43D880B1D45ECFF00269147 /* classInRecordCell.m in Sources */,

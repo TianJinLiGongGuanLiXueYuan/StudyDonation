@@ -223,7 +223,7 @@
         
 //        _regeisterBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
         
-        _regeisterBackground.image = [UIImage imageNamed:@"背景"];
+        _regeisterBackground.image = [UIImage imageNamed:@"background"];
     }
     return _regeisterBackground;
 }

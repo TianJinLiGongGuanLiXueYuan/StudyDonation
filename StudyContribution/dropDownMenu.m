@@ -8,7 +8,7 @@
 
 #import "dropDownMenu.h"
 
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width * 2 / 3
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width * 4 / 5
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define kTableViewCellHeight 44
 
@@ -67,10 +67,10 @@ typedef void(^complete)();
 @property (nonatomic, assign) CGFloat tableViewHeight;
 @property (nonatomic, assign) CGPoint origin;  //原点
 @property (nonatomic, assign) CGFloat height;
-@property (nonatomic, assign) NSInteger numberOfColumn;  //列数
+//@property (nonatomic, assign) NSInteger numberOfColumn;  //列数
 @property (nonatomic, assign) BOOL isShow;
 @property (nonatomic, strong) UIView *backGroundView;
-//@property (nonatomic, strong) UITableView *leftTableView;  //一级列表
+@property (nonatomic, strong) UITableView *leftTableView;  //一级列表
 @property (nonatomic, assign) NSInteger currentSelectedColumn;  //当前选中列
 
 //layers array
@@ -188,11 +188,12 @@ typedef void(^complete)();
         [tempBgLayers addObject:bgLayer];
         
         //titleLayer
-        NSString *titleString = nil;
+        NSString *titleString = nil;        
         titleString = [_dataSource menu:self titleForRowAtIndexPath:[LrdIndexPath indexPathWithColumn:i row:0]];
-        
         CGPoint positionForTitle = CGPointMake(( i * 2 + 1) * numberOfTextLayer, self.height / 2);
-        CATextLayer *textLayer = [self createTitleLayerWithString:titleString position:positionForTitle color:self.textColor];
+        CATextLayer *textLayer;
+              textLayer = [self createTitleLayerWithString:titleString position:positionForTitle color:self.textColor];
+            self.mark++;
         [self.layer addSublayer:textLayer];
         [tempTitles addObject:textLayer];
         
@@ -225,6 +226,8 @@ typedef void(^complete)();
 }
 
 //标题
+
+
 - (CATextLayer *)createTitleLayerWithString:(NSString *)string position:(CGPoint)position color:(UIColor *)color {
     CGSize size = [self calculateTitleSizeWithString:string];
     

@@ -13,6 +13,7 @@
 @property (nonatomic, assign) NSInteger column; //列
 @property (nonatomic, assign) NSInteger item; //item
 
+
 - (instancetype)initWithColumn:(NSInteger)column row:(NSInteger)row;
 
 + (instancetype)indexPathWithColumn:(NSInteger)column row:(NSInteger)row;
@@ -57,11 +58,13 @@
 @property (nonatomic, strong) UIFont *detailTextFont;
 @property (nonatomic, strong) UIColor *separatorColor;
 @property (nonatomic, assign) NSInteger fontSize;
-@property (nonatomic, strong) UITableView *leftTableView;  //一级列表
+@property (nonatomic, assign) NSInteger numberOfColumn;  //列数
 //当前选中的列
 @property (nonatomic, strong) NSMutableArray *currentSelectedRows;
 //当有二级列表的时候，是否调用点击代理方法
 @property (nonatomic, assign) BOOL isClickHaveItemValid;
+
+@property (nonatomic, assign) NSInteger mark;
 
 //获取title
 - (NSString *)titleForRowAtIndexPath:(LrdIndexPath *)indexPath;

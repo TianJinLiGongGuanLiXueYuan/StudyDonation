@@ -20,6 +20,10 @@
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define TABLE_HEIGHT [UIScreen mainScreen].bounds.size.height * 4 / 5
+#define ReturnButton_X 15
+#define ReturnButton_Y 20
+#define ReturnButton_WIDTH 20
+#define ReturnButton_HEIGHT 30
 
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -32,7 +36,7 @@
 @property (nonatomic,strong) UITableView *setTableView;
 
 //返回按钮
-@property (nonatomic,strong) UIButton *setreturnBtn;
+@property (nonatomic,strong) UIButton *setReturnBtn;
 
 //消息框
 @property (nonatomic,strong) UIAlertController *cacheMessage;
@@ -74,7 +78,7 @@
     _setTableView.showsVerticalScrollIndicator = NO;
     
 //    添加返回按钮
-    [self.view addSubview:self.setreturnBtn];
+    [self.view addSubview:self.setReturnBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,7 +100,8 @@
     self.setBackground.frame = [UIScreen mainScreen].bounds;
     
 //    设置返回按钮位置
-    self.setreturnBtn.frame = CGRectMake(10, 10, 45, 45);
+    self.setReturnBtn.frame = CGRectMake(ReturnButton_X, ReturnButton_Y,
+                                         ReturnButton_WIDTH, ReturnButton_HEIGHT);
 }
 
 #pragma mark - 背景图getter（）
@@ -104,28 +109,25 @@
 - (UIImageView *)setBackground{
     if (!_setBackground) {
         _setBackground = [[UIImageView alloc]init];
-        _setBackground.image = [UIImage imageNamed:@"学霸捐-设置"];
+        _setBackground.image = [UIImage imageNamed:@"background"];
     }
     return _setBackground;
 }
 
 #pragma mark - 返回按钮getter（）
 
-- (UIButton *)setreturnBtn{
-    if (!_setreturnBtn) {
-        _setreturnBtn = [[UIButton alloc]init];
-        
-//        _setreturnBtn.layer.borderWidth = 1.0f;
-//        _setreturnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
-        
-        _setreturnBtn.backgroundColor = [UIColor clearColor];
-        
-        [_setreturnBtn addTarget:self action:@selector(returnBtnClick) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)setReturnBtn{
+    if (!_setReturnBtn) {
+        _setReturnBtn = [[UIButton alloc]init];
+//        _setReturnBtn.layer.borderWidth = 1.0f;
+//        _setReturnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        [_setReturnBtn setBackgroundImage:[UIImage imageNamed:@"returnPictrue"] forState:UIControlStateNormal];
+        [_setReturnBtn addTarget:self action:@selector(returnBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _setreturnBtn;
+    return _setReturnBtn;
 }
 
-- (void)returnBtnClick{
+- (void)returnBtnClick:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -224,7 +226,7 @@
         setExitBtnCell *exitBtncell = [[setExitBtnCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"exitInfo"];
         
         exitBtncell.backgroundColor = [UIColor clearColor];
-        [exitBtncell.exitBtn addTarget:self action:@selector(exitBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [exitBtncell.exitBtn addTarget:self action:@selector(exitBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
 //        设置当前cell选中无样式
         exitBtncell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -303,7 +305,7 @@
 
 #pragma mark - 退出登录按钮事件
 
-- (void)exitBtnClick{
+- (void)exitBtnClick:(UIButton *)sender{
     LoginViewController *logIn=[[LoginViewController alloc]init];
     
     CustomNavigationController *nav=[[CustomNavigationController alloc]initWithRootViewController:logIn];

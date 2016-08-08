@@ -12,11 +12,12 @@
 #import "SettingViewController.h"
 #import "UpdateSchoolViewController.h"
 
+#define ReturnButton_X 15
+#define ReturnButton_Y 20
+#define ReturnButton_WIDTH 20
+#define ReturnButton_HEIGHT 30
 
 @interface PersonalInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
-{
-    BOOL isequal;
-}
 //临时使用
 @property (nonatomic,strong) NSArray *personalInfo;
 @property (nonatomic,strong) NSMutableArray *test;
@@ -66,8 +67,6 @@
     _personInfoData = [NSMutableDictionary dictionary];
     _test = [NSMutableArray arrayWithObjects:@"天津财经大学",@"理工学院",@"信息科学与技术系",@"计科",@"计科1301",@"201311146", nil];
     // Do any additional setup after loading the view.
-    
-    isequal = NO;
     
 //    数组初始化
     _personalInfo = @[@"学校：",@"所在学院：",@"所在系：",@"专业名称：",@"班级：",@"学号："];
@@ -128,10 +127,11 @@
     self.personalBackground.frame = [UIScreen mainScreen].bounds;
     
 //    设置返回按钮位置
-    self.personReturnBtn.frame = CGRectMake(5, 10, 40, 45);
+    self.personReturnBtn.frame = CGRectMake(ReturnButton_X, ReturnButton_Y,
+                                            ReturnButton_WIDTH, ReturnButton_HEIGHT);
     
 //    设置头像位置
-    self.personalPicture.frame = CGRectMake(50, 46.5, 102.4, 145);
+    self.personalPicture.frame = CGRectMake(50, 60, 102.4, 145);
     self.pictureBtn.frame = CGRectMake(50, 46.5, 102.4, 145);
     
 //    设置名字了label位置
@@ -165,7 +165,7 @@
     if (!_personalBackground) {
         _personalBackground = [[UIImageView alloc]init];
 //        _personalBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
-        _personalBackground.image = [UIImage imageNamed:@"personalInfo"];
+        _personalBackground.image = [UIImage imageNamed:@"background"];
     }
     return _personalBackground;
 }
@@ -177,13 +177,13 @@
         _personReturnBtn = [[UIButton alloc]init];
 //        _personReturnBtn.layer.borderWidth = 1;
 //        _personReturnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
-        _personReturnBtn.backgroundColor = [UIColor clearColor];
-        [_personReturnBtn addTarget:self action:@selector(personReturnBtnBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [_personReturnBtn setBackgroundImage:[UIImage imageNamed:@"returnPictrue"] forState:UIControlStateNormal];
+        [_personReturnBtn addTarget:self action:@selector(personReturnBtnBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _personReturnBtn;
 }
 
-- (void)personReturnBtnBtnClick{
+- (void)personReturnBtnBtnClick:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -328,10 +328,6 @@
     [_test replaceObjectAtIndex:indexPath.row withObject:_personalCell.schoolText.text];
 //此方法为关键方法
     [_personalCell.schoolText addTarget:self action:@selector(textFieldWithText:) forControlEvents:UIControlEventEditingChanged];
-
-    if (isequal == YES) {
-        [_personalCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    }
     
     return _personalCell;
 }
@@ -363,27 +359,16 @@
         _editBtn.titleLabel.font = [UIFont systemFontOfSize:26.5];
         [_editBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-        [_editBtn addTarget:self action:@selector(ediBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [_editBtn addTarget:self action:@selector(ediBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _editBtn;
 }
 
-- (void)ediBtnClick{
-    isequal = !isequal;
-    
+- (void)ediBtnClick:(UIButton *)sender{
     [self.personInfoTableView reloadData];
-    
-    if (isequal == YES) {
-        _personalNameValueText.userInteractionEnabled = YES;
-        _personalGradeValueText.userInteractionEnabled = YES;
-        [_editBtn setTitle:@"完成" forState:UIControlStateNormal];
-        UpdateSchoolViewController *upVC = [[UpdateSchoolViewController alloc]init];
-        [self.navigationController pushViewController:upVC animated:YES];
-    }else{
-        _personalNameValueText.userInteractionEnabled = NO;
-        _personalGradeValueText.userInteractionEnabled = NO;
-        [_editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-    }
+
+    UpdateSchoolViewController *upVC = [[UpdateSchoolViewController alloc]init];
+    [self.navigationController pushViewController:upVC animated:YES];
 }
 
 #pragma mark - 编辑按钮下横线

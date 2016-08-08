@@ -38,12 +38,12 @@
         [_exitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _exitBtn.titleLabel.font = [UIFont systemFontOfSize:24.8];
         [_exitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
-        [_exitBtn addTarget:self action:@selector(exitBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [_exitBtn addTarget:self action:@selector(exitBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _exitBtn;
 }
 
-- (void)exitBtnClick{
+- (void)exitBtnClick:(UIButton *)sender{
     
 }
 

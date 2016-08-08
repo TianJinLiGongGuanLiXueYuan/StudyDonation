@@ -13,6 +13,7 @@
 #import "classInRecordCell.h"
 #import "contributionRecordCell.h"
 #import "contributionBtnCell.h"
+#import "drawRactangle.h"
 
 @interface ContributionDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -59,6 +60,9 @@
 //粉笔粗线
 @property (nonatomic,strong) UIImageView *cuXian;
 
+//返回按钮
+@property (nonatomic,strong) UIImageView *returnImage;
+
 
 @property (nonatomic,strong) NSIndexPath *nowIndexPath;
 
@@ -77,16 +81,27 @@
     
     sceletState = NO;
 
+
+    
     
     [self.view addSubview:self.contributionBackground];
     _dateArr = [[NSMutableArray alloc] initWithObjects:@"7月21日",@"7月23日",@"7月25日",@"7月26日",@"7月27日",@"7月29日", nil];
     _countArr = [[NSMutableArray alloc] initWithObjects:@"3单",@"1单",@"4单",@"3单",@"1单",@"2单", nil];
-    _moneyArrhistory = [[NSMutableArray alloc] initWithObjects:@"￥0.02",@"￥0.01",@"",@"",@"",@"",@"", nil];
-    _dateArrhistory = [[NSMutableArray alloc] initWithObjects:@"7月22日",@"7月24日",@"",@"",@"",@"",nil];
-    _countArrhistory = [[NSMutableArray alloc] initWithObjects:@"2单",@"1单",@"",@"",@"",@"",nil];
+    _dateArrhistory = [[NSMutableArray alloc] initWithObjects:@"7月22日",@"7月24日", nil];
+    _moneyArrhistory = [[NSMutableArray alloc] initWithObjects:@"￥0.02",@"￥0.01", nil];
+    _countArrhistory = [[NSMutableArray alloc] initWithObjects:@"2单",@"1单", nil];
     _removeArr=[NSMutableArray array];
     
     [self.view addSubview:self.contributionReturnBtn];
+    
+    drawRactangle *Ractangle = [[drawRactangle alloc]init];
+    Ractangle.frame = CGRectMake(self.view.center.x - 181, self.view.center.y - 310, 362, 620);
+    Ractangle.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:Ractangle];
+    
+    CGPoint separatorPosition = CGPointMake(207,self.view.center.y - 250);
+    CAShapeLayer *separatorLayer = [self createSeparatorWithPosition:separatorPosition color:[UIColor whiteColor]];
+    [self.view.layer addSublayer:separatorLayer];
     
     [self.view addSubview:self.classInRecordBtn];
     [self.view addSubview:self.contributionRecordBtn];
@@ -121,6 +136,10 @@
     [self.view addSubview:self.confirmContributionBtn];
     [self.view addSubview:self.selectAllBtn];
     [self.view addSubview:self.cuXian];
+    [self.view addSubview:self.returnImage];
+    
+    
+    
     
 }
 - (void) viewDidDisappear:(BOOL)animated
@@ -144,6 +163,7 @@
     self.confirmContributionBtn.frame = CGRectMake(115, 572, 150, 50);
     self.selectAllBtn.frame = CGRectMake(270, 600, 100, 50);
     self.cuXian.frame = CGRectMake(self.view.center.x-170, 550, 340, 5);
+    self.returnImage.frame = CGRectMake(10, 16, 20, 30);
 
 }
 #pragma mark - 背景图getter（）
@@ -151,7 +171,7 @@
 - (UIImageView *)contributionBackground{
     if (!_contributionBackground) {
         _contributionBackground = [[UIImageView alloc]init];
-        _contributionBackground.image = [UIImage imageNamed:@"捐赠框架"];
+        _contributionBackground.image = [UIImage imageNamed:@"background"];
     }
     return _contributionBackground;
 }
@@ -351,6 +371,16 @@
     return _contributionInfo;
 }
 
+#pragma mark - 返回图片
+
+- (UIImageView *)returnImage{
+    if (!_returnImage) {
+        _returnImage = [[UIImageView alloc]init];
+        _returnImage.image = [UIImage imageNamed:@"returnPictrue"];
+    }
+    return _returnImage;
+}
+
 #pragma mark - 粉笔粗线
 - (UIImageView *)cuXian{
     if (!_cuXian) {
@@ -405,15 +435,20 @@
 
 - (void)confirmContributionBtnClick{
     NSLog(@"%@",_removeArr);
-    for (int n = 0; n < _removeArr.count; n++) {
-        int j = [_removeArr[n] intValue];
+    
+    NSArray *array = [self paixuArr:_removeArr];
+    NSLog(@"排序后:%@",array);
+         
+    for (int n = 0; n < array.count; n++) {
+        int j = [array[n] intValue];
         [_dateArrhistory insertObject:_dateArr[j] atIndex:0];
         [_countArrhistory insertObject:_countArr[j] atIndex:0];
         NSInteger a = [_countArr[j] intValue];
         [_moneyArrhistory insertObject:[ NSString stringWithFormat:@"￥%.2f",a * 0.01] atIndex:0];
     }
-    for (long n = (_removeArr.count-1); n >= 0; n--) {
-        int j = [_removeArr[n] intValue];
+    for (long n = (array.count-1); n >= 0; n--) {
+        int j = [array[n] intValue];
+        [_removeArr sortedArrayUsingSelector:@selector(compare:)];
         [_dateArr removeObjectAtIndex:j];
         [_countArr removeObjectAtIndex:j];
     }
@@ -441,6 +476,40 @@
 - (void)selectAllBtnBtnClick{
     sceletState = !sceletState;
     [self.classInfo reloadData];
+    for (int m = 0; m < _dateArr.count; m++) {
+        NSNumber *number = [NSNumber numberWithInteger:m];
+        [_removeArr addObject:number];
+    }
+    NSLog(@"%@",_removeArr);
+}
+
+#pragma mark - 数组排序
+- (NSArray *)paixuArr:(NSMutableArray *)array{
+    NSComparator cmptr = ^(id obj1, id obj2){
+        if ([obj1 integerValue] > [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if ([obj1 integerValue] < [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    };
+    return [array sortedArrayUsingComparator:cmptr];
+}
+
+#pragma mark 华丽的分割线
+-(CAShapeLayer *)createSeparatorWithPosition:(CGPoint)position color:(UIColor *)color{
+    CAShapeLayer *layer = [CAShapeLayer new];
+    UIBezierPath *path = [UIBezierPath new];
+    [path moveToPoint:CGPointMake(0, 0)];
+    [path addLineToPoint:CGPointMake(360, 0)];
+    layer.path = path.CGPath;
+    layer.lineWidth = 1.5;
+    layer.strokeColor = color.CGColor;
+    CGPathRef bound = CGPathCreateCopyByStrokingPath(layer.path, nil, layer.lineWidth, kCGLineCapButt, kCGLineJoinMiter, layer.miterLimit);
+    layer.bounds = CGPathGetBoundingBox(bound);
+    layer.position = position;
+    return layer;
 }
 
 @end

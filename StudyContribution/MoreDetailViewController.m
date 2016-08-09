@@ -10,8 +10,6 @@
 #import "ContributionDetailViewController.h"
 #import "Info.h"
 
-
-
 @interface MoreDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong , nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic ,strong)NSArray *dataArr;

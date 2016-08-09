@@ -15,6 +15,11 @@
 #import "contributionBtnCell.h"
 #import "drawRactangle.h"
 
+#define ReturnButton_X 15
+#define ReturnButton_Y 20
+#define ReturnButton_WIDTH 20
+#define ReturnButton_HEIGHT 30
+
 @interface ContributionDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL sceletState;}
@@ -59,10 +64,6 @@
 
 //粉笔粗线
 @property (nonatomic,strong) UIImageView *cuXian;
-
-//返回按钮
-@property (nonatomic,strong) UIImageView *returnImage;
-
 
 @property (nonatomic,strong) NSIndexPath *nowIndexPath;
 
@@ -136,7 +137,6 @@
     [self.view addSubview:self.confirmContributionBtn];
     [self.view addSubview:self.selectAllBtn];
     [self.view addSubview:self.cuXian];
-    [self.view addSubview:self.returnImage];
     
     
     
@@ -163,7 +163,6 @@
     self.confirmContributionBtn.frame = CGRectMake(115, 572, 150, 50);
     self.selectAllBtn.frame = CGRectMake(270, 600, 100, 50);
     self.cuXian.frame = CGRectMake(self.view.center.x-170, 550, 340, 5);
-    self.returnImage.frame = CGRectMake(10, 16, 20, 30);
 
 }
 #pragma mark - 背景图getter（）
@@ -180,13 +179,13 @@
 
 - (UIButton *)contributionReturnBtn{
     if (!_contributionReturnBtn) {
-        _contributionReturnBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 45, 45)];
+        _contributionReturnBtn = [[UIButton alloc]initWithFrame:CGRectMake(ReturnButton_X, ReturnButton_Y,
+                                                                           ReturnButton_WIDTH, ReturnButton_HEIGHT)];
         
 //        _contributionReturnBtn.layer.borderWidth = 1.0f;
 //        _contributionReturnBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         
-        _contributionReturnBtn.backgroundColor = [UIColor clearColor];
-        
+        [_contributionReturnBtn setBackgroundImage:[UIImage imageNamed:@"returnPictrue"] forState:UIControlStateNormal];
         [_contributionReturnBtn addTarget:self action:@selector(contributionReturnBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _contributionReturnBtn;
@@ -369,16 +368,6 @@
         _contributionInfo.text = @"当前可捐献额度:";
     }
     return _contributionInfo;
-}
-
-#pragma mark - 返回图片
-
-- (UIImageView *)returnImage{
-    if (!_returnImage) {
-        _returnImage = [[UIImageView alloc]init];
-        _returnImage.image = [UIImage imageNamed:@"returnPictrue"];
-    }
-    return _returnImage;
 }
 
 #pragma mark - 粉笔粗线

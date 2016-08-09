@@ -9,6 +9,11 @@
 #import "ClassInfoViewController.h"
 #import "regeisterViewController.h"
 
+#define ReturnButton_X 15
+#define ReturnButton_Y 20
+#define ReturnButton_WIDTH 20
+#define ReturnButton_HEIGHT 30
+
 @interface ClassInfoViewController ()
 @property (strong, nonatomic) UIImageView *timetable;
 @property (strong, nonatomic) UIImageView *background;
@@ -58,7 +63,8 @@
 #pragma mark - 返回
 -(UIButton *)returnBtn{
     if (!_returnBtn) {
-        _returnBtn = [[UIButton alloc]initWithFrame:CGRectMake(15, 35, 15, 30)];
+        _returnBtn = [[UIButton alloc]initWithFrame:CGRectMake(ReturnButton_X, ReturnButton_Y,
+                                                               ReturnButton_WIDTH, ReturnButton_HEIGHT)];
     }
     [_returnBtn setImage:[UIImage imageNamed:@"returnPictrue"] forState:UIControlStateNormal];
    

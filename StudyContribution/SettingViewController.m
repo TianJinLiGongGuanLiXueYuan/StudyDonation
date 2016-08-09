@@ -132,11 +132,11 @@
 }
 
 //#pragma mark - 设置视图getter（）
-//
+
 //- (UITableView *)setTableView{
 //    if (!_setTableView) {
 //        _setTableView = [[UITableView alloc]init];
-////        _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
+//        _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 414, 600) style:UITableViewStyleGrouped];
 //        _setTableView.backgroundColor = [UIColor clearColor];
 ////    设置cell无下划线
 //        _setTableView.separatorStyle = UITableViewCellSelectionStyleNone;
